@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ApiEndpoint } from '../enums/api-endpoint.enum';
+import { ApiEndpoint } from '@enums/api-endpoint.enum';
 
 export abstract class ApiService<T> {
 

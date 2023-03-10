@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AlbumComponent } from './page/album/album.component';
-import { HomeComponent } from './page/home/home.component';
+import { AlbumComponent } from '@pages/album/album.component';
+import { HomeComponent } from '@pages/home/home.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },

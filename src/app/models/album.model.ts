@@ -1,4 +1,4 @@
-import { Song } from "./song.model"
+import { Song } from "@models/song.model"
 
 export interface Album {
   id: number
