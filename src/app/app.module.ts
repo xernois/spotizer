@@ -8,6 +8,7 @@ import { HomeComponent } from '@pages/home/home.component';
 import { AlbumComponent } from '@pages/album/album.component';
 import { HeaderComponent } from '@components/header/header.component';
 import { BreadcrumbComponent } from '@components/header/components/breadcrumb/breadcrumb.component';
+import { AlbumDetailsComponent } from './pages/album/components/album-details/album-details.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { BreadcrumbComponent } from '@components/header/components/breadcrumb/br
     HomeComponent,
     AlbumComponent,
     HeaderComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    AlbumDetailsComponent
   ],
   imports: [
     BrowserModule,

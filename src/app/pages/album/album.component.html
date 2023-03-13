@@ -1,5 +1,7 @@
 <div>
     <div *ngFor="let album of albums">
-        <img [src]="album.image" alt="" srcset="">
+        <a [routerLink]="'/album/' + album.url">
+            <img [src]="album.image" alt="" srcset="">
+        </a>
     </div>
 </div>
