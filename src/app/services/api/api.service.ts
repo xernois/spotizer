@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { ApiEndpoint } from '@enums/api-endpoint.enum';
 import { firstValueFrom, lastValueFrom, Observable } from 'rxjs';
+import { environment } from '@environments/environment';
 
 export abstract class ApiService<T> {
-
-  static BASE_API_URL = 'http://spotizer.xernois.fr/~morap01/L250/public/index.php/api/'
 
   private data: T[] = []
 
@@ -14,7 +13,7 @@ export abstract class ApiService<T> {
   ) {}
 
   async setDataAPI() {
-    this.data = await firstValueFrom(this.http.get<T[]>(ApiService.BASE_API_URL + this.endpoint))
+    this.data = await firstValueFrom(this.http.get<T[]>(environment.apiUrl + this.endpoint))
   }
 
   getDataJS() {
