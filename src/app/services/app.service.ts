@@ -10,7 +10,9 @@ export class AppService {
 
   constructor(
     private albumService: AlbumService
-  ) { }
+  ) {
+    this.initializeApiService(albumService)
+  }
 
   async initializeApiService(...services: ApiService<unknown>[]) {
     await Promise.allSettled(services.map(service => service.setDataAPI()))
