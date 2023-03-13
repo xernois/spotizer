@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ApiEndpoint } from '@enums/api-endpoint.enum';
+import { firstValueFrom, lastValueFrom, Observable } from 'rxjs';
 
 export abstract class ApiService<T> {
 
@@ -10,12 +11,10 @@ export abstract class ApiService<T> {
   constructor(
     private http: HttpClient,
     private endpoint: ApiEndpoint
-  ) {
-    this.setDataAPI()
-  }
+  ) {}
 
-  setDataAPI() {
-    this.http.get<T[]>(ApiService.BASE_API_URL + this.endpoint).subscribe((data) => this.data = data)
+  async setDataAPI() {
+    this.data = await firstValueFrom(this.http.get<T[]>(ApiService.BASE_API_URL + this.endpoint))
   }
 
   getDataJS() {
