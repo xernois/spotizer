@@ -29,7 +29,7 @@
       "@assets/*": ["src/assets/*"],
       "@environments/*": ["src/environments/*"],
       "@models/*": ["src/app/models/*"],
-      "@components/*": ["src/app/components"],
+      "@components/*": ["src/app/components/*"],
       "@services/*": ["src/app/services/*"],
       "@enums/*": ["src/app/enums/*"],
       "@pages/*": ["src/app/pages/*"],

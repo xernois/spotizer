@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlbumService } from '@services/api/album.service';
 import { ApiService } from './api/api.service';
 @Injectable({
@@ -9,6 +10,7 @@ export class AppService {
   public initializing: boolean = true
 
   constructor(
+    private router: Router,
     private albumService: AlbumService
   ) {
     this.initializeApiService(albumService)
