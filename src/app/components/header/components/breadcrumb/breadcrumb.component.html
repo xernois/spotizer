@@ -1,4 +1,5 @@
-<ul>
-    <li>Spotizer</li>
-    <li *ngFor="let crumb of path"> > {{crumb}}</li>
-</ul>
+<ng-container *ngFor="let item of breadcrumbService.items$ | async; let last = last">
+    <a *ngIf="!last" [routerLink]="item.path">{{ item.label }}</a>
+    <span *ngIf="last">{{ item.label }}</span>
+    <span *ngIf="!last">/</span>
+</ng-container>

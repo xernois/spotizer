@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { BreadcrumbService } from '@src/app/services/breadcrumb.service';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -11,11 +12,7 @@ export class BreadcrumbComponent {
   path: string[] = []
 
   constructor(
-    private router: Router
-  ) {
-    router.events.subscribe((event) => {
-      if(event instanceof NavigationEnd) this.path = event.url.split('/')
-    })
-  }
+    public breadcrumbService: BreadcrumbService
+  ) {}
 
 }
