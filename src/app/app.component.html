@@ -1,13 +1,11 @@
-<ng-container *ngIf="!appService.initializing">
+<div *ngIf="!appService.initializing" class="app">
     <app-header></app-header>
-    <header>
-        <nav>
-            <ul>
-                <li><a routerLink="/">home</a></li>
-                <li><a routerLink="/album">album</a></li>
-            </ul>
-        </nav>
-    </header>
-    <router-outlet></router-outlet>
-    <footer>moi c'est les pieds</footer>
-</ng-container>
+    <div class="app__content">
+        <app-panel-navigation></app-panel-navigation>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+        <app-panel-user></app-panel-user>
+    </div>
+    <app-player></app-player>
+</div>

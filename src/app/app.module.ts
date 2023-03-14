@@ -10,6 +10,9 @@ import { HeaderComponent } from '@components/header/header.component';
 import { AlbumDetailsComponent } from './pages/album/components/album-details/album-details.component';
 import { BreadcrumbComponent } from './components/header/components/breadcrumb/breadcrumb.component';
 import { CommonModule } from '@angular/common';
+import { PanelNavigationComponent } from './components/panel-navigation/panel-navigation.component';
+import { PanelUserComponent } from './components/panel-user/panel-user.component';
+import { PlayerComponent } from './components/player/player.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { CommonModule } from '@angular/common';
     AlbumComponent,
     HeaderComponent,
     AlbumDetailsComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    PanelNavigationComponent,
+    PanelUserComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,

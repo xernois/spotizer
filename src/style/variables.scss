@@ -1,0 +1,35 @@
+// Colors
+$black: #000000;
+$grey-100: #121212;
+$grey-200: #222222;
+$grey-300: #272727;
+$grey-400: #2d2d2d;
+$grey-500: #353535;
+$white: #ffffff;
+$white-87: #ffffffde;
+$white-60: #ffffff99;
+$white-38: #ffffff5e;
+
+:root {
+    //Themes
+    //Themes Dark
+    --clr-background-main: #{$black};
+    --clr-background-grey-100: #{$grey-100};
+
+    --clr-text-main: #{$white-60};
+    --clr-text-selected: #{$white-87};
+    --clr-text-title: #{$white-87};
+
+    //Themes White
+
+
+    //Margin
+    --margin-40: 40px;
+
+    //Width
+    --width-panel-navigation: 100px;
+
+    //Text
+}
+
+// Class text

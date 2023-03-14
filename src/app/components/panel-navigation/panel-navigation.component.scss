@@ -1,0 +1,9 @@
+nav {
+    max-width: var(--width-panel-navigation);
+    width: var(--width-panel-navigation);
+    color: var(--clr-text-main);
+
+    p {
+        color: var(--clr-text-title);
+    }
+}

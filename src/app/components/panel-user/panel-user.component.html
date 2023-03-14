@@ -1,0 +1,25 @@
+<div class="panel-user">
+    <div>
+        <img>
+        <p>Playlist random</p>
+    </div>
+    <div>
+        <img>
+        <p>Song name</p>
+        <button>Like</button>
+        <button>Share</button>
+        <button>Play</button>
+    </div>
+    <div>
+        <nav>
+            <ul>
+                <li>Playlist</li>
+                <li>Songs like</li>
+                <li>Albums like</li>
+            </ul>
+        </nav>
+        <ul>
+            <li *ngFor="let playlistId of [0,1,2,3,4,5]">Playlist {{ playlistId }}</li>
+        </ul>
+    </div>
+</div>
