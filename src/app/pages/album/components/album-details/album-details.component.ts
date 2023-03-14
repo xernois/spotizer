@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { parseSlug } from '@src/app/functions/slug.function';
+import { Album } from '@src/app/models/album.model';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
@@ -10,17 +11,18 @@ import { firstValueFrom } from 'rxjs';
 })
 export class AlbumDetailsComponent {
 
+  album !: Album
+
   constructor(
     private route: ActivatedRoute,
     private router : Router
   ) {}
 
   async ngOnInit() {
-    const params = await firstValueFrom(this.route.params)
+    const data = await firstValueFrom(this.route.data)
 
-    const albumId = parseSlug(params['slug'])
-
-
-    if(isNaN(albumId)) this.router.navigateByUrl('/album')
+    this.album = data['album']
+    
+    if(!data['album']) this.router.navigateByUrl('/album')
   }
 }

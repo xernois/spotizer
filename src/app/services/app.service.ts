@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RoutesRecognized } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AlbumService } from '@services/api/album.service';
 import { filter, firstValueFrom } from 'rxjs';
 import { slugify } from '../functions/slug.function';
