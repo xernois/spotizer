@@ -8,7 +8,7 @@ import { AlbumService } from './services/api/album.service';
 const routes: Routes = [
   { path: '', component: HomeComponent, data: { breadcrumbs: ['home']} },
   { path: 'album', component: AlbumComponent, data: { breadcrumbs: ['album']} },
-  { path: 'album/:id', component: AlbumDetailsComponent, resolve: { user: AlbumService }, data: { breadcrumbs: ['album', '@album.name']} },
+  { path: 'album/:slug', component: AlbumDetailsComponent, resolve: { user: AlbumService }, data: { breadcrumbs: ['album', '@album.name']} },
   { path: '**', redirectTo: '/' },
 ];
 

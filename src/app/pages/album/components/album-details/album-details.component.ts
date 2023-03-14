@@ -17,7 +17,7 @@ export class AlbumDetailsComponent {
 
   async ngOnInit() {
     const params = await firstValueFrom(this.route.params)
-    const albumId = parseSlug(params['id'])
+    const albumId = parseSlug(params['slug'])
 
     if(isNaN(albumId)) this.router.navigateByUrl('/album')
 
