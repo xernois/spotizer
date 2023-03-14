@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { BreadcrumbService } from '@src/app/services/breadcrumb.service';
+import { ActivatedRoute, ActivationStart, NavigationEnd, Router, RoutesRecognized } from '@angular/router';
+import { AppService } from '@src/app/services/app.service';
+import { distinctUntilChanged, filter } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -9,10 +11,11 @@ import { BreadcrumbService } from '@src/app/services/breadcrumb.service';
 })
 export class BreadcrumbComponent {
 
-  path: string[] = []
-
   constructor(
-    public breadcrumbService: BreadcrumbService
-  ) {}
+    public appService: AppService,
+  ) { }
 
+  async ngOnInit() {
+
+  }
 }

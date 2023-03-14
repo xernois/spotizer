@@ -7,8 +7,9 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from '@pages/home/home.component';
 import { AlbumComponent } from '@pages/album/album.component';
 import { HeaderComponent } from '@components/header/header.component';
-import { BreadcrumbComponent } from '@components/header/components/breadcrumb/breadcrumb.component';
 import { AlbumDetailsComponent } from './pages/album/components/album-details/album-details.component';
+import { BreadcrumbComponent } from './components/header/components/breadcrumb/breadcrumb.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -16,15 +17,15 @@ import { AlbumDetailsComponent } from './pages/album/components/album-details/al
     HomeComponent,
     AlbumComponent,
     HeaderComponent,
-    BreadcrumbComponent,
-    AlbumDetailsComponent
+    AlbumDetailsComponent,
+    BreadcrumbComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

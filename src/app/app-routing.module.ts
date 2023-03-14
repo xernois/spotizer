@@ -6,10 +6,14 @@ import { AlbumDetailsComponent } from './pages/album/components/album-details/al
 import { AlbumService } from './services/api/album.service';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, data: { breadcrumbs: ['home']} },
-  { path: 'album', component: AlbumComponent, data: { breadcrumbs: ['album']} },
-  { path: 'album/:slug', component: AlbumDetailsComponent, resolve: { user: AlbumService }, data: { breadcrumbs: ['album', '@album.name']} },
-  { path: '**', redirectTo: '/' },
+  { path: '', component: HomeComponent, data: { breadcrumb: 'home' } },
+  {
+    path: 'album', data: { breadcrumb: 'album' }, children: [
+      { path: '', component: AlbumComponent },
+      { path: ':slug', component: AlbumDetailsComponent, resolve: { album: AlbumService}, data: { breadcrumb: '@album.title' } }
+    ]
+  },
+  { path: '**', redirectTo: '/'  },
 ];
 
 @NgModule({

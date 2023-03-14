@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { ApiEndpoint } from '@enums/api-endpoint.enum';
-import { firstValueFrom, of } from 'rxjs';
+import { firstValueFrom, Observable, of } from 'rxjs';
 import { environment } from '@environments/environment';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { parseSlug } from '@src/app/functions/slug.function';
 
 export abstract class ApiService<T extends { id: number }> {
@@ -22,8 +22,8 @@ export abstract class ApiService<T extends { id: number }> {
     return this.data
   }
 
-  resolve(route: ActivatedRouteSnapshot) {
-    const slug = route.paramMap.get('slug');
-    return this.getDataJS().find(item => item.id === parseSlug(slug || ''));
+  resolve(route: ActivatedRouteSnapshot): T | undefined{
+    const data = this.data.find(item => item.id === parseSlug(route.params['slug']));
+    return data;
   }
 }
