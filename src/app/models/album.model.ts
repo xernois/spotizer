@@ -1,7 +1,7 @@
 import { Song } from "@models/song.model"
+import { baseApiModel } from "./base.model"
 
-export interface Album {
-  id: number
+export interface Album extends baseApiModel {
   title: string
   songs: Song[]
   albumtype: AlbumType

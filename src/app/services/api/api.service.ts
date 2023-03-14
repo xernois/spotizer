@@ -4,8 +4,9 @@ import { firstValueFrom, Observable, of } from 'rxjs';
 import { environment } from '@environments/environment';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { parseSlug } from '@src/app/functions/slug.function';
+import { baseApiModel } from '@src/app/models/base.model';
 
-export abstract class ApiService<T extends { id: number }> {
+export abstract class ApiService<T extends baseApiModel> {
 
   private data: T[] = []
 
@@ -23,7 +24,6 @@ export abstract class ApiService<T extends { id: number }> {
   }
 
   resolve(route: ActivatedRouteSnapshot): T | undefined{
-    const data = this.data.find(item => item.id === parseSlug(route.params['slug']));
-    return data;
+    return this.data.find(item => item.id === parseSlug(route.params['slug']));
   }
 }
