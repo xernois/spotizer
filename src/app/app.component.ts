@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AppService } from '@services/app.service';
+import { LocalStorageService } from './services/local-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,6 @@ export class AppComponent {
   title = 'spotizer';
 
   constructor(
-    public appService: AppService
+    public appService: AppService,
   ) {}
 }
