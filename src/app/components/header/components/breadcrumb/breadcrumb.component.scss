@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+  .breadcrumb {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+
+    &__item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    &__icon  {
+      font-weight: 700;
+    }
+  }
+
+  * {
+    font-size: 1rem;
+  }
+}
