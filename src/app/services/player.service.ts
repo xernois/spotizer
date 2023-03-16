@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { PlayerState } from '@enums/player.enum';
 import { Song } from '@models/song.model';
 import { SongService } from '@services/api/song.service';
 
@@ -8,37 +7,30 @@ import { SongService } from '@services/api/song.service';
 })
 export class PlayerService {
 
-  state: PlayerState = PlayerState.PAUSED;
-
+  playing: boolean = false;
   musicQueue: Song[] = [];
 
   constructor(
     private songService: SongService
   ) {
     this.musicQueue = this.songService.getDataJS()
-   }
-
-  addMusicToQueue(song: Song) {
-    this.musicQueue.push(song);
   }
 
-  getMusicQueue() {
-    return this.musicQueue;
-  }
-
-  getCurrentSong() {
+  getCurrentSong(): Song {
     return this.musicQueue[0];
   }
 
-  removeMusicFromQueue(song: Song) {
-    this.musicQueue = this.musicQueue.filter(music => music !== song);
+  getCurrentSongYoutubeId(): string {
+    return this.getCurrentSong().youtube.split('/').at(-1) || '';
   }
 
-  playMusic() {
-    this.state = PlayerState.PLAYING;
+  previousSong() {
+    const lastSong = this.musicQueue.pop();
+    if (lastSong) this.musicQueue.unshift(lastSong);
   }
 
-  pauseMusic() {
-    this.state = PlayerState.PAUSED;
+  nextSong() {
+    const current = this.musicQueue.shift();
+    if (current) this.musicQueue.push(current);
   }
 }

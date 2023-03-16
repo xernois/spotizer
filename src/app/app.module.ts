@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { PanelNavigationComponent } from './components/panel-navigation/panel-navigation.component';
 import { PanelUserComponent } from './components/panel-user/panel-user.component';
 import { PlayerComponent } from './components/player/player.component';
+import { YoutubePlayerComponent } from './components/youtube-player/youtube-player.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PlayerComponent } from './components/player/player.component';
     BreadcrumbComponent,
     PanelNavigationComponent,
     PanelUserComponent,
-    PlayerComponent
+    PlayerComponent,
+    YoutubePlayerComponent
   ],
   imports: [
     BrowserModule,
