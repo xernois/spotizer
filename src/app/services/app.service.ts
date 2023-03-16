@@ -6,6 +6,7 @@ import { slugify } from '../functions/slug.function';
 import { baseApiModel } from '../models/base.model';
 import { Breadcrumb, Breadcrumbs } from '../models/breadcrumb.model';
 import { ApiService } from './api/api.service';
+import { SongService } from './api/song.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,8 +19,9 @@ export class AppService {
   constructor(
     private router: Router,
     private albumService: AlbumService,
+    private songService: SongService,
   ) {
-    this.initializeApiService(this.albumService)
+    this.initializeApiService(this.albumService, this.songService)
 
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)

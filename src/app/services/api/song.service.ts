@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiEndpoint } from '@enums/api-endpoint.enum';
 import { Song } from '@models/song.model';
-import { ApiService } from '@services/api.service';
+import { ApiService } from '@services/api/api.service';
 
 @Injectable({
   providedIn: 'root'

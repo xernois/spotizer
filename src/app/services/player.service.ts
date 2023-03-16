@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { PlayerState } from '../enums/player.enum';
-import { Song } from '../models/song.model';
+import { PlayerState } from '@enums/player.enum';
+import { Song } from '@models/song.model';
+import { SongService } from '@services/api/song.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,11 @@ export class PlayerService {
 
   musicQueue: Song[] = [];
 
-  constructor() { }
+  constructor(
+    private songService: SongService
+  ) {
+    this.musicQueue = this.songService.getDataJS()
+   }
 
   addMusicToQueue(song: Song) {
     this.musicQueue.push(song);
