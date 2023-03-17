@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Song } from '@models/song.model';
 import { SongService } from '@services/api/song.service';
 
@@ -10,10 +11,18 @@ export class PlayerService {
   playing: boolean = false;
   musicQueue: Song[] = [];
 
+  oldVolume: number = 50;
+  volume: number = 50;
+  VolumeControl = new FormControl();
+
   constructor(
     private songService: SongService
   ) {
-    this.musicQueue = this.songService.getDataJS()
+    this.musicQueue = [] //this.songService.getDataJS()
+
+    this.VolumeControl.valueChanges.subscribe((value: number) => {
+      this.volume = value;
+    })
   }
 
   getCurrentSong(): Song {
@@ -33,4 +42,14 @@ export class PlayerService {
     const current = this.musicQueue.shift();
     if (current) this.musicQueue.push(current);
   }
+
+  muteUnmute() {
+    if (this.volume === 0) {
+      this.volume = this.oldVolume;
+    } else {
+      this.oldVolume = this.volume;
+      this.volume = 0;
+    }
+  }
+
 }

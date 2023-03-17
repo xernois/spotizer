@@ -5,4 +5,6 @@ export interface Song extends baseApiModel {
   title:	string
   length:	number
   youtube:	string
+  artist:	string
+  album:	string
 }

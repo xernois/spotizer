@@ -1,28 +1,18 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { AlbumService } from '@services/api/album.service';
 import { filter, firstValueFrom } from 'rxjs';
 import { slugify } from '../functions/slug.function';
-import { baseApiModel } from '../models/base.model';
-import { Breadcrumb, Breadcrumbs } from '../models/breadcrumb.model';
-import { ApiService } from './api/api.service';
-import { SongService } from './api/song.service';
+import { Breadcrumbs } from '../models/breadcrumb.model';
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  public initializing: boolean = true
   public breadcrumbs: Breadcrumbs = []
-
 
   constructor(
     private router: Router,
-    private albumService: AlbumService,
-    private songService: SongService,
   ) {
-    this.initializeApiService(this.albumService, this.songService)
-
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(async () => {
@@ -54,10 +44,4 @@ export class AppService {
 
     return breadcrumbs;
   }
-
-  async initializeApiService(...services: ApiService<baseApiModel>[]) {
-    await Promise.allSettled(services.map(service => service.setDataAPI()))
-    this.initializing = false
-  }
-
 }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from '@pages/home/home.component';
@@ -14,6 +13,8 @@ import { PanelNavigationComponent } from './components/panel-navigation/panel-na
 import { PanelUserComponent } from './components/panel-user/panel-user.component';
 import { PlayerComponent } from './components/player/player.component';
 import { YoutubePlayerComponent } from './components/youtube-player/youtube-player.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SongComponent } from './pages/song/song.component';
 
 @NgModule({
   declarations: [
@@ -26,9 +27,11 @@ import { YoutubePlayerComponent } from './components/youtube-player/youtube-play
     PanelNavigationComponent,
     PanelUserComponent,
     PlayerComponent,
-    YoutubePlayerComponent
+    YoutubePlayerComponent,
+    SongComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
