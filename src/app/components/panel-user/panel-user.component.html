@@ -11,15 +11,21 @@
         <button>Play</button>
     </div>
     <div>
-        <nav>
+        <nav class="txt-title">
             <ul>
-                <li>Playlist</li>
-                <li>Songs like</li>
-                <li>Albums like</li>
+                <li><a href="" class="active">Playlists</a></li>
+                <li><a href="">Songs</a></li>
+                <li><a href="">Albums</a></li>
             </ul>
         </nav>
-        <ul>
-            <li *ngFor="let playlistId of [0,1,2,3,4,5]">Playlist {{ playlistId }}</li>
+        <ul class="panel-user__playlists">
+            <li *ngFor="let playlistId of [0,1,2,3,4,5]">
+                <a href="">
+                    <img src="" alt="">
+                    <p class="txt-small-title playlist-name">Playlist {{ playlistId }}</p>
+                    <p>date</p>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

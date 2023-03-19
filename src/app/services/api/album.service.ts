@@ -6,7 +6,7 @@ import { Album } from '@models/album.model';
 import { ApiService } from '@services/api/api.service';
 import { Artist } from '@src/app/models/artist.model';
 import { environment } from '@src/environments/environment';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, map, of, tap, toArray, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +17,26 @@ export class AlbumService extends ApiService<Album> {
     super(httpClient, ApiEndpoint.ALBUM);
   }
 
+  getArtist(id: number) {
+    return this.httpClient.get<Artist>(environment.apiUrl + ApiEndpoint.ARTIST + '/' + id)
+  }
 
-  override async resolve(route: ActivatedRouteSnapshot) {
-    const data = await super.resolve(route);
-    await Promise.all(data.map(async album => {
-      album.artist = await firstValueFrom(this.httpClient.get<Artist>(environment.apiUrl + ApiEndpoint.ARTIST + '/' + album.artist.id));
-    }))
-    return data;
+  override resolve(route: ActivatedRouteSnapshot) {
+    const data$ = super.resolve(route);
+    data$.subscribe(console.log)
+    return data$.pipe(
+      map(albums => {
+        return albums.map(album => {
+          album.getArtist = (() => {
+            let artist: Observable<Artist>; 
+            return () => {
+              if(!artist) artist = this.getArtist(album.artist.id)
+              return artist
+            }
+          })();
+          return album
+        });
+      })
+    );
   }
 }

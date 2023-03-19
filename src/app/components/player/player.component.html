@@ -15,7 +15,8 @@
     <button class="material-symbols-outlined" (click)="toggleMute()">
       {{ !playerService.volume ? 'volume_off' : 'volume_up' }}
     </button>
-    <input [formControl]="playerService.VolumeControl" type="range" id="volume" name="volume" [value]="playerService.volume" min="0" max="100">
+    <input [formControl]="playerService.VolumeControl" type="range" id="volume" name="volume"
+      [value]="playerService.volume" min="0" max="100">
   </div>
 </div>
 

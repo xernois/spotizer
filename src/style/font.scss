@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100');
+
+:root {
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    font-size: var(--ft-size-main);
+    font-weight: var(--ft-weight-400);
+    color: var(--clr-text-main);
+    text-transform: capitalize;
+}
+
+a {
+    font-size: var(--ft-size-main);
+    font-weight: var(--ft-weight-400);
+    color: var(--clr-text-main);
+    text-decoration: none;
+
+    &:hover {
+        color: var(--clr-text-selected);
+    }
+}
+
+
+// Class text
+.txt-body {
+    font-size: var(--ft-size-main);
+    font-weight: var(--ft-weight-400);
+    color: var(--clr-text-main);
+}
+
+.txt-title {
+    font-size: var(--ft-size-title);
+    font-weight: var(--ft-weight-600);
+    color: var(--clr-text-title);
+}
+
+.txt-selected,
+.txt-small-title {
+    font-size: var(--ft-size-main);
+    font-weight: var(--ft-weight-400);
+    color: var(--clr-text-title);
+}

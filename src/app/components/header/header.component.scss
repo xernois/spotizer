@@ -3,12 +3,6 @@
     justify-content: space-between;
     padding: var(--margin-40);
     background: var(--clr-background-main);
-    color: var(--clr-text-main);
-
-    &__logo,
-    &__search {
-        color: var(--clr-text-title);
-    }
 
     &__search,
     app-breadcrumb {

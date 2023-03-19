@@ -1,3 +1,42 @@
 .panel-user {
-    color: var(--clr-text-main);
+    max-width: var(--width-panel-user);
+    width: var(--width-panel-user);
+    
+    &__playlists {
+        margin-top: 20px;
+        
+        li {
+            margin-top: 15px;
+        }
+
+        a {
+            display: flex;
+        }
+
+        img {
+            background-color: aqua;
+            width: 16px;
+            height: 16px;
+        }
+
+        .playlist-name {
+            flex: 1;
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+    }
+}
+
+nav {
+    margin-top: var(--margin-40);
+    
+    ul {
+        display: flex;
+        justify-content: start;
+        gap: 15px;
+
+        .active {
+            color: var(--clr-text-selected);
+        }
+    }
 }

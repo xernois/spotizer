@@ -1,9 +1,30 @@
 nav {
     max-width: var(--width-panel-navigation);
     width: var(--width-panel-navigation);
-    color: var(--clr-text-main);
+}
 
-    p {
-        color: var(--clr-text-title);
+ul {
+    margin-top: 15px;
+
+    li {
+        margin-top: 10px;
+
+        a {
+            display: inline-block;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 5px;
+
+            &:hover {
+                background: linear-gradient(140deg, rgba(34,34,34,1) 0%, rgba(17,17,17,1) 82%);
+                border-radius: 5px;
+            }
+        }
+
+        .active {
+            background: linear-gradient(140deg, rgba(34,34,34,1) 0%, rgba(17,17,17,1) 82%);
+            border-radius: 5px;
+            color: var(--clr-text-selected);
+        }
     }
 }

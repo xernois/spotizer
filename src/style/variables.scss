@@ -14,7 +14,8 @@ $white-38: #ffffff5e;
     //Themes
     //Themes Dark
     --clr-background-main: #{$black};
-    --clr-background-grey-100: #{$grey-100};
+    --clr-background-page: #{$grey-100};
+    --clr-background-cta: #{$grey-100};
 
     --clr-text-main: #{$white-60};
     --clr-text-selected: #{$white-87};
@@ -27,9 +28,14 @@ $white-38: #ffffff5e;
     --margin-40: 40px;
 
     //Width
-    --width-panel-navigation: 15ch;
+    --width-panel-navigation: 150px;
+    --width-panel-user: 250px;
 
     //Text
-}
+    --ft-weight-400: 400;
+    --ft-weight-600: 600;
+    --ft-weight-700: 700;
 
-// Class text
+    --ft-size-main: 1rem;
+    --ft-size-title: 1.2rem;
+}

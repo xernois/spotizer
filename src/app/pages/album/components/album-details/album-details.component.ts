@@ -19,10 +19,10 @@ export class AlbumDetailsComponent {
   ) {}
 
   async ngOnInit() {
-    const data = await firstValueFrom(this.route.data)
-
-    this.album = data['album']
+    this.album = this.route.snapshot.data['album'][0]
     
-    if(!data['album']) this.router.navigateByUrl('/album')
+    if(!this.album) this.router.navigateByUrl('/album')
+
+    setInterval(() => console.log(this.album.getArtist()), 500)
   }
 }

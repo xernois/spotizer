@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ApiEndpoint } from '@enums/api-endpoint.enum';
-import { firstValueFrom, map } from 'rxjs';
+import { concatAll, firstValueFrom, map, mergeMap, toArray } from 'rxjs';
 import { environment } from '@environments/environment';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { parseSlug } from '@src/app/functions/slug.function';
@@ -15,9 +15,9 @@ export abstract class ApiService<T extends baseApiModel> {
 
   getData(slug: string) {
     if(slug) {
-      return firstValueFrom(this.http.get<T>(environment.apiUrl + this.endpoint + '/' + parseSlug(slug)).pipe(map(data => [data])))
+      return this.http.get<T>(environment.apiUrl + this.endpoint + '/' + parseSlug(slug)).pipe(toArray())
     } else {
-      return firstValueFrom(this.http.get<T[]>(environment.apiUrl + this.endpoint))
+      return this.http.get<T[]>(environment.apiUrl + this.endpoint)
     }
   }
 
