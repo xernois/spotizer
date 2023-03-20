@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { parseSlug } from '@src/app/functions/slug.function';
 import { Album } from '@src/app/models/album.model';
-import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-album-details',
@@ -20,9 +18,7 @@ export class AlbumDetailsComponent {
 
   async ngOnInit() {
     this.album = this.route.snapshot.data['album'][0]
-    
-    if(!this.album) this.router.navigateByUrl('/album')
 
-    setInterval(() => console.log(this.album.getArtist()), 500)
+    if(!this.album) this.router.navigateByUrl('/album')
   }
 }

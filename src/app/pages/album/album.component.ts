@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Album } from '@models/album.model';
 import { AlbumService } from '@services/api/album.service';
 import { slugify } from '@src/app/functions/slug.function';
+import { PlayerService } from '@src/app/services/player.service';
 import { Observable, of } from 'rxjs';
 
 @Component({
@@ -12,17 +13,22 @@ import { Observable, of } from 'rxjs';
 })
 export class AlbumComponent implements OnInit {
 
-  albums!: (Album & {url: string})[]
+  albums!: (Album & { url: string })[]
 
   constructor(
     private route: ActivatedRoute,
+    private playerService: PlayerService,
   ) { }
 
   ngOnInit(): void {
     this.albums = this.route.snapshot.data['albums']
-    
+
     this.albums[0].getArtist().subscribe(console.log)
-    
-    this.albums = this.albums.map(album => {album.url = slugify(album.title)+'-'+album.id; return album})
+
+    this.albums = this.albums.map(album => { album.url = slugify(album.title) + '-' + album.id; return album })
+  }
+
+  playAlbum(album: Album) {
+    this.playerService.musicQueue = album.songs
   }
 }

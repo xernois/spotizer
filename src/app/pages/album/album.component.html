@@ -1,7 +1,10 @@
 <div>
-    <div *ngFor="let album of albums">
-        <a [routerLink]="'/album/' + album.url">
-            <img [src]="album.image" alt="" srcset="">
-        </a>
-    </div>
+  <div *ngFor="let album of albums">
+    <a [routerLink]="'/album/' + album.url">
+      <img [src]="album.image" alt="" srcset="">
+    </a>
+    <button (click)="playAlbum(album)" class="material-symbols-outlined">
+      play_arrow
+    </button>
+  </div>
 </div>

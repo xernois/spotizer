@@ -9,7 +9,11 @@
     <button (click)="previousSong()" class="material-symbols-outlined">skip_previous</button>
     <button (click)="togglePlay()" class="material-symbols-outlined">play_pause</button>
     <button (click)="nextSong()" class="material-symbols-outlined">skip_next</button>
-    <div>timeline</div>
+    {{this.progression}}
+    <input type="range" id="volume" name="volume" [value]="this.progression" min="0" max="100">
+    <app-youtube-player *ngIf="playerService.musicQueue[0]"
+      [videoId]="playerService.musicQueue[0].youtube.split('/').pop() || ''" [playing]="playerService.playing"
+      (progression)="handleProgressionChange($event)"></app-youtube-player>
   </div>
   <div class="player__volume">
     <button class="material-symbols-outlined" (click)="toggleMute()">
@@ -19,6 +23,3 @@
       [value]="playerService.volume" min="0" max="100">
   </div>
 </div>
-
-<app-youtube-player [videoId]="playerService.musicQueue[0].youtube.split('/').pop() || ''"
-  [playing]="playerService.playing"></app-youtube-player>

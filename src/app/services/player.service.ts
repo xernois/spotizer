@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Song } from '@models/song.model';
 import { SongService } from '@services/api/song.service';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,8 @@ export class PlayerService {
   volume: number = 50;
   VolumeControl = new FormControl();
 
-  constructor(
-    private songService: SongService
-  ) {
-    this.musicQueue = [] //this.songService.getDataJS()
+  constructor() {
+    this.musicQueue = []
 
     this.VolumeControl.valueChanges.subscribe((value: number) => {
       this.volume = value;

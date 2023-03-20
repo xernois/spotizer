@@ -1,8 +1,9 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Subject } from 'rxjs';
 
 declare global {
   interface Window {
-    YT: unknown;
+    YT: {PlayerState: any};
     onYouTubeIframeAPIReady: (() => void) | undefined;
   }
 }
@@ -19,8 +20,10 @@ export class YoutubePlayerComponent implements OnInit {
   @Input() videoId: string = '';
   @Input() playing: boolean = false;
   @Input() volume: number = 50;
+  @Output() progression = new EventEmitter<number>();
 
   player: any;
+  timerId: any;
 
   constructor() { }
 
@@ -38,16 +41,33 @@ export class YoutubePlayerComponent implements OnInit {
       this.player = new (<any>window).YT.Player('player', {
         height: this.wrapper.nativeElement.getBoundingClientRect().height,
         width: this.wrapper.nativeElement.getBoundingClientRect().width,
-        playerVars: { 'autoplay': 0, 'controls': 0 },
+        playerVars: { 'autoplay': 0, 'controls': 1 },
         videoId: null,
         events: {
-          onReady: () => {
-            this.player.cueVideoById?.(this.videoId)
-          }
+          onReady: this.onPlayerReady.bind(this),
+          onStateChange: this.onPlayerStateChange.bind(this)
         }
       });
     }
   }
+
+  onPlayerReady() {
+    this.player.cueVideoById?.(this.videoId)
+  }
+
+  onPlayerStateChange(event: any) {
+    if (event.data == window.YT.PlayerState.PLAYING) {
+
+      var playerTotalTime = this.player.getDuration();
+
+      this.timerId = setInterval(() => {
+        this.progression.next((this.player.getCurrentTime() / playerTotalTime) * 100);
+      }, 500);
+    } else {
+
+      clearTimeout(this.timerId);
+    }
+}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['videoId']?.currentValue) this.player?.loadVideoById?.(changes['videoId'].currentValue);

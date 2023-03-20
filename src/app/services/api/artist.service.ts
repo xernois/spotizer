@@ -1,15 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiEndpoint } from '@enums/api-endpoint.enum';
-import { Artist } from '@models/artist.model';
-import { ApiService } from '@services/api.service';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ArtistService extends ApiService<Artist> {
+export class ArtistService extends ApiService {
 
   constructor(private httpClient: HttpClient) {
-    super(httpClient, ApiEndpoint.ARTIST);
+    super(httpClient);
   }
 }

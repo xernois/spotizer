@@ -1,19 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Song } from '@src/app/models/song.model';
 import { PlayerService } from '@src/app/services/player.service';
 
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
-  styleUrls: ['./player.component.scss']
+  styleUrls: ['./player.component.scss'],
 })
 export class PlayerComponent implements OnInit {
 
   currentSong: Song | undefined;
+  progression: number;
 
   constructor(
     public playerService: PlayerService
-  ) { }
+    ) {
+
+      setInterval(() => {
+        // this.progression++;
+      }, 500);
+      this.progression = 1;
+    }
 
   ngOnInit(): void {
     this.updatePlayerInfos()
@@ -39,5 +46,10 @@ export class PlayerComponent implements OnInit {
 
   updatePlayerInfos() {
     this.currentSong = this.playerService.getCurrentSong();
+  }
+
+  handleProgressionChange(event: any) {
+    this.progression = event;
+    // console.log(this.progression)
   }
 }

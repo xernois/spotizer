@@ -1,27 +1,51 @@
 import { HttpClient } from '@angular/common/http';
 import { ApiEndpoint } from '@enums/api-endpoint.enum';
-import { concatAll, firstValueFrom, map, mergeMap, toArray } from 'rxjs';
+import { map, Observable, toArray } from 'rxjs';
 import { environment } from '@environments/environment';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { parseSlug } from '@src/app/functions/slug.function';
-import { baseApiModel } from '@src/app/models/base.model';
+import { Album } from '@src/app/models/album.model';
+import { Artist } from '@src/app/models/artist.model';
 
-export abstract class ApiService<T extends baseApiModel> {
+export abstract class ApiService {
 
   constructor(
     private http: HttpClient,
-    private endpoint: ApiEndpoint
   ) { }
 
-  getData(slug: string) {
+  getData<T>(endpoint: ApiEndpoint, slug: string) {
     if(slug) {
-      return this.http.get<T>(environment.apiUrl + this.endpoint + '/' + parseSlug(slug)).pipe(toArray())
+      return this.http.get<T>(environment.apiUrl + endpoint + '/' + parseSlug(slug)).pipe(toArray())
     } else {
-      return this.http.get<T[]>(environment.apiUrl + this.endpoint)
+      return this.http.get<T[]>(environment.apiUrl + endpoint)
     }
   }
 
-  resolve(route: ActivatedRouteSnapshot) {
-    return this.getData(route.params['slug'])
+  getAlbums(slug: string) {
+    return this.getData<Album>(ApiEndpoint.ALBUM, slug)
+  }
+
+  getArtists(slug: string) {
+    return this.getData<Artist>(ApiEndpoint.ARTIST, slug)
+  }
+
+
+  resolveAlbum(route: ActivatedRouteSnapshot) {
+    const data$ = this.getAlbums(route.params['slug'])
+
+    return data$.pipe(
+      map(albums => {
+        return albums.map(album => {
+          album.getArtist = (() => {
+            let artist: Observable<Artist>;
+            return () => {
+              if(!artist) artist = this.getArtists(album.artist.id.toString()).pipe(map(artists => artists[0]))
+              return artist
+            }
+          })();
+          return album
+        });
+      })
+    );
   }
 }

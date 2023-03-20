@@ -29,12 +29,13 @@ export class AppService {
 
     if (label.startsWith('@')) {
       const keys: string[] = label.replace('@', '').split('.')
-      label = (data[keys[0]] as Record<string, string | undefined>)?.[keys[1]] || ''
+      label = (data[keys[0]] as Record<string, string | undefined>[])?.[0]?.[keys[1]] || ''
       if (path.startsWith(':')) {
         const slug = slugify( label)
         if (slug) path = slug + '-' + (data[keys[0]] as Record<string, string | undefined>)['id']
       }
     }
+
 
     const nextUrl = `${url}${path}/`;
 
