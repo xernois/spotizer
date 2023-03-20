@@ -18,6 +18,7 @@ main {
     flex: 1;
     padding-right: var(--margin-40);
     padding-left: var(--margin-40);
-    background-color: var(--clr-background-page);
+    padding-bottom: var(--height-player);
+    background-color: var(--clr-background-main);
     overflow: auto;
 }

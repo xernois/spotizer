@@ -1,0 +1,24 @@
+$marge-text: calc(2 * var(--ft-size-main) + 10px);
+
+.albums-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: var(--margin-40);
+
+    button {
+        position: absolute;
+        bottom: calc(15px + $marge-text);
+        left: 15px;
+    }
+    
+    p {
+        margin-top: 5px;
+    }
+
+    &__album {
+        position: relative;
+        width: 250px;
+        height: calc(250px + $marge-text);
+    }
+}

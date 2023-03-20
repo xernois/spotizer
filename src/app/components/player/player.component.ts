@@ -15,10 +15,6 @@ export class PlayerComponent implements OnInit {
   constructor(
     public playerService: PlayerService
     ) {
-
-      setInterval(() => {
-        // this.progression++;
-      }, 500);
       this.progression = 1;
     }
 
@@ -37,7 +33,7 @@ export class PlayerComponent implements OnInit {
   }
 
   togglePlay() {
-    this.playerService.playing = !this.playerService.playing;
+    this.playerService.playing$.next(!this.playerService.playing$.value)
   }
 
   toggleMute() {
@@ -50,6 +46,5 @@ export class PlayerComponent implements OnInit {
 
   handleProgressionChange(event: any) {
     this.progression = event;
-    // console.log(this.progression)
   }
 }

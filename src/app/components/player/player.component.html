@@ -11,15 +11,13 @@
     <button (click)="nextSong()" class="material-symbols-outlined">skip_next</button>
     {{this.progression}}
     <input type="range" id="volume" name="volume" [value]="this.progression" min="0" max="100">
-    <app-youtube-player *ngIf="playerService.musicQueue[0]"
-      [videoId]="playerService.musicQueue[0].youtube.split('/').pop() || ''" [playing]="playerService.playing"
-      (progression)="handleProgressionChange($event)"></app-youtube-player>
+    <app-youtube-player *ngIf="playerService.musicQueue[0]"></app-youtube-player>
   </div>
   <div class="player__volume">
     <button class="material-symbols-outlined" (click)="toggleMute()">
-      {{ !playerService.volume ? 'volume_off' : 'volume_up' }}
+      {{ !playerService.volumeControl.value ? 'volume_off' : 'volume_up' }}
     </button>
-    <input [formControl]="playerService.VolumeControl" type="range" id="volume" name="volume"
-      [value]="playerService.volume" min="0" max="100">
+    <input [formControl]="playerService.volumeControl" type="range" id="volume" name="volume"
+      [value]="playerService.volumeControl.value" min="0" max="100">
   </div>
 </div>

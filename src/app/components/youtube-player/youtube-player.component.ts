@@ -1,5 +1,6 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, AfterViewInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
+import { PlayerService } from '@services/player.service';
 
 declare global {
   interface Window {
@@ -13,23 +14,16 @@ declare global {
   templateUrl: './youtube-player.component.html',
   styleUrls: ['./youtube-player.component.scss']
 })
-export class YoutubePlayerComponent implements OnInit {
+export class YoutubePlayerComponent implements AfterViewInit {
 
   @ViewChild('video') wrapper !: ElementRef;
-
-  @Input() videoId: string = '';
-  @Input() playing: boolean = false;
-  @Input() volume: number = 50;
-  @Output() progression = new EventEmitter<number>();
 
   player: any;
   timerId: any;
 
-  constructor() { }
-
-  ngOnInit(): void {
-
-  }
+  constructor(
+    private playerService: PlayerService
+  ) { }
 
   ngAfterViewInit() {
     if (!window.YT) {
@@ -49,10 +43,19 @@ export class YoutubePlayerComponent implements OnInit {
         }
       });
     }
+    
+    this.playerService.playing$.subscribe((value) => {
+      if(value) this.player?.playVideo?.() 
+      else this.player?.pauseVideo?.()
+    })
+
+    this.playerService.volumeControl.valueChanges.subscribe((volume) => {
+      this.player?.setVolume?.(volume)
+    })
   }
 
   onPlayerReady() {
-    this.player.cueVideoById?.(this.videoId)
+    this.player.cueVideoById?.(this.playerService.musicQueue[0].youtube.split('/').pop() || '')
   }
 
   onPlayerStateChange(event: any) {
@@ -61,17 +64,14 @@ export class YoutubePlayerComponent implements OnInit {
       var playerTotalTime = this.player.getDuration();
 
       this.timerId = setInterval(() => {
-        this.progression.next((this.player.getCurrentTime() / playerTotalTime) * 100);
+        this.playerService.progressionControl.setValue((this.player.getCurrentTime() / playerTotalTime) * 100);
       }, 500);
     } else {
-
       clearTimeout(this.timerId);
     }
 }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['videoId']?.currentValue) this.player?.loadVideoById?.(changes['videoId'].currentValue);
-    if (changes['playing']) changes['playing'].currentValue ? this.player?.playVideo?.() : this.player?.pauseVideo?.();
-    if (changes['volume'] && !isNaN(changes['volume'].currentValue)) this.player?.setVolume?.(changes['volume'].currentValue);
-  }
+  // ngOnChanges(changes: SimpleChanges) {
+  //   if (changes['videoId']?.currentValue) this.player?.loadVideoById?.(changes['videoId'].currentValue);
+  // }
 }

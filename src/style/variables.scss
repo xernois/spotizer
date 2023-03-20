@@ -15,7 +15,9 @@ $white-38: #ffffff5e;
     //Themes Dark
     --clr-background-main: #{$black};
     --clr-background-page: #{$grey-100};
-    --clr-background-cta: #{$grey-100};
+
+    --clr-background-cta: #{$white-60};
+    --clr-background-cta-hover: #{$white-87};
 
     --clr-text-main: #{$white-60};
     --clr-text-selected: #{$white-87};
@@ -30,7 +32,7 @@ $white-38: #ffffff5e;
     //Width
     --width-panel-navigation: 150px;
     --width-panel-user: 250px;
-
+    --height-player: 50px;
     //Text
     --ft-weight-400: 400;
     --ft-weight-600: 600;

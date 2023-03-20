@@ -1,9 +1,11 @@
-<div>
-  <div *ngFor="let album of albums">
+<div class="albums-list">
+  <div *ngFor="let album of albums" class="albums-list__album">
     <a [routerLink]="'/album/' + album.url">
       <img [src]="album.image" alt="" srcset="">
     </a>
-    <button (click)="playAlbum(album)" class="material-symbols-outlined">
+    <p class="txt-small-title">{{ album.title }}</p>
+    <p>{{ (album.getArtist() | async)?.name }}</p>
+    <button (click)="playAlbum(album)" class="cta material-symbols-outlined">
       play_arrow
     </button>
   </div>

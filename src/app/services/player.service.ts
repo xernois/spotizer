@@ -9,20 +9,14 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 export class PlayerService {
 
-  playing: boolean = false;
+  playing$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   musicQueue: Song[] = [];
 
   oldVolume: number = 50;
-  volume: number = 50;
-  VolumeControl = new FormControl();
+  volumeControl = new FormControl(50);
+  progressionControl = new FormControl();
 
-  constructor() {
-    this.musicQueue = []
-
-    this.VolumeControl.valueChanges.subscribe((value: number) => {
-      this.volume = value;
-    })
-  }
+  constructor() {}
 
   getCurrentSong(): Song {
     return this.musicQueue[0];
@@ -43,12 +37,11 @@ export class PlayerService {
   }
 
   muteUnmute() {
-    if (this.volume === 0) {
-      this.volume = this.oldVolume;
+    if (this.volumeControl.value === 0) {
+      this.volumeControl.setValue(this.oldVolume);
     } else {
-      this.oldVolume = this.volume;
-      this.volume = 0;
+      this.oldVolume = this.volumeControl.value || this.oldVolume;
+      this.volumeControl.setValue(0);
     }
   }
-
 }
