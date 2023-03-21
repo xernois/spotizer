@@ -15,6 +15,8 @@ import { PlayerComponent } from './components/player/player.component';
 import { YoutubePlayerComponent } from './components/youtube-player/youtube-player.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SongComponent } from './pages/song/song.component';
+import { SkeletonComponent } from './components/skeleton/skeleton.component';
+import { SkeletonDirective } from './components/skeleton.directive';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { SongComponent } from './pages/song/song.component';
     PanelUserComponent,
     PlayerComponent,
     YoutubePlayerComponent,
-    SongComponent
+    SongComponent,
+    SkeletonComponent,
+    SkeletonDirective
   ],
   imports: [
     ReactiveFormsModule,
