@@ -10,13 +10,10 @@ import { PlayerService } from '@src/app/services/player.service';
 export class PlayerComponent implements OnInit {
 
   currentSong: Song | undefined;
-  progression: number;
 
   constructor(
     public playerService: PlayerService
-    ) {
-      this.progression = 1;
-    }
+  ) { }
 
   ngOnInit(): void {
     this.updatePlayerInfos()
@@ -42,9 +39,5 @@ export class PlayerComponent implements OnInit {
 
   updatePlayerInfos() {
     this.currentSong = this.playerService.getCurrentSong();
-  }
-
-  handleProgressionChange(event: any) {
-    this.progression = event;
   }
 }

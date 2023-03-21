@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppService } from '@src/app/services/app.service';
 
 @Component({
   selector: 'app-panel-navigation',
@@ -7,11 +8,17 @@ import { Component } from '@angular/core';
 })
 export class PanelNavigationComponent {
 
+  constructor(
+    public appService: AppService
+  ) { }
+
   ngOnInit(): void {
+    this.appService.breadcrumbs[0]
+
     this.changeActive()
   }
 
-  changeActive() { 
+  changeActive() {
     const btns = document.getElementsByClassName("panel-nav");
     for (var i = 0; i < btns.length; i++) {
       btns[i].addEventListener("click", function(e) {

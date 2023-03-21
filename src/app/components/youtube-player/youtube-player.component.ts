@@ -4,7 +4,7 @@ import { PlayerService } from '@services/player.service';
 
 declare global {
   interface Window {
-    YT: {PlayerState: any};
+    YT: { PlayerState: any };
     onYouTubeIframeAPIReady: (() => void) | undefined;
   }
 }
@@ -35,7 +35,7 @@ export class YoutubePlayerComponent implements AfterViewInit {
       this.player = new (<any>window).YT.Player('player', {
         height: this.wrapper.nativeElement.getBoundingClientRect().height,
         width: this.wrapper.nativeElement.getBoundingClientRect().width,
-        playerVars: { 'autoplay': 0, 'controls': 1 },
+        playerVars: { 'autoplay': 0, 'controls': 0, 'showinfo': 0, 'rel': 0 },
         videoId: null,
         events: {
           onReady: this.onPlayerReady.bind(this),
@@ -43,9 +43,9 @@ export class YoutubePlayerComponent implements AfterViewInit {
         }
       });
     }
-    
+
     this.playerService.playing$.subscribe((value) => {
-      if(value) this.player?.playVideo?.() 
+      if (value) this.player?.playVideo?.()
       else this.player?.pauseVideo?.()
     })
 
@@ -55,7 +55,7 @@ export class YoutubePlayerComponent implements AfterViewInit {
   }
 
   onPlayerReady() {
-    this.player.cueVideoById?.(this.playerService.musicQueue[0].youtube.split('/').pop() || '')
+    this.player.loadVideoByUrl?.(this.playerService.musicQueue[0].youtube)
   }
 
   onPlayerStateChange(event: any) {
@@ -69,9 +69,5 @@ export class YoutubePlayerComponent implements AfterViewInit {
     } else {
       clearTimeout(this.timerId);
     }
-}
-
-  // ngOnChanges(changes: SimpleChanges) {
-  //   if (changes['videoId']?.currentValue) this.player?.loadVideoById?.(changes['videoId'].currentValue);
-  // }
+  }
 }

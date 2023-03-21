@@ -7,10 +7,10 @@
   </div>
   <div class="player__timeline">
     <button (click)="previousSong()" class="material-symbols-outlined">skip_previous</button>
-    <button (click)="togglePlay()" class="material-symbols-outlined">play_pause</button>
+    <button (click)="togglePlay()" class="material-symbols-outlined">{{(playerService.playing$ | async) ? 'play_arrow' : 'pause'}}</button>
     <button (click)="nextSong()" class="material-symbols-outlined">skip_next</button>
-    {{this.progression}}
-    <input type="range" id="volume" name="volume" [value]="this.progression" min="0" max="100">
+    <input type="range" id="volume" name="volume" [formControl]="this.playerService.progressionControl"
+      [value]="this.playerService.progressionControl.value" min="0" max="100">
     <app-youtube-player *ngIf="playerService.musicQueue[0]"></app-youtube-player>
   </div>
   <div class="player__volume">

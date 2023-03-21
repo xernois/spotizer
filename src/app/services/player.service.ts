@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Song } from '@models/song.model';
 import { SongService } from '@services/api/song.service';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,17 @@ export class PlayerService {
   playing$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   musicQueue: Song[] = [];
 
-  oldVolume: number = 50;
-  volumeControl = new FormControl(50);
-  progressionControl = new FormControl();
+  oldVolume: number = this.localStorage.getPlayerSettings().volume;
+  volumeControl = new FormControl(this.localStorage.getPlayerSettings().volume);
+  progressionControl = new FormControl(0);
 
-  constructor() {}
+  constructor(
+    private localStorage: LocalStorageService
+  ) {
+    this.volumeControl.valueChanges.subscribe(value => {
+      this.localStorage.setPlayerSettings({ volume: value || 50 });
+    });
+  }
 
   getCurrentSong(): Song {
     return this.musicQueue[0];

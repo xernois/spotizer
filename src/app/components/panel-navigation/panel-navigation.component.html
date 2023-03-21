@@ -1,9 +1,9 @@
 <nav>
     <p class="txt-title">Browse Music</p>
     <ul>
-        <li><a routerLink="/" class="panel-nav active">home</a></li>
-        <li><a routerLink="/album" class="panel-nav">albums</a></li>
-        <li><a routerLink="/song" class="panel-nav">Songs</a></li>
+        <li><a routerLink="/" [class]="appService.breadcrumbs[0].label == 'home' ? 'active ' : '' +  'panel-nav'">home</a></li>
+        <li><a routerLink="/album" [class]="appService.breadcrumbs[0].label == 'album' ? 'active ' : '' +  'panel-nav'">albums</a></li>
+        <li><a routerLink="/song" [class]="appService.breadcrumbs[0].label == 'song' ? 'active ' : '' +  'panel-nav'">Songs</a></li>
         <li><a>Like</a></li>
     </ul>
 </nav>
