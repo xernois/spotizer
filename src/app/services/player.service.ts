@@ -11,6 +11,7 @@ import { LocalStorageService } from './local-storage.service';
 export class PlayerService {
 
   playing$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  currentSong$: Subject<Song> = new Subject();
   musicQueue: Song[] = [];
 
   oldVolume: number = this.localStorage.getPlayerSettings().volume;
@@ -29,18 +30,18 @@ export class PlayerService {
     return this.musicQueue[0];
   }
 
-  getCurrentSongYoutubeId(): string {
-    return this.getCurrentSong().youtube.split('/').at(-1) || '';
-  }
-
   previousSong() {
     const lastSong = this.musicQueue.pop();
     if (lastSong) this.musicQueue.unshift(lastSong);
+    this.currentSong$.next(this.getCurrentSong());
+    this.progressionControl.setValue(0);
   }
 
   nextSong() {
     const current = this.musicQueue.shift();
     if (current) this.musicQueue.push(current);
+    this.currentSong$.next(this.getCurrentSong());
+    this.progressionControl.setValue(0);
   }
 
   muteUnmute() {

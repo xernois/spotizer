@@ -1,8 +1,8 @@
 <span class="material-symbols-outlined">arrow_back</span>
 <ol class="breadcrumb">
   <li class="breadcrumb__item" *ngFor="let breadcrumb of appService.breadcrumbs; let isLast = last">
-    <a [routerLink]="breadcrumb.url">
-      {{breadcrumb.label | titlecase }}
+    <a [routerLink]="breadcrumb?.url">
+      {{breadcrumb?.label | titlecase }}
     </a>
     <span *ngIf="!isLast" class="breadcrumb__icon material-symbols-outlined">keyboard_arrow_right</span>
   </li>

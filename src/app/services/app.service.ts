@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, firstValueFrom } from 'rxjs';
 import { slugify } from '../functions/slug.function';
-import { Breadcrumbs } from '../models/breadcrumb.model';
+import { Breadcrumb } from '../models/breadcrumb.model';
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  public breadcrumbs: Breadcrumbs = []
+  public breadcrumbs: Array<Breadcrumb | undefined> = []
 
   constructor(
     private router: Router,
@@ -20,7 +20,7 @@ export class AppService {
     });
   }
 
-  private async getBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: Breadcrumbs = []): Promise<Breadcrumbs> {
+  private async getBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: Array<Breadcrumb> = []): Promise<Array<Breadcrumb>> {
 
     const data: Record<string, unknown> = await firstValueFrom(route.data)
 

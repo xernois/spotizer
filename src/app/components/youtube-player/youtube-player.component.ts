@@ -52,13 +52,21 @@ export class YoutubePlayerComponent implements AfterViewInit {
     this.playerService.volumeControl.valueChanges.subscribe((volume) => {
       this.player?.setVolume?.(volume)
     })
+
+    this.playerService.progressionControl.valueChanges.subscribe((progression) => {
+      this.player?.seekTo?.(this.player.getDuration() * ((progression || 0) / 100), true)
+    })
   }
 
   onPlayerReady() {
-    this.player.loadVideoByUrl?.(this.playerService.musicQueue[0].youtube)
+    this.playerService.currentSong$.subscribe((song) => {
+      this.player?.loadVideoByUrl?.(song.youtube)
+    })
+    this.player?.loadVideoByUrl?.(this.playerService.getCurrentSong().youtube)
   }
 
   onPlayerStateChange(event: any) {
+
     if (event.data == window.YT.PlayerState.PLAYING) {
 
       var playerTotalTime = this.player.getDuration();
@@ -68,6 +76,9 @@ export class YoutubePlayerComponent implements AfterViewInit {
       }, 500);
     } else {
       clearTimeout(this.timerId);
+      if(event.data === window.YT.PlayerState.ENDED) {
+        this.playerService.nextSong();
+      }
     }
   }
 }
