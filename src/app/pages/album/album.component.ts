@@ -14,18 +14,20 @@ import { Artist } from '@models/artist.model';
 })
 export class AlbumComponent implements OnInit {
 
-  albums!: (Album & { url: string })[];
+  albums!: (Album & { url?: string })[];
   artist!: Observable<Artist>
 
   constructor(
     private route: ActivatedRoute,
     private playerService: PlayerService,
+    private albumService: AlbumService
   ) { }
 
   ngOnInit(): void {
-    this.albums = this.route.snapshot.data['albums']
-
-    this.albums = this.albums.map(album => { album.url = slugify(album.title) + '-' + album.id; return album })
+    this.albumService.resolveAlbum(this.route.snapshot).subscribe(albums => {
+      this.albums = albums
+      this.albums = this.albums.map(album => { album.url = slugify(album.title) + '-' + album.id; return album })
+    })
   }
 
   playAlbum(album: Album) {

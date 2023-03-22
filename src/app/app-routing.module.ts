@@ -11,14 +11,14 @@ const routes: Routes = [
   { path: '', component: HomeComponent, data: { breadcrumb: 'home' } },
   {
     path: 'album', data: { breadcrumb: 'album' }, children: [
-      { path: '', component: AlbumComponent, resolve: { albums: AlbumService } },
+      { path: '', component: AlbumComponent},
       { path: ':slug', component: AlbumDetailsComponent, resolve: { album: AlbumService }, data: { breadcrumb: '@album.title' } }
     ]
   },
   {
     path: 'song', data: { breadcrumb: 'song' }, children: [
-      { path: '', component: SongComponent, resolve: { albums: SongService } },
-      { path: ':slug', component: SongComponent, resolve: { album: SongService }, data: { breadcrumb: '@song .title' } }
+      { path: '', component: SongComponent },
+      { path: ':slug', component: SongComponent, resolve: { song: SongService }, data: { breadcrumb: '@song .title' } }
     ]
   },
   { path: '**', redirectTo: '/' },

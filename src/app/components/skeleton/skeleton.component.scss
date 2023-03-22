@@ -1,0 +1,26 @@
+    :host {
+      display: block;
+      width: var(--skeleton-rect-width);
+      height: var(--skeleton-rect-height);
+      background: rgba(255, 255, 255, 0.3) no-repeat;
+
+      animation: pulse 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      animation-delay: 0.5s;
+      border-radius:.5rem;
+    }
+
+
+
+    @keyframes pulse {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }

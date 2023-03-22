@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ApiEndpoint } from '@enums/api-endpoint.enum';
-import { map, Observable, toArray } from 'rxjs';
+import { delay, map, Observable, toArray } from 'rxjs';
 import { environment } from '@environments/environment';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { parseSlug } from '@src/app/functions/slug.function';
@@ -39,7 +39,7 @@ export abstract class ApiService {
           album.getArtist = (() => {
             let artist: Observable<Artist>;
             return () => {
-              if(!artist) artist = this.getArtists(album.artist.id.toString()).pipe(map(artists => artists[0]))
+              if(!artist) artist = this.getArtists(album.artist.id.toString()).pipe(delay(500),map(artists => artists[0]))
               return artist
             }
           })();
