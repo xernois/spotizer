@@ -6,8 +6,8 @@
       </a>
       <p class="txt-small-title">{{ album.title }}</p>
       <p *ngIf="(album.getArtist() | async) as artist; else loading">{{ artist.name }}</p>
-      <button (click)="playAlbum(album)" class="cta material-symbols-outlined">
-        play_arrow
+      <button (click)="playAlbum(album)" class="cta">
+        <span class="material-symbols-outlined">play_arrow</span>
       </button>
 
       <ng-template #loading >

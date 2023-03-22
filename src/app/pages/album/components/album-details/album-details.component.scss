@@ -1,0 +1,36 @@
+.album-details {
+    button {
+        display: flex;
+        flex: 1;
+        align-items: center;
+    }
+
+    &__infos {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: var(--margin-40);
+    }
+
+    &__list-songs {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &__song-title {
+        display: inline;
+        margin-right: 5px;
+        margin-left: 10px;
+    }
+
+    .infos-album {
+        margin-left: 20px;
+        margin-top: 20px;
+
+        &__title {
+            margin-bottom: 10px;
+        }
+    }
+}
+

@@ -10,11 +10,13 @@
     text-transform: capitalize;
 }
 
-a {
+a, 
+.link {
     font-size: var(--ft-size-main);
     font-weight: var(--ft-weight-400);
     color: var(--clr-text-main);
     text-decoration: none;
+    cursor: pointer;
 
     &:hover {
         color: var(--clr-text-selected);
@@ -27,6 +29,12 @@ a {
     font-size: var(--ft-size-main);
     font-weight: var(--ft-weight-400);
     color: var(--clr-text-main);
+}
+
+.txt-big-title {
+    font-size: var(--ft-size-big-title);
+    font-weight: var(--ft-weight-600);
+    color: var(--clr-text-title);
 }
 
 .txt-title {
