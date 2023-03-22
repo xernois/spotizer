@@ -26,9 +26,8 @@ export class AlbumComponent implements OnInit {
   ngOnInit(): void {
     this.albumService.resolveAlbum(this.route.snapshot).subscribe(albums => {
       this.albums = albums
+      this.albums = this.albums.map(album => { album.url = slugify(album.title) + '-' + album.id; return album })
     })
-
-    this.albums = this.albums.map(album => { album.url = slugify(album.title) + '-' + album.id; return album })
   }
 
   playAlbum(album: Album) {

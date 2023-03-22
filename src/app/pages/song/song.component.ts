@@ -10,15 +10,11 @@ import { Song } from '@src/app/models/song.model';
 })
 export class SongComponent {
 
-  albums: (Song & { url?: string })[] = []
-
   constructor(
     private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
-    this.albums = this.route.snapshot.data['songs']
-    this.albums = this.albums.map(album => {album.url = slugify(album.title)+'-'+album.id; return album})
   }
 
 }

@@ -1,5 +1,5 @@
 <div class="albums-list">
-  <ng-container *skeleton="!albums; repeat: 5; className: 'mb-2'; height: '280px'; width: '250px';">
+  <ng-container *skeleton="!albums; repeat: 10; className: 'mb-2'; height: '292px'; width: '250px';">
     <div *ngFor="let album of albums" class="albums-list__album">
       <a [routerLink]="'/album/' + album.url">
         <img [src]="album.image" alt="" srcset="">

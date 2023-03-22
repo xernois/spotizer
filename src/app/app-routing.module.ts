@@ -17,8 +17,8 @@ const routes: Routes = [
   },
   {
     path: 'song', data: { breadcrumb: 'song' }, children: [
-      { path: '', component: SongComponent, resolve: { albums: SongService } },
-      { path: ':slug', component: SongComponent, resolve: { album: SongService }, data: { breadcrumb: '@song .title' } }
+      { path: '', component: SongComponent },
+      { path: ':slug', component: SongComponent, resolve: { song: SongService }, data: { breadcrumb: '@song .title' } }
     ]
   },
   { path: '**', redirectTo: '/' },

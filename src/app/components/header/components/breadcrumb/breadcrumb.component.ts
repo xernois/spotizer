@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, ActivationStart, NavigationEnd, Router, RoutesRecognized } from '@angular/router';
 import { AppService } from '@src/app/services/app.service';
-import { distinctUntilChanged, filter } from 'rxjs';
-import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -11,11 +8,13 @@ import { firstValueFrom } from 'rxjs';
 })
 export class BreadcrumbComponent {
 
+  prevUrl!: string;
+
   constructor(
     public appService: AppService,
   ) { }
 
   async ngOnInit() {
-
+    console.log(document.referrer)
   }
 }
