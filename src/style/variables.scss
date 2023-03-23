@@ -5,6 +5,7 @@ $grey-200: #222222;
 $grey-300: #272727;
 $grey-400: #2d2d2d;
 $grey-500: #353535;
+$grey-transperence: #121212ee;
 $white: #ffffff;
 $white-87: #ffffffde;
 $white-60: #ffffff99;
@@ -15,6 +16,11 @@ $white-38: #ffffff5e;
     //Themes Dark
     --clr-background-main: #{$black};
     --clr-background-page: #{$grey-100};
+    --clr-background-player: #{$grey-transperence};
+    --clr-background-invert: #{$white};
+
+    --clr-background-input-range: #{$grey-200};
+    --clr-background-input-range-progress: #{$white};
 
     --clr-background-cta: #{$white-60};
     --clr-background-cta-hover: #{$white-87};
@@ -22,6 +28,8 @@ $white-38: #ffffff5e;
     --clr-text-main: #{$white-60};
     --clr-text-selected: #{$white-87};
     --clr-text-title: #{$white-87};
+    --clr-text-invert: #{$grey-100};
+    --clr-text-white: #{$white};
 
     //Themes White
 
@@ -32,7 +40,8 @@ $white-38: #ffffff5e;
     //Width
     --width-panel-navigation: 150px;
     --width-panel-user: 250px;
-    --height-player: 50px;
+    --height-player: 100px;
+
     //Text
     --ft-weight-400: 400;
     --ft-weight-600: 600;

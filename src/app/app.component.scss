@@ -18,7 +18,11 @@ main {
     flex: 1;
     padding-right: var(--margin-40);
     padding-left: var(--margin-40);
-    padding-bottom: var(--height-player);
+    padding-bottom: calc(var(--height-player) + var(--margin-40));
     background-color: var(--clr-background-main);
     overflow: auto;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }

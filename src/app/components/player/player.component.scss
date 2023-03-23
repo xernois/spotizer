@@ -6,10 +6,12 @@
 
 .player {
     display: flex;
+    height: var(--height-player);
     justify-content: space-between;
     align-items: center;
     padding: 0 var(--margin-40);
-    background-color: lightgray;
+    background-color: var(--clr-background-player);
+    backdrop-filter: blur(10px);
 
     &__song {
         display: flex;
@@ -21,9 +23,21 @@
         }
     }
 
-    &__timeline {
-        flex: 1;
-        text-align: center;
+    &__middle {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 8px;
+
+        input {
+            width: 50vw;
+        }
+
+        .timeline-button {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
     }
 
     &__volume {

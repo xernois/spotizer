@@ -38,6 +38,7 @@ export class PlayerComponent implements OnInit {
   }
 
   updatePlayerInfos() {
+    console.log(this.currentSong)
     this.currentSong = this.playerService.getCurrentSong();
   }
 }

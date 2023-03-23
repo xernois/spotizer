@@ -28,6 +28,21 @@
             line-height: 30px;
         }
     }
+
+    &--invert {
+        background-color: var(--clr-background-invert);
+        color: var(--clr-text-invert);
+    }
+
+    &--no-border {
+        background-color: transparent;
+
+        &:hover {
+            background-color: transparent;
+            color: var(--clr-text-white);
+            transform: scale(1);
+        }
+    }
 }
 
 button {

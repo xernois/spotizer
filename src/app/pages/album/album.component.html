@@ -2,7 +2,7 @@
   <ng-container *skeleton="!albums; repeat: 10; className: 'mb-2'; height: '292px'; width: '250px';">
     <div *ngFor="let album of albums" class="albums-list__album">
       <a [routerLink]="'/album/' + album.url">
-        <img [src]="album.image" alt="" srcset="">
+        <img [src]="album.image" alt="" srcset="" class="album">
       </a>
       <p class="txt-small-title">{{ album.title }}</p>
       <p *ngIf="(album.getArtist() | async) as artist; else loading">{{ artist.name }}</p>
