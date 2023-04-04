@@ -1,8 +1,34 @@
 .album-details {
-    button {
+    &__play-song {
         display: flex;
         flex: 1;
         align-items: center;
+        
+        .song-left {
+            width: 30px;
+            text-align: center;
+
+            &__index {
+                display: inline-block;
+            }
+
+            &__play {
+                display: none;
+            }
+        }
+
+
+        &:hover {
+            .song-left {
+                &__index {
+                    display: none;
+                }
+
+                &__play {
+                    display: flex;
+                }
+            }
+        }
     }
 
     &__infos {
@@ -24,6 +50,11 @@
         margin-left: 10px;
     }
 
+    &__length {
+        min-width: 50px;
+        text-align: end;
+    }
+
     .infos-album {
         margin-left: 20px;
         margin-top: 20px;
@@ -33,4 +64,3 @@
         }
     }
 }
-

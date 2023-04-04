@@ -6,6 +6,7 @@ import { slugify } from '@src/app/functions/slug.function';
 import { PlayerService } from '@src/app/services/player.service';
 import { Observable, of } from 'rxjs';
 import { Artist } from '@models/artist.model';
+import { LikeService } from '@src/app/services/like.service';
 
 @Component({
   selector: 'app-album',
@@ -20,7 +21,9 @@ export class AlbumComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private playerService: PlayerService,
-    private albumService: AlbumService
+    private albumService: AlbumService,
+    public like: LikeService
+
   ) { }
 
   ngOnInit(): void {

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SongComponent } from './song.component';
+import { LikeComponent } from './like.component';
 
-describe('SongComponent', () => {
-  let component: SongComponent;
-  let fixture: ComponentFixture<SongComponent>;
+describe('LikeComponent', () => {
+  let component: LikeComponent;
+  let fixture: ComponentFixture<LikeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SongComponent ]
+      declarations: [ LikeComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SongComponent);
+    fixture = TestBed.createComponent(LikeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

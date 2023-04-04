@@ -4,27 +4,28 @@
     <div class="infos-album">
       <p class="infos-album__title txt-big-title">{{ album.title }}</p>
       <p *ngIf="artist">{{ artist.name }}</p>
-      <button (click)="like.toggleAlbumLike(album.id)"
-      [ngClass]="'cta cta--no-border ' + (like.isAlbumLiked(album.id) ? 'cta--filled' : '') ">
-      <span class="material-symbols-outlined" class="material-symbols-outlined">
-        favorite
-      </span>
-    </button>
-    </div>
-  </div>
-  <div *ngFor="let song of album.songs; let index = index" class="album-details__list-songs">
-    <button (click)="playSong(index+1)" class="cta-reset link">
-      <div class="cta cta--small">
-        <span class="material-symbols-outlined">play_arrow</span>
-      </div>
-      <p class="album-details__song-title">{{index+1}}. {{song.title}}</p>
-    </button>
-      <button (click)="like.toggleSongLike(song.id)"
-        [ngClass]="'cta cta--no-border ' + (like.isSongLiked(song.id) ? 'cta--filled' : '') ">
+      <button (click)="like.toggleAlbumLike(album.id)" [ngClass]="'cta cta--no-border ' + (like.isAlbumLiked(album.id) ? 'cta--filled' : '')">
         <span class="material-symbols-outlined" class="material-symbols-outlined">
           favorite
         </span>
       </button>
-      <p>{{ song.length }}</p>
+    </div>
+  </div>
+  <div *ngFor="let song of album.songs; let index = index" class="album-details__list-songs">
+    <button (click)="playSong(index+1)" class="cta-reset link album-details__play-song">
+      <div class="song-left">
+        <span class="song-left__index">{{index+1}}</span>
+        <div class="cta cta--small song-left__play">
+          <span class="material-symbols-outlined">play_arrow</span>
+        </div>
+      </div>
+      <p class="album-details__song-title">{{song.title}}</p>
+    </button>
+    <button (click)="like.toggleSongLike(song.id)" [ngClass]="'cta cta--no-border ' + (like.isSongLiked(song.id) ? 'cta--filled' : '') ">
+      <span class="material-symbols-outlined" class="material-symbols-outlined">
+        favorite
+      </span>
+    </button>
+    <p class="album-details__length">{{ song.length }}</p>
   </div>
 </div>

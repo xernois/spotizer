@@ -1,0 +1,7 @@
+<h1>Liked songs :</h1>
+<pre *ngIf="songs?.length"> {{ songs | json}}</pre>
+<p *ngIf="!songs?.length"> You haven't liked any song yet. <a routerLink="/album">explore</a> </p>
+
+<h1>Liked albums :</h1>
+<pre *ngIf="albums?.length"> {{ albums | json}}</pre>
+<p *ngIf="!albums?.length"> You haven't liked any album yet. <a routerLink="/album">explore</a> </p>

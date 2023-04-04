@@ -9,6 +9,11 @@
       <button (click)="playAlbum(album)" class="cta">
         <span class="material-symbols-outlined">play_arrow</span>
       </button>
+      <button (click)="like.toggleSongLike(album.id)" [ngClass]="'cta ' + (like.isSongLiked(album.id) ? 'cta--filled' : '') ">
+        <span class="material-symbols-outlined" class="material-symbols-outlined">
+          favorite
+        </span>
+      </button>
 
       <ng-template #loading >
         <p *skeleton="true; height: '1rem'; width: 'rand';"></p>
