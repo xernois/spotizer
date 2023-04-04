@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { AppLike, AppPlayer, AppUser } from '../models/app.model';
+import { Song } from '@models/song.model';
+import { Album } from '@models/album.model';
+import { Observable, forkJoin } from 'rxjs';
+import { AlbumService } from '@services/api/album.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class LikeService {
 
-  constructor() { }
+  constructor(
+    private apiService: AlbumService
+  ) { }
 
   toggleSongLike(songId: number) {
     let like
@@ -49,5 +55,31 @@ export class LikeService {
       like = { songs: [], albums: [albumId] }
     }
     localStorage.setItem('like', JSON.stringify(like))
+  }
+
+  getAllLikedSong() {
+    let result;
+    try {
+      let like = JSON.parse(localStorage.getItem('like') || '{}');
+      if(like.songs?.length) result = forkJoin<Song[]>(...like.songs?.map((songId: number) => this.apiService.getSongs(songId)))
+      else return null
+    } catch (e) {
+      console.log(e)
+      result = null
+    }
+
+    return result
+  }
+
+  getAllLikedAlbum() {
+    let result;
+    try {
+      let like = JSON.parse(localStorage.getItem('like') || '');
+      result = forkJoin<Album[]>(...like.albums.map((albumId: number) => this.apiService.getAlbums(albumId)))
+    } catch {
+      result = null
+    }
+
+    return result
   }
 }

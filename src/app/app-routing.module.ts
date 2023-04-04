@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AlbumComponent } from '@pages/album/album.component';
 import { HomeComponent } from '@pages/home/home.component';
 import { AlbumDetailsComponent } from './pages/album/components/album-details/album-details.component';
-import { SongComponent } from './pages/song/song.component';
 import { AlbumService } from './services/api/album.service';
 import { SongService } from './services/api/song.service';
 
@@ -17,8 +16,8 @@ const routes: Routes = [
   },
   {
     path: 'song', data: { breadcrumb: 'song' }, children: [
-      { path: '', component: SongComponent },
-      { path: ':slug', component: SongComponent, resolve: { song: SongService }, data: { breadcrumb: '@song .title' } }
+      { path: '', component: SongService },
+      { path: ':slug', component: SongService, resolve: { song: SongService }, data: { breadcrumb: '@song .title' } }
     ]
   },
   { path: '**', redirectTo: '/' },

@@ -14,10 +14,10 @@ import { PanelUserComponent } from './components/panel-user/panel-user.component
 import { PlayerComponent } from './components/player/player.component';
 import { YoutubePlayerComponent } from './components/youtube-player/youtube-player.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SongComponent } from './pages/song/song.component';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { SkeletonDirective } from './directives/skeleton.directive';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { LikeComponent } from './pages/like/like.component';
 
 @NgModule({
   declarations: [
@@ -31,10 +31,10 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     PanelUserComponent,
     PlayerComponent,
     YoutubePlayerComponent,
-    SongComponent,
     SkeletonComponent,
     SkeletonDirective,
-    SearchBarComponent
+    SearchBarComponent,
+    LikeComponent
   ],
   imports: [
     ReactiveFormsModule,

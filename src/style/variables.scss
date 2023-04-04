@@ -7,6 +7,7 @@ $grey-400: #2d2d2d;
 $grey-500: #353535;
 $grey-transperence: #121212dd;
 $white: #ffffff;
+$white-100: #fefefefe;
 $white-87: #ffffffde;
 $white-60: #ffffff99;
 $white-38: #ffffff5e;
@@ -18,6 +19,10 @@ $white-38: #ffffff5e;
     --clr-background-page: #{$grey-100};
     --clr-background-player: #{$grey-transperence};
     --clr-background-invert: #{$white};
+
+    --clr-background-input: #{$grey-100};
+    --clr-border-input: #{$grey-500};
+    --clr-border-input-focus: #{$white-100};
 
     --clr-background-input-range: #{$grey-200};
     --clr-background-input-range-progress: #{$white};
@@ -50,4 +55,5 @@ $white-38: #ffffff5e;
     --ft-size-main: 1rem;
     --ft-size-title: 1.2rem;
     --ft-size-big-title: 2rem;
+    --ft-size-h1: 3rem;
 }

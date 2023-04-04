@@ -23,7 +23,6 @@ a,
     }
 }
 
-
 // Class text
 .txt-body {
     font-size: var(--ft-size-main);
@@ -31,6 +30,7 @@ a,
     color: var(--clr-text-main);
 }
 
+h1,
 .txt-big-title {
     font-size: var(--ft-size-big-title);
     font-weight: var(--ft-weight-600);
@@ -44,6 +44,7 @@ a,
 }
 
 .txt-selected,
+.txt-input,
 .txt-small-title {
     font-size: var(--ft-size-main);
     font-weight: var(--ft-weight-400);
