@@ -6,3 +6,8 @@ export interface AppUser {
 export interface AppPlayer {
   volume: number
 }
+
+export interface AppLike {
+  songs: number[]
+  albums: number[]
+}

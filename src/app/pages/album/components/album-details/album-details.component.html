@@ -3,7 +3,13 @@
     <img [src]="album.image" alt="album image" class="album">
     <div class="infos-album">
       <p class="infos-album__title txt-big-title">{{ album.title }}</p>
-      <p>{{ artist.name }}</p>
+      <p *ngIf="artist">{{ artist.name }}</p>
+      <button (click)="like.toggleAlbumLike(album.id)"
+      [ngClass]="'cta cta--no-border ' + (like.isAlbumLiked(album.id) ? 'cta--filled' : '') ">
+      <span class="material-symbols-outlined" class="material-symbols-outlined">
+        favorite
+      </span>
+    </button>
     </div>
   </div>
   <div *ngFor="let song of album.songs; let index = index" class="album-details__list-songs">
@@ -13,6 +19,12 @@
       </div>
       <p class="album-details__song-title">{{index+1}}. {{song.title}}</p>
     </button>
-    <p>{{ song.length }}</p>
+      <button (click)="like.toggleSongLike(song.id)"
+        [ngClass]="'cta cta--no-border ' + (like.isSongLiked(song.id) ? 'cta--filled' : '') ">
+        <span class="material-symbols-outlined" class="material-symbols-outlined">
+          favorite
+        </span>
+      </button>
+      <p>{{ song.length }}</p>
   </div>
 </div>
