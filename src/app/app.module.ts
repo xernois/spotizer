@@ -16,7 +16,7 @@ import { YoutubePlayerComponent } from './components/youtube-player/youtube-play
 import { ReactiveFormsModule } from '@angular/forms';
 import { SongComponent } from './pages/song/song.component';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
-import { SkeletonDirective } from './components/skeleton.directive';
+import { SkeletonDirective } from './directives/skeleton.directive';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 @NgModule({

@@ -1,5 +1,5 @@
 import { Directive, Input, SimpleChanges, TemplateRef, ViewContainerRef } from '@angular/core';
-import { SkeletonComponent } from './skeleton/skeleton.component';
+import { SkeletonComponent } from '../components/skeleton/skeleton.component';
 
 @Directive({
   selector: '[skeleton]'
