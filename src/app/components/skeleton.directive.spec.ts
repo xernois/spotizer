@@ -1,4 +1,4 @@
-import { SkeletonDirective } from './skeleton.directive';
+import { SkeletonDirective } from '../directives/skeleton.directive';
 
 describe('SkeletonDirective', () => {
   it('should create an instance', () => {

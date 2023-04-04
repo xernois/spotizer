@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Song } from '@models/song.model';
-import { SongService } from '@services/api/song.service';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
 
