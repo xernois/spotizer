@@ -3,15 +3,15 @@
     <img [src]="album.image" alt="album image" class="album">
     <div class="infos-album">
       <p class="infos-album__title txt-big-title">{{ album.title }}</p>
-      <p>{{ artist.name }}</p>
+      <p>{{ artist?.name }}</p>
     </div>
   </div>
   <div *ngFor="let song of album.songs; let index = index" class="album-details__list-songs">
-    <button (click)="playSong(index+1)" class="cta-reset link">
+    <button (click)="playSong(index)" class="cta-reset link">
       <div class="cta cta--small">
         <span class="material-symbols-outlined">play_arrow</span>
       </div>
-      <p class="album-details__song-title">{{index+1}}. {{song.title}}</p>
+      <p class="album-details__song-title">{{index + 1}}. {{song.title}}</p>
     </button>
     <p>{{ song.length }}</p>
   </div>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Song } from '@src/app/models/song.model';
 import { PlayerService } from '@src/app/services/player.service';
 
@@ -16,17 +16,19 @@ export class PlayerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.updatePlayerInfos()
+
+    this.playerService.currentSong$.subscribe((song) => {
+      this.currentSong = song
+      console.log(song)
+    })
   }
 
   previousSong() {
     this.playerService.previousSong();
-    this.updatePlayerInfos()
   }
 
   nextSong() {
     this.playerService.nextSong();
-    this.updatePlayerInfos()
   }
 
   togglePlay() {
@@ -35,10 +37,5 @@ export class PlayerComponent implements OnInit {
 
   toggleMute() {
     this.playerService.muteUnmute();
-  }
-
-  updatePlayerInfos() {
-    console.log(this.currentSong)
-    this.currentSong = this.playerService.getCurrentSong();
   }
 }

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PlayerService } from '@src/app/services/player.service';
 import { Album } from '@src/app/models/album.model';
-import { Song } from '@src/app/models/song.model'
 import { Artist } from '@src/app/models/artist.model';
 
 @Component({
@@ -32,5 +31,7 @@ export class AlbumDetailsComponent {
     for (let i = 0; i< id; i++) {
       this.playerService.nextSong()
     }
+    this.playerService.updateCurrentSong()
+    this.playerService.playing$.next(true)
   }
 }
