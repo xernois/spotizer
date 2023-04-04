@@ -15,6 +15,7 @@
 
     &__song {
         display: flex;
+        min-width: 15vw;
 
         img {
             width: 16px;
@@ -28,6 +29,7 @@
         justify-content: center;
         flex-direction: column;
         gap: 8px;
+        min-width: 50vw;
 
         input {
             width: 50vw;
@@ -43,6 +45,8 @@
     &__volume {
         display: flex;
         align-items: center;
+        justify-content: end;
         gap: 1rem;
+        min-width: 15vw;
     }
 }

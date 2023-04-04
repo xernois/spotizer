@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Song } from '@src/app/models/song.model';
+import { LikeService } from '@src/app/services/like.service';
 import { PlayerService } from '@src/app/services/player.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class PlayerComponent implements OnInit {
   currentSong: Song | undefined;
 
   constructor(
-    public playerService: PlayerService
+    public playerService: PlayerService,
+    public like: LikeService
   ) { }
 
   ngOnInit(): void {

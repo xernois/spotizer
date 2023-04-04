@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PlayerService } from '@src/app/services/player.service';
 import { Album } from '@src/app/models/album.model';
 import { Artist } from '@src/app/models/artist.model';
+import { LikeService } from '@src/app/services/like.service';
 
 @Component({
   selector: 'app-album-details',
@@ -11,17 +12,19 @@ import { Artist } from '@src/app/models/artist.model';
 })
 export class AlbumDetailsComponent {
 
-  album !: Album
+  album !: Album & {songs: (Song & {liked: Boolean})[]};
   artist !: Artist
 
   constructor(
     private route: ActivatedRoute,
     private playerService: PlayerService,
-    private router : Router
+    private router : Router,
+    public like: LikeService
   ) {}
 
   async ngOnInit() {
     this.album = this.route.snapshot.data['album'][0]
+    this.album.songs = this.album.songs.map((song: Song) => ({...song, liked: this.like.isSongLiked(song.id)}))
     this.album.getArtist().subscribe((artist) => this.artist = artist)
     if(!this.album) this.router.navigateByUrl('/album')
   }

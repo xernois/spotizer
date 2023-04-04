@@ -1,50 +1,59 @@
 .cta {
-    display: flex;
-    width: 50px;
-    height: 50px;
-    padding: 0;
-    justify-content: center;
-    background-color: var(--clr-background-cta);
-    border-radius: 100%;
-    border: none;
-    cursor: pointer;
-    transition: transform .2s ease;
+  display: flex;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  justify-content: center;
+  background-color: var(--clr-background-cta);
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  transition: transform .2s ease;
+
+  span {
+    line-height: 50px;
+  }
+
+  &:hover {
+    background-color: var(--clr-background-cta-hover);
+    transform: scale(1.05);
+  }
+
+  &--small {
+    width: 30px;
+    height: 30px;
+    font-size: 1.5rem;
 
     span {
-        line-height: 50px;
+      line-height: 30px;
     }
+  }
+
+  &--invert {
+    background-color: var(--clr-background-invert);
+    color: var(--clr-text-invert);
+  }
+
+  &--no-border {
+    background-color: transparent;
 
     &:hover {
-        background-color: var(--clr-background-cta-hover);
-        transform: scale(1.05);
+      background-color: transparent;
+      color: var(--clr-text-white);
+      transform: scale(1);
     }
 
-    &--small {
-        width: 30px;
-        height: 30px;
-        font-size: 1.5rem;
-        
-        span {
-            line-height: 30px;
-        }
-    }
+  }
 
-    &--invert {
-        background-color: var(--clr-background-invert);
-        color: var(--clr-text-invert);
-    }
-
-    &--no-border {
-        background-color: transparent;
-
-        &:hover {
-            background-color: transparent;
-            color: var(--clr-text-white);
-            transform: scale(1);
-        }
-    }
+  &--filled {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+  }
 }
 
 button {
-    all: unset;
+  all: unset;
 }

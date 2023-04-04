@@ -2,6 +2,12 @@
   <div class="player__song">
     <div class="txt-small-title">
       <p>{{ currentSong?.title }}</p>
+      <button *ngIf="currentSong && currentSong.id" (click)="like.toggleSongLike(currentSong.id)"
+        [ngClass]="'cta cta--no-border ' + (like.isSongLiked(currentSong.id) ? 'cta--filled' : '') ">
+        <span class="material-symbols-outlined" class="material-symbols-outlined">
+          favorite
+        </span>
+      </button>
     </div>
   </div>
   <div class="player__middle">

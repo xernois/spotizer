@@ -1,0 +1,4 @@
+<input type="text" [formControl]="searchControl" (focus)="showResults = true" (blur)="showResults = false">
+<ul *ngIf="showResults">
+  <li *ngFor="let result of searchResults"> <a href="https://google.fr">{{result}}</a> </li>
+</ul>
