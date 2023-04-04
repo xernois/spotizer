@@ -4,6 +4,7 @@ import { PlayerService } from '@src/app/services/player.service';
 import { Album } from '@src/app/models/album.model';
 import { Artist } from '@src/app/models/artist.model';
 import { LikeService } from '@src/app/services/like.service';
+import { Song } from '@src/app/models/song.model';
 
 @Component({
   selector: 'app-album-details',
