@@ -19,7 +19,7 @@
       </button>
       <button (click)="togglePlay()" class="cta cta--invert">
         <span class="material-symbols-outlined">
-          {{(playerService.playing$ | async) ? 'play_arrow' : 'pause'}}
+          {{(playerService.playing$ | async) ? 'pause' : 'play_arrow'}}
         </span>
       </button>
       <button (click)="nextSong()" class="cta cta--no-border">

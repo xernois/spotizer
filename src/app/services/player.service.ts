@@ -29,11 +29,16 @@ export class PlayerService {
     return this.musicQueue[0];
   }
 
+  updateCurrentSong() {
+    this.currentSong$.next(this.getCurrentSong())
+  }
+
   previousSong() {
     const lastSong = this.musicQueue.pop();
     if (lastSong) this.musicQueue.unshift(lastSong);
     this.currentSong$.next(this.getCurrentSong());
     this.progressionControl.setValue(0);
+    this.playing$.next(true)
   }
 
   nextSong() {
@@ -41,6 +46,7 @@ export class PlayerService {
     if (current) this.musicQueue.push(current);
     this.currentSong$.next(this.getCurrentSong());
     this.progressionControl.setValue(0);
+    this.playing$.next(true)
   }
 
   muteUnmute() {
