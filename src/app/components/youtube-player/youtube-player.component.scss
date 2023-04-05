@@ -1,4 +1,5 @@
 .video {
+  pointer-events: none;
   display: block;
   position: absolute;
   top: calc((var(--width-panel-navigation) + var(--margin-40)) * -1);

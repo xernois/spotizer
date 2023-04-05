@@ -3,7 +3,7 @@
     <ul>
         <li><a routerLink="/" [class]="appService.breadcrumbs[0]?.label == 'home' ? 'active ' : '' +  'panel-nav'">home</a></li>
         <li><a routerLink="/album" [class]="appService.breadcrumbs[0]?.label == 'album' ? 'active ' : '' +  'panel-nav'">albums</a></li>
-        <li><a>Artists</a></li>
+        <li><a routerLink="/artist" [class]="appService.breadcrumbs[0]?.label == 'artist' ? 'active ' : '' +  'panel-nav'">Artists</a></li>
         <li><a routerLink="/like" [class]="appService.breadcrumbs[0]?.label == 'like' ? 'active ' : '' +  'panel-nav'">Like</a></li>
     </ul>
 </nav>

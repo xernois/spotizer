@@ -18,6 +18,8 @@ import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { SkeletonDirective } from './directives/skeleton.directive';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { LikeComponent } from './pages/like/like.component';
+import { ArtistComponent } from './pages/artist/artist.component';
+import { ArtistDetailsComponent } from './pages/artist/components/artist-details/artist-details.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { LikeComponent } from './pages/like/like.component';
     SkeletonComponent,
     SkeletonDirective,
     SearchBarComponent,
-    LikeComponent
+    LikeComponent,
+    ArtistComponent,
+    ArtistDetailsComponent
   ],
   imports: [
     ReactiveFormsModule,
