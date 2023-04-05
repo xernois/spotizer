@@ -11,6 +11,6 @@ export class ArtistResolver {
 
   resolve(route: ActivatedRouteSnapshot) {
     const slug = route.params['slug'];
-    return this.apiService.resolveArtist(slug ? parseSlug(slug) : undefined);
+    return this.apiService.resolveArtist({id: slug ? parseSlug(slug) : undefined});
   }
 }

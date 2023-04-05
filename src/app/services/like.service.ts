@@ -61,7 +61,7 @@ export class LikeService {
     let result;
     try {
       let like = JSON.parse(localStorage.getItem('like') || '{}');
-      if (like.songs?.length) result = forkJoin<Song[]>(like.songs?.map((songId: number) => this.apiService.resolveSong(songId)))
+      if (like.songs?.length) result = forkJoin<Song[]>(like.songs?.map((songId: number) => this.apiService.resolveSong({id: songId})))
       else return null
     } catch (e) {
       console.log(e)
@@ -75,7 +75,7 @@ export class LikeService {
     let result;
     try {
       let like = JSON.parse(localStorage.getItem('like') || '');
-      result = forkJoin<Album[]>(like.albums.map((albumId: number) => this.apiService.resolveAlbum(albumId)))
+      result = forkJoin<Album[]>(like.albums.map((albumId: number) => this.apiService.resolveAlbum({id: albumId})))
     } catch {
       result = null
     }

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Artist } from '@src/app/models/artist.model';
 import { ApiService } from '@src/app/services/api/api.service';
 
@@ -17,7 +16,7 @@ export class ArtistComponent {
   ) { }
 
   ngOnInit(): void {
-    this.apiService.resolveArtist().subscribe(artist => {
+    this.apiService.resolveArtist({ id : undefined }).subscribe(artist => {
       this.artists = artist
     })
   }

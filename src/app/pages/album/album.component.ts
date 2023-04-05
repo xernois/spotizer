@@ -26,7 +26,7 @@ export class AlbumComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.apiService.resolveAlbum().subscribe(albums => {
+    this.apiService.resolveAlbum({id: undefined}).subscribe(albums => {
       this.albums = albums
       this.albums = this.albums.map(album => { album.url = slugify(album.title) + '-' + album.id; return album })
     })
