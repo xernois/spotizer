@@ -1,5 +1,5 @@
 import { Directive, ElementRef, EventEmitter, Input, Output } from '@angular/core';
-import { debounceTime, Observable } from 'rxjs';
+import { debounceTime, Observable, Subscription } from 'rxjs';
 
 @Directive({
   selector: '[intersection]',
@@ -10,18 +10,25 @@ export class IntersectionDirective {
   @Input() root: HTMLElement | null = null
   @Input() rootMargin = '0px 0px 0px 0px'
   @Input() threshold = 0
-  @Input() debounceTime = 250
+  @Input() debounceTime = 500
   @Input() isContinuous = false
 
   @Output() isIntersecting = new EventEmitter<boolean>()
 
-  intersecting = false
+  _isIntersecting = false
+  subscription!: Subscription
 
-  constructor(
-    private element: ElementRef
-  ) { }
+  constructor (private element: ElementRef) {}
 
-  createAndObserve() {
+  ngOnInit () {
+    this.subscription = this.createAndObserve()
+  }
+
+  ngOnDestroy () {
+    this.subscription.unsubscribe()
+  }
+
+  createAndObserve () {
     const options: IntersectionObserverInit = {
       root: this.root,
       rootMargin: this.rootMargin,
@@ -41,7 +48,7 @@ export class IntersectionDirective {
       intersectionObserver.observe(this.element.nativeElement)
 
       return {
-        unsubscribe() {
+        unsubscribe () {
           intersectionObserver.disconnect()
         },
       }
@@ -49,7 +56,7 @@ export class IntersectionDirective {
       .pipe(debounceTime(this.debounceTime))
       .subscribe(status => {
         this.isIntersecting.emit(status)
-        this.intersecting = status
+        this._isIntersecting = status
       })
   }
 

@@ -1,0 +1,39 @@
+.album {
+    &__image {
+        position: relative;
+        width: var(--height-card-album-s);
+
+        &:hover {
+            .button-like {
+                display: flex;
+            }
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1/1;
+        }
+
+        .button-like {
+            display: none;
+        }
+    }
+
+    &__button {
+        position: absolute;
+        display: flex;
+        bottom: 15px;
+        left: 15px;
+        
+        .button-play {
+            margin-right: 15px;
+        }
+    }
+}
+
+p {
+    margin-top: 5px;
+    text-overflow: ellipsis;
+}
+

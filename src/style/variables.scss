@@ -11,6 +11,7 @@ $white-100: #fefefefe;
 $white-87: #ffffffde;
 $white-60: #ffffff99;
 $white-38: #ffffff5e;
+$red: #f87676;
 
 :root {
     //Themes
@@ -27,8 +28,11 @@ $white-38: #ffffff5e;
     --clr-background-input-range: #{$grey-200};
     --clr-background-input-range-progress: #{$white};
 
-    --clr-background-cta: #{$white-60};
-    --clr-background-cta-hover: #{$white-87};
+    --clr-background-cta: #{$white-38};
+    --clr-text-cta: #{$white-60};
+    --clr-text-cta-hover: #{$white-87};
+    --clr-text-cta-like: #{$red};
+    --clr-background-cta-hover: #{$white-60};
 
     --clr-text-main: #{$white-60};
     --clr-text-selected: #{$white-87};
@@ -41,11 +45,15 @@ $white-38: #ffffff5e;
 
     //Margin
     --margin-40: 40px;
+    --margin-25: 25px;
 
     //Width
     --width-panel-navigation: 150px;
     --width-panel-user: 250px;
     --height-player: 100px;
+
+    --height-card-album-s: 200px;
+    --height-card-album-xs: 150px;
 
     //Text
     --ft-weight-400: 400;

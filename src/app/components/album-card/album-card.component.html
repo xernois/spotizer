@@ -1,0 +1,20 @@
+<div class="album__image">
+    <a [routerLink]="'/album/' + album.url">
+        <img [src]="album.image" alt="" srcset="" class="album">
+    </a>
+    <div class="album__button">
+        <button (click)="playAlbum(album)" class="cta button-play">
+            <span class="material-symbols-outlined">play_arrow</span>
+        </button>
+        <button (click)="like.toggleAlbumLike(album.id)" [ngClass]="(like.isAlbumLiked(album.id) ? 'cta--filled cta--red' : '')" class="button-like cta">
+            <span class="material-symbols-outlined" class="material-symbols-outlined">
+                favorite
+            </span>
+        </button>
+    </div>
+</div>
+<p class="txt-small-title">{{ album.title }}</p>
+<p *ngIf="album.getArtist() | async as artist; else loading">{{ artist.name }}</p>
+<ng-template #loading>
+    <p *skeleton="true; height: 'calc(1rem + 5px)'; width: 'rand';"></p>
+</ng-template>

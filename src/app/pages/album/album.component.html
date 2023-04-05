@@ -1,23 +1,7 @@
 <div class="albums-list">
-  <ng-container *skeleton="!albums; repeat: 10; className: 'mb-2'; height: '292px'; width: '250px';">
-    <div *ngFor="let album of albums" class="albums-list__album">
-      <a [routerLink]="'/album/' + album.url">
-        <img [src]="album.image" alt="" srcset="" class="album">
-      </a>
-      <p class="txt-small-title">{{ album.title }}</p>
-      <p *ngIf="(album.getArtist() | async) as artist; else loading">{{ artist.name }}</p>
-      <button (click)="playAlbum(album)" class="cta">
-        <span class="material-symbols-outlined">play_arrow</span>
-      </button>
-      <button (click)="like.toggleSongLike(album.id)" [ngClass]="'cta ' + (like.isSongLiked(album.id) ? 'cta--filled' : '') ">
-        <span class="material-symbols-outlined" class="material-symbols-outlined">
-          favorite
-        </span>
-      </button>
-
-      <ng-template #loading >
-        <p *skeleton="true; height: '1rem'; width: 'rand';"></p>
-      </ng-template>
-    </div>
-  </ng-container>
+  <div *ngFor="let album of albums" class="albums-list__album">
+    <app-album-card [album]="album"></app-album-card>
+  </div>
+  <ng-container *skeleton="isLoading; repeat: 30; height: 'calc(var(--height-card-album-s) + 2rem + 10px)'; width: 'var(--height-card-album-s)';"></ng-container>
 </div>
+<p class="albums-list__more" intersection (isIntersecting)="loadMore($event)" [isContinuous]="true">{{isPossiblyMore ? "Loading ..." : "no more albums 😥" }}</p>

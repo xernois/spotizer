@@ -29,7 +29,6 @@ export class LikeService {
   isSongLiked(songId: number) {
     try {
       const like = JSON.parse(localStorage.getItem('like') || '');
-      console.log(like)
       return like.songs.includes(songId)
     } catch {
       return false
@@ -64,7 +63,6 @@ export class LikeService {
       if (like.songs?.length) result = forkJoin<Song[]>(like.songs?.map((songId: number) => this.apiService.resolveSong({id: songId})))
       else return null
     } catch (e) {
-      console.log(e)
       result = null
     }
 

@@ -16,10 +16,13 @@ import { YoutubePlayerComponent } from './components/youtube-player/youtube-play
 import { ReactiveFormsModule } from '@angular/forms';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { SkeletonDirective } from './directives/skeleton.directive';
+import { IntersectionDirective } from './directives/intersect.directive';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { LikeComponent } from './pages/like/like.component';
 import { ArtistComponent } from './pages/artist/artist.component';
 import { ArtistDetailsComponent } from './pages/artist/components/artist-details/artist-details.component';
+import { AlbumCardComponent } from './components/album-card/album-card.component';
+import { SongComponent } from './components/song/song.component';
 
 @NgModule({
   declarations: [
@@ -35,10 +38,13 @@ import { ArtistDetailsComponent } from './pages/artist/components/artist-details
     YoutubePlayerComponent,
     SkeletonComponent,
     SkeletonDirective,
+    IntersectionDirective,
     SearchBarComponent,
     LikeComponent,
     ArtistComponent,
-    ArtistDetailsComponent
+    ArtistDetailsComponent,
+    AlbumCardComponent,
+    SongComponent
   ],
   imports: [
     ReactiveFormsModule,

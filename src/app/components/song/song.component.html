@@ -1,0 +1,17 @@
+<div class="song">
+    <button (click)="playSong(index+1, queue)" class="cta-reset link song__play-song">
+        <div class="song-left">
+            <span class="song-left__index">{{index+1}}</span>
+            <div class="cta cta--small song-left__play">
+                <span class="material-symbols-outlined">play_arrow</span>
+            </div>
+        </div>
+        <p class="song__song-title">{{song.title}}</p>
+    </button>
+    <button (click)="like.toggleSongLike(song.id)" [ngClass]="'cta cta--no-border ' + (like.isSongLiked(song.id) ? 'cta--filled' : '') ">
+        <span class="material-symbols-outlined" class="material-symbols-outlined">
+            favorite
+        </span>
+    </button>
+    <p class="song__length">{{ song.length }}</p>
+</div>

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Album } from '@models/album.model';
 import { slugify } from '@src/app/functions/slug.function';
-import { PlayerService } from '@src/app/services/player.service';
 import { Observable, of } from 'rxjs';
 import { Artist } from '@models/artist.model';
-import { LikeService } from '@src/app/services/like.service';
-import { ApiService } from '@src/app/services/api/api.service';
+import { LikeService } from '@services/like.service';
+import { ApiService } from '@services/api/api.service';
+import { PlayerService } from '@services/player.service';
 
 @Component({
   selector: 'app-album',
@@ -15,8 +15,11 @@ import { ApiService } from '@src/app/services/api/api.service';
 })
 export class AlbumComponent implements OnInit {
 
-  albums!: (Album & { url?: string })[];
+  albums: Album[] = [];
   artist!: Observable<Artist>
+  page = 1
+  isPossiblyMore = true
+  isLoading = false
 
   constructor(
     private playerService: PlayerService,
@@ -26,13 +29,17 @@ export class AlbumComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.apiService.resolveAlbum({id: undefined}).subscribe(albums => {
-      this.albums = albums
-      this.albums = this.albums.map(album => { album.url = slugify(album.title) + '-' + album.id; return album })
-    })
+    this.loadMore(true)
   }
 
-  playAlbum(album: Album) {
-    this.playerService.musicQueue = album.songs
+  loadMore(shouldLoad: boolean) {
+    if(this.isPossiblyMore && shouldLoad && !this.isLoading) {
+      this.isLoading = true;
+      this.apiService.resolveAlbum({page: this.page++}).subscribe(albums => {
+        if(!albums?.length) this.isPossiblyMore = false
+        this.isLoading = false
+        this.albums.push(...albums)
+      })
+    }
   }
 }

@@ -27,7 +27,7 @@ export class SkeletonDirective {
            Object.assign(ref.instance, {
              width: this.width === 'rand' ? `${Math.random() * 60 + 30}%` : this.width,
              height: this.height,
-             className: this.className
+             className: this.className,
            })
          })
       } else {

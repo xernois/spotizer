@@ -5,6 +5,7 @@ import { Album } from '@src/app/models/album.model';
 import { Artist } from '@src/app/models/artist.model';
 import { LikeService } from '@src/app/services/like.service';
 import { Song } from '@src/app/models/song.model';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-album-details',
@@ -14,7 +15,8 @@ import { Song } from '@src/app/models/song.model';
 export class AlbumDetailsComponent {
 
   album !: Album & {songs: (Song & {liked: Boolean})[]};
-  artist !: Artist
+  artist !: Artist;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -28,14 +30,5 @@ export class AlbumDetailsComponent {
     this.album.songs = this.album.songs.map((song: Song) => ({...song, liked: this.like.isSongLiked(song.id)}))
     this.album.getArtist().subscribe((artist) => this.artist = artist)
     if(!this.album) this.router.navigateByUrl('/album')
-  }
-
-  playSong(id: number) {
-    this.playerService.musicQueue = [...this.album.songs]
-    for (let i = 0; i< id; i++) {
-      this.playerService.nextSong()
-    }
-    this.playerService.updateCurrentSong()
-    this.playerService.playing$.next(true)
   }
 }

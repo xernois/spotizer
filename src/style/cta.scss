@@ -9,6 +9,7 @@
   border: none;
   cursor: pointer;
   transition: transform .2s ease;
+  color: var(--clr-text-cta);
 
   span {
     line-height: 50px;
@@ -16,6 +17,7 @@
 
   &:hover {
     background-color: var(--clr-background-cta-hover);
+    color: var(--clr-text-cta-hover);
     transform: scale(1.05);
   }
 
@@ -39,7 +41,7 @@
 
     &:hover {
       background-color: transparent;
-      color: var(--clr-text-white);
+      color: var(--clr-text-cta-hover);
       transform: scale(1);
     }
 
@@ -51,6 +53,14 @@
     'wght' 400,
     'GRAD' 0,
     'opsz' 48
+  }
+
+  &--red {
+    color: var(--clr-text-cta-like);
+
+    &:hover {
+      color: var(--clr-text-cta-like);
+    }
   }
 }
 

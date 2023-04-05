@@ -21,7 +21,6 @@ export class PlayerComponent implements OnInit {
 
     this.playerService.currentSong$.subscribe((song) => {
       this.currentSong = song
-      console.log(song)
     })
   }
 

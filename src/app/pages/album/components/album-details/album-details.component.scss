@@ -1,36 +1,4 @@
 .album-details {
-    &__play-song {
-        display: flex;
-        flex: 1;
-        align-items: center;
-        
-        .song-left {
-            width: 30px;
-            text-align: center;
-
-            &__index {
-                display: inline-block;
-            }
-
-            &__play {
-                display: none;
-            }
-        }
-
-
-        &:hover {
-            .song-left {
-                &__index {
-                    display: none;
-                }
-
-                &__play {
-                    display: flex;
-                }
-            }
-        }
-    }
-
     &__infos {
         display: flex;
         flex-wrap: wrap;
@@ -39,20 +7,6 @@
 
     &__list-songs {
         margin-top: 20px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    &__song-title {
-        display: inline;
-        margin-right: 5px;
-        margin-left: 10px;
-    }
-
-    &__length {
-        min-width: 50px;
-        text-align: end;
     }
 
     .infos-album {

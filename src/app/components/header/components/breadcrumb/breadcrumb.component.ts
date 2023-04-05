@@ -14,7 +14,5 @@ export class BreadcrumbComponent {
     public appService: AppService,
   ) { }
 
-  async ngOnInit() {
-    console.log(document.referrer)
-  }
+  async ngOnInit() {}
 }

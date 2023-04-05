@@ -1,7 +1,11 @@
 <h1>Liked songs :</h1>
-<pre *ngIf="songs?.length"> {{ songs | json}}</pre>
+<div *ngFor="let song of songs; let index = index">
+    <app-song [song]="song" [index]="index" [queue]="songs"></app-song>
+</div>
 <p *ngIf="!songs?.length"> You haven't liked any song yet. <a routerLink="/album">explore</a> </p>
 
 <h1>Liked albums :</h1>
-<pre *ngIf="albums?.length"> {{ albums | json}}</pre>
+<div *ngFor="let album of albums">
+    <app-album-card [album]="album"></app-album-card>
+</div>
 <p *ngIf="!albums?.length"> You haven't liked any album yet. <a routerLink="/album">explore</a> </p>

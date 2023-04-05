@@ -9,6 +9,7 @@ export interface Album extends baseApiModel {
   albumtype: AlbumType
   artist: AlbumArtist
   image: string
+  url: string
 
   getArtist: () => Observable<Artist>
 }

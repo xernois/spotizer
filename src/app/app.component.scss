@@ -16,8 +16,6 @@
 
 main {
     flex: 1;
-    padding-right: var(--margin-40);
-    padding-left: var(--margin-40);
     padding-bottom: calc(var(--height-player) + var(--margin-40));
     background-color: var(--clr-background-main);
     overflow: auto;
@@ -25,4 +23,12 @@ main {
     &::-webkit-scrollbar {
         display: none;
     }
+}
+
+app-panel-navigation {
+    padding-right: var(--margin-40);
+}
+
+app-panel-user {
+    padding-left: var(--margin-40);
 }

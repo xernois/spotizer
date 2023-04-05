@@ -1,0 +1,48 @@
+.song {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &__play-song {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        
+        .song-left {
+            width: 30px;
+            text-align: center;
+
+            &__index {
+                display: inline-block;
+            }
+
+            &__play {
+                display: none;
+            }
+        }
+
+
+        &:hover {
+            .song-left {
+                &__index {
+                    display: none;
+                }
+
+                &__play {
+                    display: flex;
+                }
+            }
+        }
+    }
+
+    &__song-title {
+        display: inline;
+        margin-right: 5px;
+        margin-left: 10px;
+    }
+    
+    &__length {
+        min-width: 50px;
+        text-align: end;
+    }
+}
