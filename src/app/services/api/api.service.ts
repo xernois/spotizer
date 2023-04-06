@@ -7,8 +7,9 @@ import { Album } from '@src/app/models/album.model';
 import { Artist } from '@src/app/models/artist.model';
 import { Song } from '@src/app/models/song.model'
 import { Injectable } from '@angular/core';
+import { Playlist } from '@src/app/models/playlist.model';
 
-type resolveParam = { id?: number, url?: string, page?: number }
+type resolveParam = { id?: number, url?: string, page?: number, endpoint?: ApiEndpoint }
 
 @Injectable({
   providedIn: 'root'
@@ -19,79 +20,73 @@ export class ApiService {
     private http: HttpClient,
   ) { }
 
-  private getData<T>(endpoint: ApiEndpoint, id?: number, page = 1) {
-    if (id) {
-      return this.http.get<T>(environment.apiUrl + endpoint + '/' + id).pipe(toArray())
-    } else {
-      return this.http.get<T[]>(environment.apiUrl + endpoint+ `?page=${page}`)
-    }
+  public get<T>({ id, url, page = 1, endpoint }: resolveParam) {
+    if (url) return this.http.get<T>(environment.appUrl + url).pipe(toArray())
+    else if (id) return this.http.get<T>(environment.apiUrl + endpoint + '/' + id).pipe(toArray())
+    else return this.http.get<T[]>(environment.apiUrl + endpoint + `?page=${page}`)
   }
 
-  private getDataFromUrl<T>(url: string, page = 1) {
-    return this.http.get<T>(environment.appUrl + url).pipe(toArray())
+  public post<T>({ endpoint }: resolveParam, body: Object) {
+    return this.http.post<T>(environment.apiUrl + endpoint, body);
   }
 
+  public patch<T>({ endpoint }: resolveParam, body: Object) {
+    return this.http.patch<T>(environment.apiUrl + endpoint, body);
+  }
 
   public resolveAlbum({ id, url, page }: resolveParam) {
     let data$: Observable<Album[]>;
-    if (url) data$ = this.getDataFromUrl<Album>(url, page)
-    else data$ = this.getData<Album>(ApiEndpoint.ALBUM, id, page)
+    if (url) data$ = this.get<Album>({ url })
+    else data$ = this.get<Album>({ endpoint: ApiEndpoint.ALBUM, id, page })
 
     return data$.pipe(
-      map(albums => {
-        return albums.map(album => {
-          album.getArtist = (() => {
-            let artist: Observable<Artist>;
-            return () => {
-              if (!artist) artist = this.resolveArtist({ id: parseSlug(album.artist.id.toString()) }).pipe(map(artists => artists[0]))
-              return artist
-            }
-          })();
-
-          album.url = slugify(album.title) + '-' + album.id
-
-          return album
-        });
+      map(albums => albums.map(album => ({
+        ...album,
+        url: slugify(album.title) + '-' + album.id,
+        getArtist: (() => {
+          let artist$: Observable<Artist>;
+          return () => (artist$ ??= this.resolveArtist({ id: parseSlug(album.artist.id.toString()) }).pipe(map(artists => artists[0])), artist$)
+        })(),
       })
+      ))
     );
   }
 
-  public resolveArtist({ id, url }: resolveParam) {
+  public resolveArtist({ id, url, page }: resolveParam) {
     let data$: Observable<Artist[]>;
-
-    if (url) data$ = this.getDataFromUrl<Artist>(url)
-    else data$ = this.getData<Artist>(ApiEndpoint.ARTIST, id)
+    if (url) data$ = this.get<Artist>({ url })
+    else data$ = this.get<Artist>({ endpoint: ApiEndpoint.ARTIST, id, page })
 
     return data$.pipe(
       map(artist => {
-        return artist.map(artist => {
-          artist.getAlbums = (() => {
+        return artist.map(artist => ({
+          ...artist,
+          getAlbums: (() => {
             let albums: Observable<Album[]>;
             return () => {
-              if (!albums) albums = forkJoin<Album[][]>(artist.albums.map(albumUrl => this.resolveAlbum({ url: albumUrl }))).pipe(map((artists) => artists[0]))
+              albums ??= forkJoin<Album[][]>(artist.albums.map(albumUrl => this.resolveAlbum({ url: albumUrl }))).pipe(map((artists) => artists[0]))
               return albums
             }
-          })();
+          })(),
 
-          artist.getSongs = (() => {
+          getSongs: (() => {
             let songs: Observable<Song[]>;
             return () => {
-              if (!songs) songs = forkJoin<Song[][]>(artist.albums.map(songUrl => this.resolveSong({ url: songUrl }))).pipe(map((songs) => songs[0]))
+              songs ??= forkJoin<Song[][]>(artist.albums.map(songUrl => this.resolveSong({ url: songUrl }))).pipe(map((songs) => songs[0]))
               return songs
             }
-          })();
+          })()
 
-          return artist
-        });
+        }));
       })
     );
   }
 
-  public resolveSong({ id, url }: resolveParam) {
+  public resolveSong({ id, url, page }: resolveParam) {
     let data$: Observable<Song[]>;
 
-    if (url) data$ = this.getDataFromUrl<Song>(url)
-    else data$ = this.getData<Song>(ApiEndpoint.SONG, id)
+    if (url) data$ = this.get<Song>({ url })
+    else data$ = this.get<Song>({ endpoint: ApiEndpoint.SONG, id, page })
 
     return data$.pipe(
       map(song => {
@@ -99,7 +94,7 @@ export class ApiService {
           song.getAlbum = (() => {
             let album: Observable<Album>;
             return () => {
-              if (!album) album = this.resolveAlbum({ url: song.album }).pipe(map((albums) => albums[0]))
+              album ??= this.resolveAlbum({ url: song.album }).pipe(map((albums) => albums[0]))
               return album
             }
           })();
@@ -107,7 +102,7 @@ export class ApiService {
           song.getArtist = (() => {
             let artist: Observable<Artist>;
             return () => {
-              if (!artist) artist = this.resolveArtist({ url: song.album }).pipe(map((artist) => artist[0]))
+              artist ??= this.resolveArtist({ url: song.album }).pipe(map((artist) => artist[0]))
               return artist
             }
           })();
@@ -118,4 +113,24 @@ export class ApiService {
     );
   }
 
+  public resolvePlaylist({ id }: resolveParam) {
+    let data$ = this.get<Playlist>({ endpoint: ApiEndpoint.PLAYLIST, id })
+
+    return data$.pipe(
+      map(playlist => {
+        return playlist.map(playlist => {
+
+          playlist.getSong = (() => {
+            let song: Observable<Song[]>;
+            return () => {
+              song ??= forkJoin<Song[][]>(playlist.songs.map(song => this.resolveSong({ url: song }))).pipe(map((songs) => songs[0]))
+              return song
+            }
+          })();
+
+          return playlist
+        });
+      })
+    );
+  }
 }
