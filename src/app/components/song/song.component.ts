@@ -27,4 +27,8 @@ export class SongComponent {
     this.playerService.updateCurrentSong()
     this.playerService.playing$.next(true)
   }
+
+  isPlaySong() {
+    return this.playerService.getCurrentSong()?.id === this.song.id
+  }
 }

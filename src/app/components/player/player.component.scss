@@ -16,6 +16,8 @@
     &__song {
         display: flex;
         min-width: 15vw;
+        max-width: 15vw;
+        gap: 10px;
 
         img {
             width: 16px;
@@ -26,10 +28,13 @@
 
     &__middle {
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         flex-direction: column;
-        gap: 8px;
+        align-items: center;
+        margin-right: 10px;
+        margin-left: 10px;
         min-width: 50vw;
+        max-width: 50vw;
 
         input {
             width: 50vw;
@@ -38,6 +43,8 @@
         .timeline-button {
             display: flex;
             justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
             gap: 50px;
         }
     }

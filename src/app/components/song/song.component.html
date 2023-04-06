@@ -1,14 +1,17 @@
-<div class="song">
+<div class="song" [ngClass]="isPlaySong()? 'song--current' : ''">
     <button (click)="playSong(index+1, queue)" class="cta-reset link song__play-song">
         <div class="song-left">
-            <span class="song-left__index">{{index+1}}</span>
-            <div class="cta cta--small song-left__play">
+            <span *ngIf="!isPlaySong()" class="song-left__index">{{index+1}}</span>
+            <div *ngIf="!isPlaySong()" class="cta cta--small song-left__play">
                 <span class="material-symbols-outlined">play_arrow</span>
+            </div>
+            <div *ngIf="isPlaySong()" class="cta cta--small song-left__current-song">
+                <span class="material-symbols-outlined">equalizer</span>
             </div>
         </div>
         <p class="song__song-title">{{song.title}}</p>
     </button>
-    <button (click)="like.toggleSongLike(song.id)" [ngClass]="'cta cta--no-border ' + (like.isSongLiked(song.id) ? 'cta--filled' : '') ">
+    <button (click)="like.toggleSongLike(song.id)" [ngClass]="'cta cta--no-border ' + (like.isSongLiked(song.id) ? 'cta--filled cta--red' : '') ">
         <span class="material-symbols-outlined" class="material-symbols-outlined">
             favorite
         </span>

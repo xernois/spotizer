@@ -1,0 +1,24 @@
+h1 {
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+
+
+.list-songs {
+    margin-bottom: 40px;
+
+    app-song {
+        margin-bottom: 10px;
+        display: block;
+    }
+}
+
+.list-album {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}

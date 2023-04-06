@@ -3,10 +3,22 @@
         display: flex;
         flex-wrap: wrap;
         margin-bottom: var(--margin-40);
+
+        img {
+            border-radius: var(--bdr-radius-20);
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        gap: 10px;
     }
 
     &__list-songs {
-        margin-top: 20px;
+        display: block;
+        margin-top: 15px;
     }
 
     .infos-album {

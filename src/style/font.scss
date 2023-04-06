@@ -10,19 +10,6 @@
     text-transform: capitalize;
 }
 
-a,
-.link {
-    font-size: var(--ft-size-main);
-    font-weight: var(--ft-weight-400);
-    color: var(--clr-text-main);
-    text-decoration: none;
-    cursor: pointer;
-
-    &:hover {
-        color: var(--clr-text-selected);
-    }
-}
-
 // Class text
 .txt-body {
     font-size: var(--ft-size-main);
@@ -37,6 +24,7 @@ h1,
     color: var(--clr-text-title);
 }
 
+h2,
 .txt-title {
     font-size: var(--ft-size-title);
     font-weight: var(--ft-weight-600);

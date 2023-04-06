@@ -31,4 +31,10 @@ export class AlbumDetailsComponent {
     this.album.getArtist().subscribe((artist) => this.artist = artist)
     if(!this.album) this.router.navigateByUrl('/album')
   }
+
+  playAlbum() {
+    this.playerService.musicQueue = [...this.album.songs]
+    this.playerService.updateCurrentSong()
+    this.playerService.playing$.next(true)
+  } 
 }

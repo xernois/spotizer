@@ -1,17 +1,20 @@
 <div class="album-details">
   <div class="album-details__infos">
-    <img [src]="album.image" alt="album image" class="album">
+    <img [src]="album.image" alt="album image">
     <div class="infos-album">
       <p class="infos-album__title txt-big-title">{{ album.title }}</p>
       <p *ngIf="artist">{{ artist.name }}</p>
-      <button (click)="like.toggleAlbumLike(album.id)" [ngClass]="'cta cta--no-border ' + (like.isAlbumLiked(album.id) ? 'cta--filled' : '')">
-        <span class="material-symbols-outlined" class="material-symbols-outlined">
-          favorite
-        </span>
-      </button>
+      <div class="album-details__buttons">
+        <button (click)="playAlbum()" class="cta">
+          <span class="material-symbols-outlined">play_arrow</span>
+        </button>
+        <button (click)="like.toggleAlbumLike(album.id)" class="cta cta--no-border" [ngClass]="(like.isAlbumLiked(album.id) ? 'cta--filled cta--red' : '')">
+          <span class="material-symbols-outlined" class="material-symbols-outlined">
+            favorite
+          </span>
+        </button>
+      </div>
     </div>
   </div>
-  <div *ngFor="let song of album.songs; let index = index" class="album-details__list-songs">
-    <app-song [song]="song" [index]="index" [queue]="album.songs"></app-song>
-  </div>
+  <app-song *ngFor="let song of album.songs; let index = index" class="album-details__list-songs" [song]="song" [index]="index" [queue]="album.songs"></app-song>
 </div>

@@ -1,7 +1,10 @@
 .song {
+    $this: &;
     display: flex;
     flex-direction: row;
     align-items: center;
+    max-width: 900px;
+    min-height: 30px;
 
     &__play-song {
         display: flex;
@@ -20,7 +23,6 @@
                 display: none;
             }
         }
-
 
         &:hover {
             .song-left {
@@ -44,5 +46,13 @@
     &__length {
         min-width: 50px;
         text-align: end;
+    }
+
+    &--current {
+        #{$this} {
+            &__play-song {
+                color: var(--clr-text-cta-hover);
+            }
+        }
     }
 }

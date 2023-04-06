@@ -1,7 +1,6 @@
+<h1>Albums</h1>
 <div class="albums-list">
-  <div *ngFor="let album of albums" class="albums-list__album">
-    <app-album-card [album]="album"></app-album-card>
-  </div>
-  <ng-container *skeleton="isLoading; repeat: 30; height: 'calc(var(--height-card-album-s) + 2rem + 10px)'; width: 'var(--height-card-album-s)';"></ng-container>
+    <app-album-card *ngFor="let album of albums" class="albums-list__album" [album]="album"></app-album-card>
+    <ng-container *skeleton="isLoading; repeat: 30; height: 'calc(var(--height-card-album-s) + 2rem + 10px)'; width: 'var(--height-card-album-s)';"></ng-container>
 </div>
 <p class="albums-list__more" intersection (isIntersecting)="loadMore($event)" [isContinuous]="true">{{isPossiblyMore ? "Loading ..." : "no more albums 😥" }}</p>

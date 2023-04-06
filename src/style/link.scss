@@ -1,0 +1,16 @@
+a,
+.link {
+    font-size: var(--ft-size-main);
+    font-weight: var(--ft-weight-400);
+    color: var(--clr-text-main);
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--clr-text-selected);
+    }
+}
+
+.link--underline {
+    text-decoration: underline;
+}

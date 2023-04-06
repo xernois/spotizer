@@ -38,6 +38,8 @@
 
   &--no-border {
     background-color: transparent;
+    width: auto;
+    height: auto;
 
     &:hover {
       background-color: transparent;
@@ -45,6 +47,9 @@
       transform: scale(1);
     }
 
+    span {
+      line-height: 1;
+    }
   }
 
   &--filled {
