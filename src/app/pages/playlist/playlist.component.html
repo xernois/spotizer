@@ -1,0 +1,14 @@
+<div class="playlist-details">
+  <div class="playlist-details__infos">
+    <img [src]="'https://api.dicebear.com/6.x/shapes/svg?seed='+playlist.name+'&backgroundType=gradientLinear,solid'" alt="playlist image">
+    <div class="infos-playlist">
+      <p class="infos-playlist__title txt-big-title">{{ playlist.name }}</p>
+      <div class="playlist-details__buttons">
+        <button (click)="playPlaylist()" class="cta">
+          <span class="material-symbols-outlined">play_arrow</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <app-song *ngFor="let song of songs; let index = index" class="playlist-details__list-songs" [song]="song" [index]="index" [queue]="songs"></app-song>
+</div>

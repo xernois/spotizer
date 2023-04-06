@@ -1,16 +1,15 @@
 <div>
     <h1>Likes</h1>
-    <h2>Liked songs :</h2>
+    <h2>Songs :</h2>
     <div class="list-songs">
-        <app-song *ngFor="let song of firstSongsToShow; let index = index" [song]="song" [index]="index" [queue]="songs"></app-song>
-        <button *ngIf="!isShowMore && songs?.length && songs.length > maxSongsToShow" class="link link--underline" (click)="showMore()">Show more</button>
-        <button *ngIf="isShowMore" class="link link--underline" (click)="showLess()">Show less</button>
-        <p *ngIf="!songs?.length"> 
+        <app-song *ngFor="let song of songs?.slice(0, isShowMore ? songs.length : maxSongsToShow); let index = index" [song]="song" [index]="index" [queue]="songs"></app-song>
+        <button *ngIf="songs?.length && songs.length > maxSongsToShow" class="link link--underline" (click)="showMore()">{{!isShowMore ? 'Show more': 'Show less'}}</button>
+        <p *ngIf="!songs?.length">
             You haven't liked any song yet. <a routerLink="/album" class="link--underline">Explore</a>
         </p>
     </div>
 
-    <h2>Liked albums :</h2>
+    <h2>Albums :</h2>
     <div class="list-album">
         <app-album-card *ngFor="let album of albums" [album]="album"></app-album-card>
     </div>

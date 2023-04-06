@@ -1,0 +1,32 @@
+.playlist-details {
+  &__infos {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: var(--margin-40);
+
+      img {
+          border-radius: var(--bdr-radius-20);
+      }
+  }
+
+  &__buttons {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      gap: 10px;
+  }
+
+  &__list-songs {
+      display: block;
+      margin-top: 15px;
+  }
+
+  .infos-playlist {
+      margin-left: 20px;
+      margin-top: 20px;
+
+      &__title {
+          margin-bottom: 10px;
+      }
+  }
+}

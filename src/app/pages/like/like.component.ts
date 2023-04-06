@@ -10,12 +10,10 @@ import { Album } from '@models/album.model';
 })
 export class LikeComponent {
 
-  public songs!: Song[]; 
-  public albums!: Album[]; 
-  public firstSongsToShow!: Song[]; 
+  public songs: Song[] = []; 
+  public albums: Album[] = []; 
 
   public maxSongsToShow = 5;
-  private nbSongsToShow!: number;
 
   public isShowMore: boolean = false;
 
@@ -26,41 +24,19 @@ export class LikeComponent {
   ngOnInit(){
     this.getSongs()
     this.getAlbums()
-    this.firstSongsToShow = []
   }  
 
   getSongs() {
     const songsRequest = this.likeService.getAllLikedSong()
-    if(songsRequest) songsRequest.subscribe(results => {this.songs = results.flat(); this.getLength(); this.getfirstSongsToShow()})
-    else this.songs = []
+    if(songsRequest) songsRequest.subscribe(results => this.songs = results)
   }
 
   getAlbums() {
     const songsRequest = this.likeService.getAllLikedAlbum()
-    if(songsRequest) songsRequest.subscribe(results => this.albums = results.flat())
-    else this.songs = []
-  }
-
-  getLength() {
-    this.nbSongsToShow = this.songs?.length < this.maxSongsToShow ?  this.songs.length : this.maxSongsToShow;
-  }
-  
-  getfirstSongsToShow() {
-    this.firstSongsToShow = []
-    for ( let i = 0; i < this.nbSongsToShow; i++ ) {
-      this.firstSongsToShow?.push(this.songs[i])
-    }
+    if(songsRequest) songsRequest.subscribe(results => this.albums = results)
   }
 
   showMore() {
-    this.nbSongsToShow = this.songs.length
-    this.firstSongsToShow = this.songs
-    this.isShowMore = true
-  }
-  
-  showLess() {
-    this.getLength()
-    this.getfirstSongsToShow()
-    this.isShowMore = false
+    this.isShowMore = !this.isShowMore
   }
 }
