@@ -16,7 +16,7 @@ export class PlaylistService {
   ) { }
 
   newPlaylist() {
-    return this.api.post<Playlist>({ endpoint: ApiEndpoint.PLAYLIST }, { name: 'New Playlist' }).pipe(tap(playlist => this.localStorage.addPlaylist(playlist.id)))
+    return this.api.post<Playlist>({ endpoint: ApiEndpoint.PLAYLIST }, { "name": 'New Playlist' }).pipe(tap(playlist => this.localStorage.addPlaylist(playlist.id)))
   }
 
   getPlaylist(id?: number) {

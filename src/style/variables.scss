@@ -20,6 +20,7 @@ $red: #f87676;
     --clr-background-page: #{$grey-100};
     --clr-background-player: #{$grey-transperence};
     --clr-background-invert: #{$white};
+    --clr-background-floating-menu: #{$grey-300};
 
     --clr-background-input: #{$grey-100};
     --clr-border-input: #{$grey-500};
@@ -60,10 +61,10 @@ $red: #f87676;
     --ft-weight-600: 600;
     --ft-weight-700: 700;
 
-    --ft-size-main: 1rem;
-    --ft-size-title: 1.2rem;
-    --ft-size-big-title: 2rem;
-    --ft-size-h1: 3rem;
+    --ft-size-main: .9rem;
+    --ft-size-title: 1.1rem;
+    --ft-size-big-title: 1.8rem;
+    --ft-size-h1: 2.5rem;
 
     //Border radius
     --bdr-radius-20: 20px;

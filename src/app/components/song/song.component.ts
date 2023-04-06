@@ -14,6 +14,8 @@ export class SongComponent {
   @Input() index!: number;
   @Input() queue!: Song[];
 
+  public menuVisible : boolean = false
+
   constructor(
     public like: LikeService,
     private playerService: PlayerService,
@@ -30,5 +32,13 @@ export class SongComponent {
 
   isPlaySong() {
     return this.playerService.getCurrentSong()?.id === this.song.id
+  }
+
+  showMenu() {
+    this.menuVisible = true
+  }
+
+  hideMenu() {
+    this.menuVisible = false
   }
 }

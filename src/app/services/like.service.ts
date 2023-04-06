@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AppLike } from '../models/app.model';
 import { Song } from '@models/song.model';
 import { Album } from '@models/album.model';
-import { forkJoin } from 'rxjs';
+import { concatAll, forkJoin, map, toArray } from 'rxjs';
 import { ApiService } from './api/api.service';
 
 @Injectable({
@@ -60,7 +60,7 @@ export class LikeService {
     let result;
     try {
       let like = JSON.parse(localStorage.getItem('like') || '{}');
-      if (like.songs?.length) result = forkJoin<Song[]>(like.songs?.map((songId: number) => this.apiService.resolveSong({id: songId})))
+      if (like.songs?.length) result = forkJoin<Song[][]>(like.songs?.map((songId: number) => this.apiService.resolveSong({id: songId}))).pipe(concatAll(), map(x => x[0]), toArray())
       else return null
     } catch (e) {
       result = null
@@ -73,7 +73,7 @@ export class LikeService {
     let result;
     try {
       let like = JSON.parse(localStorage.getItem('like') || '');
-      result = forkJoin<Album[]>(like.albums.map((albumId: number) => this.apiService.resolveAlbum({id: albumId})))
+      result = forkJoin<Album[][]>(like.albums.map((albumId: number) => this.apiService.resolveAlbum({id: albumId}))).pipe(concatAll(), map(x => x[0]), toArray())
     } catch {
       result = null
     }

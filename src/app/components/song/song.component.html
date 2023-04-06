@@ -16,5 +16,13 @@
             favorite
         </span>
     </button>
+    <div class="song__menu">
+        <button class="cta cta--no-border" (click)="showMenu()">
+            <span class="material-symbols-outlined">
+                more_vert
+            </span>
+        </button>
+        <app-floating-menu [isVisible]="menuVisible" (onBlur)="hideMenu()"></app-floating-menu>
+    </div>
     <p class="song__length">{{ song.length }}</p>
 </div>

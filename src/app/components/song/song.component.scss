@@ -43,6 +43,12 @@
         margin-left: 10px;
     }
     
+    &__menu {
+        app-floating-menu {
+            left: 25px;
+        }
+    }
+
     &__length {
         min-width: 50px;
         text-align: end;

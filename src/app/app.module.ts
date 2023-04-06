@@ -23,6 +23,8 @@ import { ArtistComponent } from './pages/artist/artist.component';
 import { ArtistDetailsComponent } from './pages/artist/components/artist-details/artist-details.component';
 import { AlbumCardComponent } from './components/album-card/album-card.component';
 import { SongComponent } from './components/song/song.component';
+import { FloatingMenuComponent } from './components/floating-menu/floating-menu.component';
+import { PlaylistComponent } from './pages/playlist/playlist.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { SongComponent } from './components/song/song.component';
     ArtistComponent,
     ArtistDetailsComponent,
     AlbumCardComponent,
-    SongComponent
+    SongComponent,
+    FloatingMenuComponent,
+    PlaylistComponent
   ],
   imports: [
     ReactiveFormsModule,

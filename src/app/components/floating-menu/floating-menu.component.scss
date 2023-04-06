@@ -1,0 +1,32 @@
+.floating-menu {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 1000vw;
+    height: 1000vh;
+    z-index: 1;
+}
+
+ul {
+    position: absolute;
+    border-radius: 10px;
+    background-color: var(--clr-background-floating-menu);
+    z-index: 2;
+
+    button {
+        padding: 5px 5px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        &:hover {
+            color: var(--clr-text-cta-hover);
+        }
+
+        span {
+            margin-left: 5px;
+        }
+    }
+}
