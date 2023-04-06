@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, firstValueFrom } from 'rxjs';
 import { slugify } from '../functions/slug.function';
 import { Breadcrumb } from '../models/breadcrumb.model';
+import { NavigationService } from './navigation.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,12 +13,15 @@ export class AppService {
 
   constructor(
     private router: Router,
+    private navigationService: NavigationService
   ) {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(async () => {
       this.breadcrumbs = await this.getBreadcrumbs(this.router.routerState.root);
     });
+
+    this.navigationService.startSaveHistory();
   }
 
   private async getBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: Array<Breadcrumb> = []): Promise<Array<Breadcrumb>> {

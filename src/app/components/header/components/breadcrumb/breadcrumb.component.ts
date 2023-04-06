@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AppService } from '@src/app/services/app.service';
+import { NavigationService } from '@src/app/services/navigation.service';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -12,6 +13,7 @@ export class BreadcrumbComponent {
 
   constructor(
     public appService: AppService,
+    public navigationService: NavigationService
   ) { }
 
   async ngOnInit() {}
