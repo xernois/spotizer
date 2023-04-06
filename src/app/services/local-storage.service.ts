@@ -40,4 +40,28 @@ export class LocalStorageService {
   setPlayerSettings(player: AppPlayer) {
     localStorage.setItem('playerSettings', JSON.stringify(player))
   }
+
+  getPlaylists() {
+    let playlists: number[]
+    try {
+      playlists = JSON.parse(localStorage.getItem('playlists') || '');
+      if (!Array.isArray(playlists)) throw new Error('playlists data is not valid');
+    } catch {
+      playlists = []
+      this.setPlaylists(playlists)
+    }
+    return playlists
+  }
+
+  setPlaylists(playlists: number[]) {
+    localStorage.setItem('playlists', JSON.stringify(playlists))
+  }
+
+  addPlaylist(id: number) {
+    const playlists = this.getPlaylists()
+    if (!playlists.includes(id)) {
+      playlists.push(id)
+      this.setPlaylists(playlists)
+    }
+  }
 }

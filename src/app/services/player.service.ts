@@ -21,7 +21,7 @@ export class PlayerService {
     private localStorage: LocalStorageService
   ) {
     this.volumeControl.valueChanges.subscribe(value => {
-      this.localStorage.setPlayerSettings({ volume: value || 50 });
+      this.localStorage.setPlayerSettings({ volume: value ?? 50 });
     });
   }
 

@@ -15,7 +15,7 @@
           skip_previous
         </span>
       </button>
-      <button (click)="togglePlay()" class="cta cta--invert">
+      <button (click)="togglePlay()" class="cta cta--invert" [disabled]="!playerService.getCurrentSong()">
         <span class="material-symbols-outlined">
           {{(playerService.playing$ | async) ? 'pause' : 'play_arrow'}}
         </span>
