@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Album } from '@models/album.model';
-import { slugify } from '@src/app/functions/slug.function';
 import { Observable, of } from 'rxjs';
 import { Artist } from '@models/artist.model';
 import { LikeService } from '@services/like.service';

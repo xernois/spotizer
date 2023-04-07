@@ -25,6 +25,7 @@ import { AlbumCardComponent } from './components/album-card/album-card.component
 import { SongComponent } from './components/song/song.component';
 import { FloatingMenuComponent } from './components/floating-menu/floating-menu.component';
 import { PlaylistComponent } from './pages/playlist/playlist.component';
+import { ArtistCardComponent } from './components/artist-card/artist-card.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { PlaylistComponent } from './pages/playlist/playlist.component';
     AlbumCardComponent,
     SongComponent,
     FloatingMenuComponent,
-    PlaylistComponent
+    PlaylistComponent,
+    ArtistCardComponent
   ],
   imports: [
     ReactiveFormsModule,

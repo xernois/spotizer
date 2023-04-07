@@ -7,6 +7,7 @@ export interface Artist extends baseApiModel {
   name:	string
   songs:	string[]
   albums:	string[]
+  url: string
 
   getAlbums: () => Observable<Album[]>
   getSongs: () => Observable<Song[]>
