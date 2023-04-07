@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ApiEndpoint } from '@enums/api-endpoint.enum';
-import { defaultIfEmpty, delay, forkJoin, map, Observable, toArray } from 'rxjs';
+import { forkJoin, map, Observable, tap, toArray } from 'rxjs';
 import { environment } from '@environments/environment';
 import { parseSlug, slugify } from '@src/app/functions/slug.function';
 import { Album } from '@src/app/models/album.model';
@@ -65,7 +65,7 @@ export class ApiService {
           getAlbums: (() => {
             let albums$: Observable<Album[]>;
             return () => {
-              albums$ ??= forkJoin<Album[][]>(artist.albums.map(albumUrl => this.resolveAlbum({ url: albumUrl }))).pipe(map((artists) => artists[0]))
+              albums$ ??= forkJoin<Album[]>(artist.albums.map(albumUrl => this.resolveAlbum({ url: albumUrl }).pipe(map((artists) => artists[0]))))
               return albums$
             }
           })(),
@@ -73,7 +73,7 @@ export class ApiService {
           getSongs: (() => {
             let songs$: Observable<Song[]>;
             return () => {
-              songs$ ??= forkJoin<Song[][]>(artist.songs.map(songUrl => this.resolveSong({ url: songUrl }))).pipe(map((songs) => songs[0]))
+              songs$ ??= forkJoin<Song[]>(artist.songs.map(songUrl => this.resolveSong({ url: songUrl }).pipe(map((songs) => songs[0]))))
               return songs$
             }
           })()
