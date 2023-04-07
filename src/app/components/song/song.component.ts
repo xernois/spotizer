@@ -14,12 +14,18 @@ export class SongComponent {
   @Input() index!: number;
   @Input() queue!: Song[];
 
+
+  public length?: string;
   public menuVisible : boolean = false
 
   constructor(
     public like: LikeService,
     private playerService: PlayerService,
   ) {}
+
+    ngOnInit() {
+    this.length = Math.floor(this.song.length / 60)+' : '+ (this.song.length % 60).toString().padStart(2, '0')
+    }
 
   playSong(id: number, queue: Song[]) {
     this.playerService.musicQueue = [...queue]
