@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ApiEndpoint } from '@enums/api-endpoint.enum';
-import { delay, forkJoin, map, Observable, toArray } from 'rxjs';
+import { defaultIfEmpty, delay, forkJoin, map, Observable, toArray } from 'rxjs';
 import { environment } from '@environments/environment';
 import { parseSlug, slugify } from '@src/app/functions/slug.function';
 import { Album } from '@src/app/models/album.model';
@@ -123,10 +123,13 @@ export class ApiService {
           playlist.getSong = (() => {
             let song: Observable<Song[]>;
             return () => {
-              song ??= forkJoin<Song[][]>(playlist.songs.map(song => this.resolveSong({ url: song }))).pipe(map((songs) => songs[0]))
+              song ??= forkJoin<Song[][]>(playlist.songs.map(song => this.resolveSong({ url: song }))).pipe(defaultIfEmpty([]), map((songs) => songs[0]))
               return song
             }
           })();
+
+          playlist.url = slugify(playlist.name) + '-' + playlist.id
+          playlist.image = playlist.image ?? 'https://api.dicebear.com/6.x/shapes/svg?seed=' + playlist.name + '&backgroundType=gradientLinear,solid&size=256'
 
           return playlist
         });

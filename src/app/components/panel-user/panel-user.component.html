@@ -13,11 +13,10 @@
     <div>
         <p class="txt-title ">Playlists</p>
         <ul class="panel-user__playlists">
-            <li *ngFor="let playlistId of [0,1,2,3,4,5]">
-                <a href="">
-                    <img src="" alt="">
-                    <p class="txt-small-title playlist-name">Playlist {{ playlistId }}</p>
-                    <p>date</p>
+            <li *ngFor="let playlist of playlists">
+                <a [routerLink]="'/playlist/'+playlist.url">
+                    <img [src]="playlist.image" alt="">
+                    <p class="txt-small-title playlist-name">{{playlist.name}} {{ playlist.id }}</p>
                 </a>
             </li>
             <button class="link link--underline" (click)="newPLaylist()">+ Create a playlist</button>

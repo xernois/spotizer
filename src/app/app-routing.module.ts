@@ -8,6 +8,8 @@ import { LikeComponent } from './pages/like/like.component';
 import { ArtistComponent } from './pages/artist/artist.component';
 import { AlbumResolver } from './resolvers/album.resolver';
 import { ArtistResolver } from './resolvers/artist.resolver';
+import { PlaylistComponent } from './pages/playlist/playlist.component';
+import { PlaylistResolver } from './resolvers/playlist.resolver';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, data: { breadcrumb: 'home' } },
@@ -21,6 +23,12 @@ const routes: Routes = [
     path: 'artist', data: { breadcrumb: 'artist' }, children: [
       { path: '', component: ArtistComponent },
       { path: ':slug', component: ArtistDetailsComponent, resolve: { artist: ArtistResolver }, data: { breadcrumb: '@artist.name' } }
+    ]
+  },
+  {
+    path: 'playlist', data: { breadcrumb: 'playlist' },  children: [
+      { path: '', redirectTo: '/', pathMatch: 'full' },
+      { path: ':slug', component: PlaylistComponent, resolve: { playlist: PlaylistResolver }, data: { breadcrumb: '@playlist.name' } }
     ]
   },
   { path: 'like', component: LikeComponent, data: { breadcrumb: 'like' } },
