@@ -2,7 +2,7 @@
   <div class="album-details__infos">
     <img [src]="album.image" alt="album image">
     <div class="infos-album">
-      <p class="infos-album__title txt-big-title">{{ album.title }}</p>
+      <h1 class="infos-album__title">{{ album.title }}</h1>
       <p *ngIf="artist">{{ artist.name }}</p>
       <div class="album-details__buttons">
         <button (click)="playAlbum()" class="cta">

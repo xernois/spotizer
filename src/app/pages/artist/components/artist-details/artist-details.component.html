@@ -1,1 +1,16 @@
-<p>artist-details works!</p>
+<div class="artist-info">
+    <img src="https://api.dicebear.com/6.x/adventurer-neutral/svg?seed={{ artist.name }}">
+    <h1>{{ artist.name }}</h1>
+</div>
+<div class="song-list">
+    <h2>Songs</h2>
+    <app-song *ngFor="let song of songs; let index = index" [song]="song" [index]="index" [queue]="songs"></app-song>
+    <pre>{{ songs | json}}</pre>
+    <!-- <button *ngIf="songs?.length && songs.length > maxSongsToShow" class="link link--underline" (click)="showMore()">{{!isShowMore ? 'Show more': 'Show less'}}</button> -->
+
+</div>
+<div class="song-album">
+    <h2>Albums</h2>
+    <!-- <button *ngIf="songs?.length && songs.length > maxSongsToShow" class="link link--underline" (click)="showMore()">{{!isShowMore ? 'Show more': 'Show less'}}</button> -->
+</div>
+<pre>{{ artist | json }}</pre>

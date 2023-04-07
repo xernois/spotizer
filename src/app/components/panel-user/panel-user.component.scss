@@ -23,6 +23,9 @@
             flex: 1;
             margin-right: 5px;
             margin-left: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 }

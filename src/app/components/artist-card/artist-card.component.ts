@@ -8,8 +8,4 @@ import { Artist } from '@src/app/models/artist.model';
 })
 export class ArtistCardComponent {
   @Input() artist!: Artist;
-
-  ngOnChanges() {
-    console.log(this.artist)
-  }
 }

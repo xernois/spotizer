@@ -61,19 +61,20 @@ export class ApiService {
       map(artist => {
         return artist.map(artist => ({
           ...artist,
+          url: slugify(artist.name) + '-' + artist.id,
           getAlbums: (() => {
-            let albums: Observable<Album[]>;
+            let albums$: Observable<Album[]>;
             return () => {
-              albums ??= forkJoin<Album[][]>(artist.albums.map(albumUrl => this.resolveAlbum({ url: albumUrl }))).pipe(map((artists) => artists[0]))
-              return albums
+              albums$ ??= forkJoin<Album[][]>(artist.albums.map(albumUrl => this.resolveAlbum({ url: albumUrl }))).pipe(map((artists) => artists[0]))
+              return albums$
             }
           })(),
 
           getSongs: (() => {
-            let songs: Observable<Song[]>;
+            let songs$: Observable<Song[]>;
             return () => {
-              songs ??= forkJoin<Song[][]>(artist.albums.map(songUrl => this.resolveSong({ url: songUrl }))).pipe(map((songs) => songs[0]))
-              return songs
+              songs$ ??= forkJoin<Song[][]>(artist.songs.map(songUrl => this.resolveSong({ url: songUrl }))).pipe(map((songs) => songs[0]))
+              return songs$
             }
           })()
 

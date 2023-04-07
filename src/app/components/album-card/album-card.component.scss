@@ -1,7 +1,10 @@
+:host {
+    width: var(--width-card-album-s);
+}
+
 .album {
     &__image {
         position: relative;
-        width: var(--height-card-album-s);
 
         &:hover {
             .button-like {
@@ -35,6 +38,8 @@
 
 p {
     margin-top: 5px;
+    white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 

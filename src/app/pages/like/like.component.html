@@ -1,6 +1,7 @@
 <div>
     <h1>Likes</h1>
     <h2>Songs :</h2>
+
     <div class="list-songs">
         <app-song *ngFor="let song of songs?.slice(0, isShowMore ? songs.length : maxSongsToShow); let index = index" [song]="song" [index]="index" [queue]="songs"></app-song>
         <button *ngIf="songs?.length && songs.length > maxSongsToShow" class="link link--underline" (click)="showMore()">{{!isShowMore ? 'Show more': 'Show less'}}</button>

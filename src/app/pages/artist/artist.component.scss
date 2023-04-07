@@ -1,5 +1,10 @@
+h1 {
+    margin-bottom: 20px;
+}
+
 .artist-list {
     display: flex;
     flex-wrap: wrap;
     gap: var(--margin-40);
+    justify-content: space-around;
 }

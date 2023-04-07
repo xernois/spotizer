@@ -2,7 +2,7 @@
   <div class="playlist-details__infos">
     <img [src]="playlist.image" alt="playlist image">
     <div class="infos-playlist">
-      <p class="infos-playlist__title txt-big-title">{{ playlist.name }}</p>
+      <h1 class="infos-playlist__title">{{ playlist.name }}</h1>
       <p *ngIf="user">{{ user.name }}</p>
       <div class="playlist-details__buttons">
         <button (click)="playPlaylist()" class="cta">
