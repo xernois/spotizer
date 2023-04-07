@@ -11,7 +11,7 @@
       </div>
     </div>
   </div>
-  <p *ngIf="!songs?.length">You haven't added any song yet. <a routerLink="/album" class="link--underline">Explore</a></p>
-  <p *ngIf="songs?.length">Want to find more songs ? <a routerLink="/album" class="link--underline">Explore</a></p>
-  <app-song *ngFor="let song of songs; let index = index" class="playlist-details__list-songs" [song]="song" [index]="index" [queue]="songs"></app-song>
+  <p *ngIf="!playlist.songs?.length">You haven't added any song yet. <a routerLink="/album" class="link--underline">Explore</a></p>
+  <p *ngIf="playlist.songs?.length">Want to find more songs ? <a routerLink="/album" class="link--underline">Explore</a></p>
+  <app-song *ngFor="let song of playlist.songs; let index = index" class="playlist-details__list-songs" [song]="song" [index]="index" [queue]="playlist.songs"></app-song>
 </div>

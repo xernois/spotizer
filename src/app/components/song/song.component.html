@@ -22,7 +22,7 @@
                 more_vert
             </span>
         </button>
-        <app-floating-menu [isVisible]="menuVisible" (onBlur)="hideMenu()"></app-floating-menu>
+        <app-floating-menu [isVisible]="menuVisible" (onBlur)="hideMenu()" [song]="song"></app-floating-menu>
     </div>
     <p class="song__length">{{ song.length }}</p>
 </div>

@@ -30,8 +30,8 @@ export class ApiService {
     return this.http.post<T>(environment.apiUrl + endpoint, body);
   }
 
-  public patch<T>({ endpoint }: resolveParam, body: Object) {
-    return this.http.patch<T>(environment.apiUrl + endpoint, body);
+  public patch<T>({ endpoint, id }: resolveParam, body: Object) {
+    return this.http.patch<T>(environment.apiUrl + endpoint + '/' + id, body);
   }
 
   public resolveAlbum({ id, url, page }: resolveParam) {
@@ -119,14 +119,6 @@ export class ApiService {
     return data$.pipe(
       map(playlist => {
         return playlist.map(playlist => {
-
-          playlist.getSong = (() => {
-            let song: Observable<Song[]>;
-            return () => {
-              song ??= forkJoin<Song[][]>(playlist.songs.map(song => this.resolveSong({ url: song }))).pipe(defaultIfEmpty([]), map((songs) => songs[0]))
-              return song
-            }
-          })();
 
           playlist.url = slugify(playlist.name) + '-' + playlist.id
           playlist.image = playlist.image ?? 'https://api.dicebear.com/6.x/shapes/svg?seed=' + playlist.name + '&backgroundType=gradientLinear,solid&size=256'

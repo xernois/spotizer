@@ -4,7 +4,7 @@ import { Song } from "./song.model"
 
 export interface Playlist extends baseApiModel {
   name: string
-  songs: string[]
+  songs: Song[]
 
   image: string
   url: string

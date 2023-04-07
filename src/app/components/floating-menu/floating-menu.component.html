@@ -12,9 +12,9 @@
         </button>
     </li>
     <div *ngIf="expanded">
-        <li *ngFor="let playlist of [0,1,2,3]">
-            <button>
-                playlist {{playlist}}
+        <li *ngFor="let playlist of playlists">
+            <button (click)="addToPlaylist(playlist.id)">
+              {{playlist.name}}
             </button>
         </li>
     </div>

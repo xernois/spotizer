@@ -21,7 +21,7 @@ export class PlaylistService {
 
   addSongToPlaylist(playlistId: number, songId: number) {
     return this.getPlaylist(playlistId).pipe(switchMap(playlist => {
-      return this.api.patch<Playlist>({ endpoint: ApiEndpoint.PLAYLIST, id: playlistId }, { "songs": [...playlist.songs,  `/~morap01/L250/public/index.php/api/songs/${songId}`] })
+      return this.api.patch<Playlist>({ endpoint: ApiEndpoint.PLAYLIST, id: playlistId }, { "songs": [...new Set([...playlist.songs.map((song) => `/~morap01/L250/public/index.php/api/songs/${song.id}`),  `/~morap01/L250/public/index.php/api/songs/${songId}`])] })
     }))
   }
 
