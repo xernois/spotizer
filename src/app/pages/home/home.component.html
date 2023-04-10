@@ -1,1 +1,44 @@
-<p>home works!</p>
+<h1>Home</h1>
+<div class="home__top">
+    <h2>Top</h2>
+    <ul class="home__top-list">
+        <li>
+            <app-song  *ngFor="let song of topSong; let index = index" [song]="song" [index]="index" [queue]="[song]"></app-song>
+        </li>
+        <li>
+            <app-artist-card [artist]="topArtist"></app-artist-card>
+        </li>
+        <li>
+            <app-album-card [album]="topAlbum"></app-album-card>
+
+        </li>
+    </ul>
+</div>
+<div class="home__news">
+    <h2>News</h2>
+    <ul class="home__news-list">
+        <li>
+            <app-song *ngFor="let song of newSong; let index = index" [song]="song" [index]="index" [queue]="[song]"></app-song>
+        </li>
+        <li>
+            <app-artist-card [artist]="newArtist"></app-artist-card>
+        </li>
+          <li>
+            <app-album-card [album]="newAlbum"></app-album-card>
+          </li>
+    </ul>
+</div>
+<div class="home__stats">
+  <h2>Stats</h2>
+  <div class="stats">
+    <div class="stats__left">
+      <p class="txt-nb">{{songsLike.length}}</p>
+      <h3>Likes</h3>
+    </div>
+    <div class="stats__right">
+      <p class="txt-nb">{{playlist.length}}</p>
+      <h3>Playlist</h3>
+    </div>
+  </div>
+</div>
+

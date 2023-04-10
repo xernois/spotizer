@@ -1,12 +1,11 @@
 .floating-menu {
     position: absolute;
-    z-index: 1;
     top: 0;
     left: 0;
     overflow: hidden;
     width: 1000vw;
     height: 1000vh;
-    z-index: 1;
+    z-index: 9;
 }
 
 .menu {
@@ -14,7 +13,7 @@
     border-radius: 10px;
     padding: 8px 12px;
     background-color: var(--clr-background-floating-menu);
-    z-index: 2;
+    z-index: 10;
 
     li:not(:last-child) {
         margin-bottom: 10px;

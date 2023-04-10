@@ -1,5 +1,6 @@
 <h1>Artists</h1>
 <div class="artist-list">
     <app-artist-card *ngFor="let artist of artists" [artist]="artist"></app-artist-card>
+    <ng-container *skeleton="isLoading; repeat: 10; height: 'calc(var(--width-image-artist-s) + 1rem + 10px)'; width: 'var(--width-image-artist-s)';"></ng-container>
 </div>
 <p class="artist-list__more" intersection (isIntersecting)="loadMore($event)" [isContinuous]="true">{{isPossiblyMore ? "Loading ..." : "no more albums 😥" }}</p>

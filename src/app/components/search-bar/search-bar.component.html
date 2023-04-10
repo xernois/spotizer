@@ -1,12 +1,21 @@
-<input class="txt-input" type="text" [formControl]="searchControl" (focus)="showResults = true" (blur)="showResults = false">
-<div class="list-result">
-  <ul *ngIf="showResults">
-    <li *ngFor="let result of searchResults?.songs"> song : {{result.title}} </li>
-  </ul>
-  <ul *ngIf="showResults">
-    <li *ngFor="let result of searchResults?.albums"> album : {{result.title}} </li>
-  </ul>
-  <ul *ngIf="showResults">
-    <li *ngFor="let result of searchResults?.artists"> artist : {{result.name}} </li>
-  </ul>
+<input class="txt-input" type="text" [formControl]="searchControl" (focus)="showResults = true">
+<div class="show-off-search" *ngIf="showResults" (click)="showResults = false"></div>
+<div class="list-result"  *ngIf="showResults">
+  <div class="overflow">
+    <p class="list-result__text txt-title">Songs</p>
+    <div class="list-result__songs-list">
+        <app-song *ngFor="let song of searchResults?.songs; let index = index" class="album-details__list-songs" [song]="song" [index]="index" [queue]="[song]"></app-song>
+        <p *ngIf="searchResults?.songs && searchResults?.songs?.length === 0" class="txt-body">No Result</p>
+    </div>
+    <p class="list-result__text txt-title">Albums</p>
+    <div class="list-result__albums-list">
+      <app-album-card *ngFor="let album of searchResults?.albums" [album]="album"></app-album-card>
+      <p *ngIf="searchResults?.albums && searchResults?.albums?.length === 0" class="txt-body">No Result</p>
+    </div>
+    <p class="list-result__text txt-title">Artists</p>
+    <div class="list-result__artists-list">
+      <app-artist-card *ngFor="let artist of searchResults?.artists" [artist]="artist"></app-artist-card>
+      <p *ngIf="searchResults?.artists && searchResults?.artists?.length === 0">No Result</p>
+    </div>
+  </div>
 </div>
