@@ -20,7 +20,8 @@ $red: #f87676;
     --clr-background-page: #{$grey-100};
     --clr-background-player: #{$grey-transperence};
     --clr-background-invert: #{$white};
-    --clr-background-floating-menu: #{$grey-300};
+    --clr-background-floating-menu: #{$grey-400};
+    --clr-border-searchbar: #{$grey-200};
 
     --clr-background-input: #{$grey-100};
     --clr-border-input: #{$grey-500};
@@ -54,6 +55,7 @@ $red: #f87676;
     --height-player: 100px;
 
     --width-card-album-s: 150px;
+    --width-image-artist-s: 150px;
 
     //Text
     --ft-weight-400: 400;
