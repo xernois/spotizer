@@ -3,14 +3,16 @@
     <h2>Songs :</h2>
 
     <div class="list-songs">
+        <ng-container *skeleton="!songs; className: 'mb-10' repeat: 5; height: '30px'; width: '900px';"></ng-container>
         <app-song *ngFor="let song of songs?.slice(0, isShowMore ? songs.length : maxSongsToShow); let index = index" [song]="song" [index]="index" [queue]="songs"></app-song>
         <button *ngIf="songs?.length && songs.length > maxSongsToShow" class="link link--underline" (click)="showMore()">{{!isShowMore ? 'Show more': 'Show less'}}</button>
-        <p *ngIf="!songs?.length">
+        <p *ngIf="songs && !songs?.length">
             You haven't liked any song yet. <a routerLink="/album" class="link--underline">Explore</a>
         </p>
     </div>
 
     <h2>Albums :</h2>
+    <ng-container *skeleton="true; repeat: 5; height: 'calc(var(--height-card-album-s) + 2rem + 10px)'; width: 'var(--height-card-album-s)';"></ng-container>
     <div class="list-album">
         <app-album-card *ngFor="let album of albums" [album]="album"></app-album-card>
     </div>

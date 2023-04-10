@@ -10,8 +10,8 @@ import { Album } from '@models/album.model';
 })
 export class LikeComponent {
 
-  public songs: Song[] = []; 
-  public albums: Album[] = []; 
+  public songs!: Song[]; 
+  public albums!: Album[]; 
 
   public maxSongsToShow = 5;
 

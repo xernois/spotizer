@@ -2,4 +2,4 @@
 <div class="artist-list">
     <app-artist-card *ngFor="let artist of artists" [artist]="artist"></app-artist-card>
 </div>
-
+<p class="artist-list__more" intersection (isIntersecting)="loadMore($event)" [isContinuous]="true">{{isPossiblyMore ? "Loading ..." : "no more albums 😥" }}</p>

@@ -7,4 +7,10 @@ h1 {
     flex-wrap: wrap;
     gap: var(--margin-40);
     justify-content: space-around;
+
+    &__more {
+        width: 100% ;
+        padding: 4rem 0 2rem 0;
+        text-align: center;
+    }
 }

@@ -4,6 +4,7 @@
     <div class="infos-album">
       <h1 class="infos-album__title">{{ album.title }}</h1>
       <p *ngIf="artist">{{ artist.name }}</p>
+      <ng-container *skeleton="!artist; repeat: 1; height: '1rem'; width: 'rand';"></ng-container>
       <div class="album-details__buttons">
         <button (click)="playAlbum()" class="cta">
           <span class="material-symbols-outlined">play_arrow</span>
