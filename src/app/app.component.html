@@ -1,11 +1,28 @@
 <div class="app">
     <app-header></app-header>
-    <div class="app__content">
-        <app-panel-navigation></app-panel-navigation>
-        <main>
-            <router-outlet></router-outlet>
-        </main>
-        <app-panel-user></app-panel-user>
+    <div class="app__content" *ngIf="apiService.isApiOk == true">
+        <ng-container>
+            <app-panel-navigation></app-panel-navigation>
+            <main>
+                <router-outlet></router-outlet>
+            </main>
+            <app-panel-user></app-panel-user>
+        </ng-container>
+    </div>
+    
+    <div class="message app__content" *ngIf="apiService.isApiOk == false">
+        <span class="message__emoji">😥</span>
+        Unable to access the api located at:
+        <a [href]="environment.apiUrl">
+            <pre>{{ environment.apiUrl }}</pre>
+        </a>
+        Maybe check your VPN connection or contact the app owner.
+        <button (click)="refresh()" class="cta cta--no-border message__button"><span
+                class="material-symbols-outlined">refresh</span>Refresh</button>
+    </div>
+
+    <div class="message app__content" *ngIf="apiService.isApiOk == undefined">
+        loading
     </div>
     <app-player></app-player>
 </div>
