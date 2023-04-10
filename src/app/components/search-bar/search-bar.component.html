@@ -9,13 +9,13 @@
     </div>
     <p class="list-result__text txt-title">Albums</p>
     <div class="list-result__albums-list">
-      <!--<app-album-card *ngFor="let album of searchResults?.albums" [album]="album"></app-album-card>-->
+      <app-album-card *ngFor="let album of searchResults?.albums" [album]="album"></app-album-card>
       <p *ngIf="searchResults?.albums && searchResults?.albums?.length === 0" class="txt-body">No Result</p>
     </div>
     <p class="list-result__text txt-title">Artists</p>
     <div class="list-result__artists-list">
       <app-artist-card *ngFor="let artist of searchResults?.artists" [artist]="artist"></app-artist-card>
-      <p *ngIf="searchResults?.artists && searchResults?.artists?.length === 0" class="txt-body">No Result</p>
+      <p *ngIf="searchResults?.artists && searchResults?.artists?.length === 0">No Result</p>
     </div>
   </div>
 </div>

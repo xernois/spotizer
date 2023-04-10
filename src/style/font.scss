@@ -33,8 +33,14 @@ h2,
 
 .txt-selected,
 .txt-input,
-.txt-small-title {
+.txt-small-title,
+h3 {
     font-size: var(--ft-size-main);
     font-weight: var(--ft-weight-400);
     color: var(--clr-text-title);
+}
+
+.txt-nb {
+  font-size: 10rem;
+  color: var(--clr-text-title);
 }
