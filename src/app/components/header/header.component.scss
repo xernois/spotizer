@@ -5,8 +5,7 @@
     background: var(--clr-background-main);
 
     &__search {
-      text-align: center;
-      flex: 1;
+      margin: auto;
     }
 
     app-breadcrumb {

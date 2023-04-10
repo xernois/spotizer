@@ -1,32 +1,23 @@
 <h1>Home</h1>
-<div class="home__top">
-    <h2>Top</h2>
-    <ul class="home__top-list">
+<div class="home__features">
+    <h2>Features</h2>
+    <ul class="home__features-list">
         <li>
-            <app-song  *ngFor="let song of topSong; let index = index" [song]="song" [index]="index" [queue]="[song]"></app-song>
+            <app-song *ngFor="let song of featuresSong; let index = index" [song]="song" [index]="index" [queue]="[song]"></app-song>
         </li>
         <li>
-            <app-artist-card [artist]="topArtist"></app-artist-card>
-        </li>
-        <li>
-            <app-album-card [album]="topAlbum"></app-album-card>
-
-        </li>
-    </ul>
-</div>
-<div class="home__news">
-    <h2>News</h2>
-    <ul class="home__news-list">
-        <li>
-            <app-song *ngFor="let song of newSong; let index = index" [song]="song" [index]="index" [queue]="[song]"></app-song>
-        </li>
-        <li>
-            <app-artist-card [artist]="newArtist"></app-artist-card>
+            <app-artist-card [artist]="featureArtist"></app-artist-card>
         </li>
           <li>
-            <app-album-card [album]="newAlbum"></app-album-card>
+            <app-album-card [album]="featureAlbum"></app-album-card>
           </li>
     </ul>
+</div>
+<div>
+  <h2>Discover artists</h2>
+  <ul class="home__discover">
+    <app-artist-card *ngFor="let artist of artists.slice(0, 10)" [artist]="artist"></app-artist-card>    
+  </ul>
 </div>
 <div class="home__stats">
   <h2>Stats</h2>

@@ -39,7 +39,8 @@ input {
        margin-bottom: 15px;
     }
     &__songs-list,
-    &__albums-list {
+    &__albums-list,
+    &__artists-list {
       margin-bottom: 20px;
     }
 
@@ -56,6 +57,21 @@ input {
       flex-wrap: wrap;
       gap: 40px;
       justify-content: space-around;
+    }
+
+    &__playlist-list {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 40px;
+
+      li {
+        max-width: 150px;
+
+        img {
+          width: 100%;
+        }
+      }
     }
 }
 

@@ -15,16 +15,13 @@ import {Playlist} from "@models/playlist.model";
 export class HomeComponent {
   public songsLike!: Song[];
   private songs! : Song[];
-  public topSong !: Song[];
-  public newSong !: Song[];
+  public featuresSong !: Song[];
 
-  private albums! : Album[];
-  public topAlbum !: Album;
-  public newAlbum !: Album;
+  public albums! : Album[];
+  public featureAlbum !: Album;
 
-  private artists! : Artist[];
-  public topArtist !: Artist;
-  public newArtist !: Artist;
+  public artists! : Artist[];
+  public featureArtist !: Artist;
 
   public playlist !: Playlist[];
 
@@ -50,49 +47,35 @@ export class HomeComponent {
   getSongs() {
     this.apiService.resolveSong({}).subscribe(songs => {
       this.songs = songs;
-      this.getTopSong();
-      this.getNewSong();
+      this.getfeatureSong();
     })
   }
 
   getAlbums() {
     this.apiService.resolveAlbum({}).subscribe(albums => {
       this.albums = albums;
-      this.getTopAlbum();
-      this.getNewAlbum();
+      this.getfeatureAlbum();
     })
   }
 
   getArtists() {
     this.apiService.resolveArtist({}).subscribe(artists => {
       this.artists = artists;
-      this.getTopArtist();
-      this.getNewArtist()
+      this.getfeatureArtist()
     })
   }
 
-  getTopSong() {
-    this.topSong = this.songs.splice(Math.floor(Math.random()*(this.songs.length-3)),3)
+  getfeatureSong() {
+    this.featuresSong = this.songs.splice(Math.floor(Math.random()*(this.songs.length-3)), 3)
   }
 
-  getNewSong() {
-    this.newSong = this.songs.splice(Math.floor(Math.random()*(this.songs.length-3)),3)
+  getfeatureAlbum() {
+    this.featureAlbum = this.albums[Math.floor(Math.random()*this.albums.length)]
   }
 
-  getTopAlbum() {
-    this.topAlbum = this.albums[Math.floor(Math.random()*this.albums.length)]
-  }
 
-  getNewAlbum() {
-    this.newAlbum = this.albums[Math.floor(Math.random()*this.albums.length)]
-  }
-
-  getTopArtist() {
-    this.topArtist = this.artists[Math.floor(Math.random()*this.artists.length)]
-  }
-
-  getNewArtist() {
-    this.newArtist = this.artists[Math.floor(Math.random()*this.artists.length)]
+  getfeatureArtist() {
+    this.featureArtist = this.artists[Math.floor(Math.random()*this.artists.length)]
   }
 
   getPlaylists() {

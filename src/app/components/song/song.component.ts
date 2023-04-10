@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Song } from '@src/app/models/song.model';
 import { PlayerService } from '@src/app/services/player.service';
 import { LikeService } from '@src/app/services/like.service';
@@ -13,6 +13,9 @@ export class SongComponent {
   @Input() song!: Song;
   @Input() index!: number;
   @Input() queue!: Song[];
+  @Input() deletetable: Boolean = false
+
+  @Output() onDelete = new EventEmitter()
 
 
   public length?: string;
@@ -46,5 +49,9 @@ export class SongComponent {
 
   hideMenu() {
     this.menuVisible = false
+  }
+
+  delete() {
+    this.onDelete.next(null)
   }
 }

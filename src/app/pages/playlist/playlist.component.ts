@@ -7,6 +7,7 @@ import { AppUser } from '@src/app/models/app.model';
 import { LocalStorageService } from '@src/app/services/local-storage.service';
 import { parseSlug, slugify } from '@src/app/functions/slug.function';
 import { PlaylistService } from '@src/app/services/api/playlist.service';
+import { Song } from '@src/app/models/song.model';
 
 @Component({
   selector: 'app-playlist',
@@ -61,6 +62,10 @@ export class PlaylistComponent {
     if(prompt && prompt?.trim() !== this.playlist.name.trim()) {
       this.playlistService.updateName(this.playlist.id, prompt).subscribe((x) => this.router.navigateByUrl('/playlist/'+slugify(x.name) + '-' + x.id))
     }
+  }
+
+  delete(song: Song){
+    this.playlistService.deleteSongById(this.playlist.id, song.id).subscribe(({songs}) => window.location.reload())
   }
 }
 

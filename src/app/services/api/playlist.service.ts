@@ -45,13 +45,22 @@ export class PlaylistService {
 
   updateName(id: number, name: string) {
     return this.getPlaylist(id).pipe(switchMap(playlist => {
-      return this.api.post<Playlist>({ endpoint: ApiEndpoint.PLAYLIST }, { songs: playlist.songs.map((song) => `/~morap01/L250/public/index.php/api/songs/${song.id}`), name }).pipe(tap(playlist => (this.localStorage.updatePlaylist(id, playlist.id), this.onPlaylistChange.next(null))))
+      return this.api.post<Playlist>({ endpoint: ApiEndpoint.PLAYLIST }, { name }).pipe(switchMap(pl => {
+        return this.api.patch<Playlist>({ endpoint: ApiEndpoint.PLAYLIST, id: pl.id }, { songs: playlist.songs.map((song) => `/~morap01/L250/public/index.php/api/songs/${song.id}`) })
+        .pipe(tap(playlist => (this.localStorage.updatePlaylist(id, playlist.id), this.onPlaylistChange.next(null))))
+      }))
     }))
   }
 
   search(query: string) {
     return this.getPlaylists().pipe(switchMap(playlist => {
       return of(playlist.filter(({name}) => name.toUpperCase().includes(query.toUpperCase()) ))
+    }))
+  }
+
+  deleteSongById(playlistId: number, songId: number) {
+    return this.getPlaylist(playlistId).pipe(switchMap(playlist => {
+      return this.api.patch<Playlist>({ endpoint: ApiEndpoint.PLAYLIST, id: playlistId }, { "songs": playlist.songs.filter(({id}) => id !== songId).map((song) => `/~morap01/L250/public/index.php/api/songs/${song.id}`) }).pipe(tap(_ => this.onPlaylistChange.next(null)))
     }))
   }
 }

@@ -15,6 +15,8 @@ export class SearchBarComponent implements OnDestroy {
   public searchControl!: FormControl;
   public searchResults!: SearchResult;
   public showResults!: boolean;
+  public isBlur!: boolean;
+  public isClickOut!: boolean;
 
   constructor(
     private searchService: SearchService
@@ -22,6 +24,8 @@ export class SearchBarComponent implements OnDestroy {
 
   ngOnInit(): void {
     this.showResults = false;
+    this.isBlur = false;
+    this.isClickOut = false;
     this.searchControl = new FormControl();
     this.subscription = this.searchControl.valueChanges.pipe(
       startWith(''),
@@ -32,5 +36,27 @@ export class SearchBarComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.subscription?.unsubscribe()
+  }
+
+  handleBlur() {
+    this.isBlur = true
+    console.log("tg")
+    this.hideSearch()
+  }
+
+  handleClick() {
+    this.isClickOut = true;
+    console.log("tga")
+    this.hideSearch()
+  }
+
+  hideSearch() {
+    if(this.isClickOut && this.isBlur) {
+      console.log("tgv")
+      this.isClickOut = false;
+      this.isBlur = false;
+      this.showResults = false;
+
+    }
   }
 }

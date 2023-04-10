@@ -2,10 +2,45 @@ h1 {
   margin-bottom: 20px;
 }
 
+h2 {
+  margin-bottom: 15px;
+}
+
 .home {
-  &__top-list,
-  &__news-list {
+  &__discover,
+  &__features-list {
     margin-bottom: 20px;
+  }
+
+  &__discover {
+    display: flex;
+    align-items: center;
+    gap:20px;
+    padding-bottom: 5px;
+    overflow-y: hidden;
+
+    &::-webkit-scrollbar {
+      height: 5px;
+    }
+    
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: transparent; 
+    }
+     
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: var(--clr-border-input);
+      border-radius: 10px;
+    }
+    
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: var(--clr-border-input-focus); 
+    }
+  }
+
+  &__features-list {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -20,6 +55,7 @@ h1 {
 
     app-song {
       margin-bottom: 10px;
+      text-align: start;
     }
   }
 

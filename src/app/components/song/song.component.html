@@ -11,6 +11,11 @@
         </div>
         <p class="song__song-title">{{song.title}}</p>
     </button>
+    <button *ngIf="deletetable" (click)="delete()" class="cta cta--no-border">
+        <span class="material-symbols-outlined" class="material-symbols-outlined">
+            delete
+        </span>
+    </button>
     <button (click)="like.toggleSongLike(song.id)" [ngClass]="'cta cta--no-border ' + (like.isSongLiked(song.id) ? 'cta--filled cta--red' : '') ">
         <span class="material-symbols-outlined" class="material-symbols-outlined">
             favorite
