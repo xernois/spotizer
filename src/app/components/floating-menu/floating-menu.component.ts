@@ -30,6 +30,7 @@ export class FloatingMenuComponent {
 
   addQueue() {
     this.playerService.musicQueue.push(this.song)
+    this.playerService.playing$.next(true)
   }
 
   addToPlaylist(playlistId: number) {

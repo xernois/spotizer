@@ -5,7 +5,7 @@
       <h1 class="infos-playlist__title">{{ playlist.name }}</h1>
       <p *ngIf="user">{{ user.name }}</p>
       <div class="playlist-details__buttons">
-        <button (click)="playPlaylist()" class="cta">
+        <button (click)="playPlaylist()" class="cta" [disabled]="!playlist.songs.length">
           <span class="material-symbols-outlined">play_arrow</span>
         </button>
         <button (click)="deletePLaylist()" class="cta cta--no-border">
