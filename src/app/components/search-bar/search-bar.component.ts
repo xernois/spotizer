@@ -1,5 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { SearchResult } from '@src/app/models/search.model';
 import { SearchService } from '@src/app/services/api/search.service';
 import { debounceTime, startWith, Subscription, switchMap } from 'rxjs';
 
@@ -12,7 +13,7 @@ export class SearchBarComponent implements OnDestroy {
 
   private subscription!: Subscription;
   public searchControl!: FormControl;
-  public searchResults!: any[];
+  public searchResults!: SearchResult;
   public showResults!: boolean;
 
   constructor(
@@ -21,13 +22,12 @@ export class SearchBarComponent implements OnDestroy {
 
   ngOnInit(): void {
     this.showResults = false;
-    this.searchResults = [];
     this.searchControl = new FormControl();
     this.subscription = this.searchControl.valueChanges.pipe(
       startWith(''),
       debounceTime(200),
-      switchMap(this.searchService.search))
-      .subscribe((results) => this.searchResults = [...results])
+      switchMap((query) => this.searchService.search(query)))
+      .subscribe((results) => this.searchResults = results)
   }
 
   ngOnDestroy() {

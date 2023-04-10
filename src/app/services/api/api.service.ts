@@ -8,8 +8,9 @@ import { Artist } from '@src/app/models/artist.model';
 import { Song } from '@src/app/models/song.model'
 import { Injectable } from '@angular/core';
 import { Playlist } from '@src/app/models/playlist.model';
+import { SearchObject } from '@src/app/models/search.model';
 
-type resolveParam = { id?: number, url?: string, page?: number, endpoint?: ApiEndpoint }
+type resolveParam = { id?: number, url?: string, page?: number, endpoint?: ApiEndpoint, name?:string, title?:string }
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +21,10 @@ export class ApiService {
     private http: HttpClient,
   ) { }
 
-  public get<T>({ id, url, page = 1, endpoint }: resolveParam) {
+  public get<T>({ id, url, page = 1, endpoint, name, title }: resolveParam) {
     if (url) return this.http.get<T>(environment.appUrl + url).pipe(toArray())
     else if (id) return this.http.get<T>(environment.apiUrl + endpoint + '/' + id).pipe(toArray())
-    else return this.http.get<T[]>(environment.apiUrl + endpoint + `?page=${page}`)
+    else return this.http.get<T[]>(environment.apiUrl + endpoint + `?page=${page}&name=${name}&title=${title}`)
   }
 
   public post<T>({ endpoint }: resolveParam, body: Object) {
@@ -128,5 +129,9 @@ export class ApiService {
         });
       })
     );
+  }
+
+  public search<T>(endpoint: ApiEndpoint, searchObject: SearchObject) {
+    return this.get<T>({ endpoint, ...searchObject })
   }
 }

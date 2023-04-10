@@ -1,6 +1,12 @@
 <input class="txt-input" type="text" [formControl]="searchControl" (focus)="showResults = true" (blur)="showResults = false">
 <div class="list-result">
   <ul *ngIf="showResults">
-    <li *ngFor="let result of searchResults"> {{result}} </li>
+    <li *ngFor="let result of searchResults?.songs"> song : {{result.title}} </li>
+  </ul>
+  <ul *ngIf="showResults">
+    <li *ngFor="let result of searchResults?.albums"> album : {{result.title}} </li>
+  </ul>
+  <ul *ngIf="showResults">
+    <li *ngFor="let result of searchResults?.artists"> artist : {{result.name}} </li>
   </ul>
 </div>
