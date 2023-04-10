@@ -1,22 +1,27 @@
 .panel-user {
     max-width: var(--width-panel-user);
     width: var(--width-panel-user);
-    
+
     &__playlists {
         margin-top: 20px;
-        
+
         li {
             margin-top: 15px;
         }
 
         a {
             display: flex;
+            align-items: center;
+            row-gap: 10px;
         }
 
         img {
-            background-color: aqua;
             width: 16px;
             height: 16px;
+        }
+
+        button {
+            margin-top: 10px;
         }
 
         .playlist-name {
@@ -26,20 +31,6 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-        }
-    }
-}
-
-nav {
-    margin-top: var(--margin-40);
-    
-    ul {
-        display: flex;
-        justify-content: start;
-        gap: 15px;
-
-        .active {
-            color: var(--clr-text-selected);
         }
     }
 }

@@ -9,17 +9,23 @@
     z-index: 1;
 }
 
-ul {
+.menu {
     position: absolute;
     border-radius: 10px;
+    padding: 8px 12px;
     background-color: var(--clr-background-floating-menu);
     z-index: 2;
 
+    li:not(:last-child) {
+        margin-bottom: 10px;
+    }
+
     button {
-        padding: 5px 5px;
         display: flex;
         align-items: center;
         cursor: pointer;
+        width: 100%;
+        justify-content: space-between;
 
         &:hover {
             color: var(--clr-text-cta-hover);
@@ -27,6 +33,18 @@ ul {
 
         span {
             margin-left: 5px;
+            line-height: 1rem;
         }
+    }
+
+    &__expand-list {
+      max-width: 140px;
+      margin-left: 10px;
+
+      p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
 }
