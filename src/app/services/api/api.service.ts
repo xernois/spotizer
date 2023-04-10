@@ -52,7 +52,7 @@ export class ApiService {
   public resolveAlbum({ id, url, page, title }: resolveParam) {
     let data$: Observable<Album[]>;
     if (url) data$ = this.get<Album>({ url })
-    else data$ = this.get<Album>({ endpoint: ApiEndpoint.ALBUM, id, page, title })
+    else data$ = this.get<Album>({ endpoint: ApiEndpoint.ALBUM, id, page, })
 
     return data$.pipe(
       map(albums => albums.map(album => ({

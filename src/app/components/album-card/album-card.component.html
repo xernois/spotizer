@@ -14,7 +14,7 @@
     </div>
 </div>
 <p class="txt-small-title">{{ album.title }}</p>
-<p *ngIf="album.getArtist() | async as artist; else loading">{{ artist.name }}</p>
+<p *ngIf="album.getArtist() | async as artist; else loading"><a [routerLink]="'/artist/'+artist.url">{{ artist.name }}</a></p>
 <ng-template #loading>
     <p *skeleton="true; height: 'calc(1rem + 5px)'; width: 'rand';"></p>
 </ng-template>

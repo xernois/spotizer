@@ -35,7 +35,7 @@ export class YoutubePlayerComponent implements AfterViewInit {
       this.player = new (<any>window).YT.Player('player', {
         height: this.wrapper.nativeElement.getBoundingClientRect().height,
         width: this.wrapper.nativeElement.getBoundingClientRect().width,
-        playerVars: { 'autoplay': 0, 'controls': 0, 'showinfo': 0, 'rel': 0, 'origin': 'xernois.fr' },
+        playerVars: { 'autoplay': 0, 'controls': 0, 'showinfo': 0, 'rel': 0 },
         videoId: null,
         events: {
           onReady: this.onPlayerReady.bind(this),
