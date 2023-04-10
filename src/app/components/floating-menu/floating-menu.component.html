@@ -1,21 +1,26 @@
-<div *ngIf="isVisible" class="floating-menu" (click)="toggleVisibility()">
-</div>
-<ul *ngIf="isVisible">
+<div *ngIf="isVisible" class="floating-menu" (click)="toggleVisibility()"></div>
+<ul *ngIf="isVisible" class="menu">
     <li>
         <button (click)="addQueue()">
-            Add queue <span class="material-symbols-outlined">add</span>
+            <p>
+                Add queue
+            </p>
+            <span class="material-symbols-outlined">add</span>
         </button>
     </li>
     <li>
         <button (click)="toggleExpanded()">
-            Add playlist <span class="material-symbols-outlined">{{expanded ? "expand_more" : "expand_less"}}</span>
+            <p>
+                Add playlist
+            </p>
+            <span class="material-symbols-outlined">{{expanded ? "expand_more" : "expand_less"}}</span>
         </button>
     </li>
-    <div *ngIf="expanded">
+    <ul *ngIf="expanded" class="menu__expand-list">
         <li *ngFor="let playlist of playlists">
             <button (click)="addToPlaylist(playlist.id)">
-              {{playlist.name}}
+              <p>{{playlist.name}}</p>
             </button>
         </li>
-    </div>
+    </ul>
 </ul>

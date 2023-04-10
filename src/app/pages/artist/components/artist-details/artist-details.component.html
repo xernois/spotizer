@@ -1,5 +1,5 @@
 <div class="artist__info">
-    <img src="https://api.dicebear.com/6.x/adventurer-neutral/svg?seed={{ artist.name }}">
+    <img src="https://api.dicebear.com/6.x/adventurer-neutral/svg?seed={{ artist.name }}" alt="artist image">
     <h1>{{ artist.name }}</h1>
 </div>
 <h2>Songs</h2>
@@ -15,7 +15,7 @@
 <div class="artist__albums-list">
     <ng-container *skeleton="!albums; repeat: 5; height: 'calc(var(--width-card-album-s) + 2rem + 10px)'; width: 'var(--width-card-album-s)';"></ng-container>
     <app-album-card *ngFor="let album of albums" [album]="album"></app-album-card>
-    <p *ngIf="!albums?.length">
-      You haven't liked any album yet. <a routerLink="/album" class="link--underline">Explore</a>
+    <p *ngIf="albums && !albums?.length">
+      This artist doesn't have songs.
     </p>
 </div>
