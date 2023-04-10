@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { PlaylistService } from '@services/api/playlist.service'
 import { slugify } from '@src/app/functions/slug.function';
 import { Playlist } from '@src/app/models/playlist.model';
+import { startWith } from 'rxjs';
 
 @Component({
   selector: 'app-panel-user',
@@ -19,7 +20,9 @@ export class PanelUserComponent {
   ){}
 
   ngOnInit(): void {
-    this.playlist.getPlaylists().subscribe(playlists => this.playlists = playlists);
+    this.playlist.onPlaylistChange.pipe(startWith(null)).subscribe(() => { 
+      this.playlist.getPlaylists().subscribe(playlists => this.playlists = playlists);
+    }) 
   }
 
   newPLaylist(){

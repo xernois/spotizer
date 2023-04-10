@@ -64,4 +64,21 @@ export class LocalStorageService {
       this.setPlaylists(playlists)
     }
   }
+
+  deletePlaylist(id: number) {
+    const playlists = this.getPlaylists()
+    if (playlists.includes(id)) {
+      this.setPlaylists(playlists.filter(playlistId => playlistId != id))
+    }
+  }
+
+  updatePlaylist(oldId: number, newId: number) {
+    const playlists = this.getPlaylists()
+    if (playlists.includes(oldId) && !playlists.includes(newId)) {
+      const index = playlists.findIndex(playlistId => playlistId === oldId)
+      if(index === -1 ) return 
+      playlists[index] = newId
+      this.setPlaylists(playlists)
+    }
+  }
 }
