@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ApiEndpoint } from '@enums/api-endpoint.enum';
-import { delay, forkJoin, map, Observable, tap, toArray } from 'rxjs';
+import { delay, forkJoin, map, Observable, of, tap, toArray } from 'rxjs';
 import { environment } from '@environments/environment';
 import { parseSlug, slugify } from '@src/app/functions/slug.function';
 import { Album } from '@src/app/models/album.model';
@@ -9,8 +9,10 @@ import { Song } from '@src/app/models/song.model'
 import { Injectable, enableProdMode } from '@angular/core';
 import { Playlist } from '@src/app/models/playlist.model';
 import { SearchObject } from '@src/app/models/search.model';
+import { LocalStorageService } from '../local-storage.service';
+import { DefaultValueAccessor } from '@angular/forms';
 
-type resolveParam = { id?: number, url?: string, page?: number, endpoint?: ApiEndpoint, name?:string, title?:string }
+type resolveParam = { id?: number, url?: string, page?: number, endpoint?: ApiEndpoint, name?: string, title?: string }
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +23,8 @@ export class ApiService {
 
   constructor(
     private http: HttpClient,
-  ) { 
+    private localStorage: LocalStorageService
+  ) {
     this.testConnectivity()
   }
 
@@ -35,7 +38,7 @@ export class ApiService {
   public get<T>({ id, url, page = 1, endpoint, name, title }: resolveParam) {
     if (url) return this.http.get<T>(environment.apiBaseUrl + url).pipe(toArray())
     else if (id) return this.http.get<T>(environment.apiUrl + endpoint + '/' + id).pipe(toArray())
-    else return this.http.get<T[]>(environment.apiUrl + endpoint + `?page=${page}${name ? '&name=' + name : ''}${title ? '&title='+title : ''}`)
+    else return this.http.get<T[]>(environment.apiUrl + endpoint + `?page=${page}${name ? '&name=' + name : ''}${title ? '&title=' + title : ''}`)
   }
 
   public post<T>({ endpoint }: resolveParam, body: Object) {
@@ -142,7 +145,16 @@ export class ApiService {
     );
   }
 
-  public search<T>(endpoint: ApiEndpoint, searchObject: SearchObject) {
-    return this.get<T>({ endpoint, ...searchObject })
+  public search(endpoint: ApiEndpoint, searchObject: SearchObject) {
+    switch (endpoint) {
+      case ApiEndpoint.ALBUM:
+        return this.resolveAlbum(searchObject)
+      case ApiEndpoint.SONG:
+        return this.resolveSong(searchObject)
+      case ApiEndpoint.ARTIST:
+        return this.resolveArtist(searchObject)
+      default:
+        return of()
+    }
   }
 }
