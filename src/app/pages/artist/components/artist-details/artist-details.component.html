@@ -1,16 +1,21 @@
-<div class="artist-info">
+<div class="artist__info">
     <img src="https://api.dicebear.com/6.x/adventurer-neutral/svg?seed={{ artist.name }}">
     <h1>{{ artist.name }}</h1>
 </div>
-<div class="song-list">
-    <h2>Songs</h2>
-    <app-song *ngFor="let song of songs; let index = index" [song]="song" [index]="index" [queue]="songs"></app-song>
-    <pre>{{ songs | json}}</pre>
-    <!-- <button *ngIf="songs?.length && songs.length > maxSongsToShow" class="link link--underline" (click)="showMore()">{{!isShowMore ? 'Show more': 'Show less'}}</button> -->
-
+<h2>Songs</h2>
+<div class="artist__songs-list">
+  <ng-container *skeleton="!songs; className: 'mb-10' repeat: 5; height: '30px'; width: '900px';"></ng-container>
+    <app-song *ngFor="let song of songs?.slice(0, isShowMore ? songs.length : maxSongsToShow); let index = index" [song]="song" [index]="index" [queue]="songs"></app-song>
+    <button *ngIf="songs?.length && songs.length > maxSongsToShow" class="link link--underline" (click)="showMore()">{{!isShowMore ? 'Show all': 'Show less'}}</button>
+    <p *ngIf="songs && !songs?.length">
+      This artist doesn't have songs.
+    </p>
 </div>
-<div class="song-album">
-    <h2>Albums</h2>
-    <!-- <button *ngIf="songs?.length && songs.length > maxSongsToShow" class="link link--underline" (click)="showMore()">{{!isShowMore ? 'Show more': 'Show less'}}</button> -->
+<h2>Albums</h2>
+<div class="artist__albums-list">
+    <ng-container *skeleton="!albums; repeat: 5; height: 'calc(var(--width-card-album-s) + 2rem + 10px)'; width: 'var(--width-card-album-s)';"></ng-container>
+    <app-album-card *ngFor="let album of albums" [album]="album"></app-album-card>
+    <p *ngIf="!albums?.length">
+      You haven't liked any album yet. <a routerLink="/album" class="link--underline">Explore</a>
+    </p>
 </div>
-<pre>{{ artist | json }}</pre>

@@ -14,6 +14,10 @@ export class ArtistDetailsComponent {
   songs !: Song[];
   albums !: Album[];
 
+  public maxSongsToShow = 5;
+
+  public isShowMore: boolean = false;
+
   constructor(
     private route: ActivatedRoute,
     private router : Router,
@@ -24,5 +28,9 @@ export class ArtistDetailsComponent {
     this.artist.getSongs().subscribe((songs) => this.songs = songs)
     this.artist.getAlbums().subscribe((albums) => this.albums = albums)
     if(!this.artist) this.router.navigateByUrl('/artist')
+  }
+
+  showMore() {
+    this.isShowMore = !this.isShowMore
   }
 }

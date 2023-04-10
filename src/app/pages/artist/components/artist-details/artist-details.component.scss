@@ -3,6 +3,33 @@ img {
     border-radius: 50%;
 }
 
-.artist-info {
+h2 {
+  margin-bottom: 20px;
+}
+
+.artist {
+  &__info {
     display: flex;
+    margin-bottom: 40px;
+
+    h1 {
+      margin-left: 20px;
+      margin-top: 20px;
+    }
+  }
+
+  &__songs-list {
+    margin-bottom: 40px;
+
+    app-song {
+      margin-bottom: 10px;
+      display: block;
+    }
+  }
+
+  &__albums-list {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
 }

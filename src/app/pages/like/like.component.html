@@ -5,7 +5,7 @@
     <div class="list-songs">
         <ng-container *skeleton="!songs; className: 'mb-10' repeat: 5; height: '30px'; width: '900px';"></ng-container>
         <app-song *ngFor="let song of songs?.slice(0, isShowMore ? songs.length : maxSongsToShow); let index = index" [song]="song" [index]="index" [queue]="songs"></app-song>
-        <button *ngIf="songs?.length && songs.length > maxSongsToShow" class="link link--underline" (click)="showMore()">{{!isShowMore ? 'Show more': 'Show less'}}</button>
+        <button *ngIf="songs?.length && songs.length > maxSongsToShow" class="link link--underline" (click)="showMore()">{{!isShowMore ? 'Show all': 'Show less'}}</button>
         <p *ngIf="songs && !songs?.length">
             You haven't liked any song yet. <a routerLink="/album" class="link--underline">Explore</a>
         </p>
