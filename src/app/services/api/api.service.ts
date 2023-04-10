@@ -24,7 +24,7 @@ export class ApiService {
   public get<T>({ id, url, page = 1, endpoint, name, title }: resolveParam) {
     if (url) return this.http.get<T>(environment.appUrl + url).pipe(toArray())
     else if (id) return this.http.get<T>(environment.apiUrl + endpoint + '/' + id).pipe(toArray())
-    else return this.http.get<T[]>(environment.apiUrl + endpoint + `?page=${page}&name=${name}&title=${title}`)
+    else return this.http.get<T[]>(environment.apiUrl + endpoint + `?page=${page}${name ? '&name=' + name : ''}${title ? '&title='+title : ''}`)
   }
 
   public post<T>({ endpoint }: resolveParam, body: Object) {

@@ -18,9 +18,9 @@ export class SearchService {
 
   search(query: SearchQuery) {
     return forkJoin([
-      this.api.search<Album>(ApiEndpoint.ALBUM, { title: query, name: query }).pipe(map(list => ({ albums: list.slice(0, 5) }))),
-      this.api.search<Song>(ApiEndpoint.SONG, { title: query, name: query }).pipe(map(list => ({ songs: list.slice(0, 5) }))),
-      this.api.search<Artist>(ApiEndpoint.ALBUM, { title: query, name: query }).pipe(map(list => ({ artists: list.slice(0, 5) }))),
+      this.api.search<Album>(ApiEndpoint.ALBUM, { title: query }).pipe(map(list => ({ albums: list.slice(0, 5) }))),
+      this.api.search<Song>(ApiEndpoint.SONG, { title: query }).pipe(map(list => ({ songs: list.slice(0, 5) }))),
+      this.api.search<Artist>(ApiEndpoint.ARTIST, { name: query }).pipe(map(list => ({ artists: list.slice(0, 5) }))),
     ]).pipe(map(result => result.reduce((acc, curr) => ({ ...acc, ...curr }), { songs: [], albums: [], artists: [] })))
   }
 }

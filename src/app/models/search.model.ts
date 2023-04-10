@@ -11,6 +11,6 @@ export type SearchResult = {
 }
 
 export type SearchObject = {
-  name: string
-  title: string,
-}
+  name? : string
+  title? : string,
+} & ({name : string} | {title : string})
