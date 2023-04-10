@@ -49,10 +49,10 @@ export class ApiService {
     return this.http.patch<T>(environment.apiUrl + endpoint + '/' + id, body);
   }
 
-  public resolveAlbum({ id, url, page }: resolveParam) {
+  public resolveAlbum({ id, url, page, title }: resolveParam) {
     let data$: Observable<Album[]>;
     if (url) data$ = this.get<Album>({ url })
-    else data$ = this.get<Album>({ endpoint: ApiEndpoint.ALBUM, id, page })
+    else data$ = this.get<Album>({ endpoint: ApiEndpoint.ALBUM, id, page, title })
 
     return data$.pipe(
       map(albums => albums.map(album => ({
@@ -67,10 +67,10 @@ export class ApiService {
     );
   }
 
-  public resolveArtist({ id, url, page }: resolveParam) {
+  public resolveArtist({ id, url, page, name }: resolveParam) {
     let data$: Observable<Artist[]>;
     if (url) data$ = this.get<Artist>({ url })
-    else data$ = this.get<Artist>({ endpoint: ApiEndpoint.ARTIST, id, page })
+    else data$ = this.get<Artist>({ endpoint: ApiEndpoint.ARTIST, id, page, name })
 
     return data$.pipe(
       map(artist => {
@@ -98,11 +98,11 @@ export class ApiService {
     );
   }
 
-  public resolveSong({ id, url, page }: resolveParam) {
+  public resolveSong({ id, url, page, title }: resolveParam) {
     let data$: Observable<Song[]>;
 
     if (url) data$ = this.get<Song>({ url })
-    else data$ = this.get<Song>({ endpoint: ApiEndpoint.SONG, id, page })
+    else data$ = this.get<Song>({ endpoint: ApiEndpoint.SONG, id, page, title })
 
     return data$.pipe(
       map(song => {
