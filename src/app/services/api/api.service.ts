@@ -1,12 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ApiEndpoint } from '@enums/api-endpoint.enum';
-import { forkJoin, map, Observable, tap, toArray } from 'rxjs';
+import { delay, forkJoin, map, Observable, tap, toArray } from 'rxjs';
 import { environment } from '@environments/environment';
 import { parseSlug, slugify } from '@src/app/functions/slug.function';
 import { Album } from '@src/app/models/album.model';
 import { Artist } from '@src/app/models/artist.model';
 import { Song } from '@src/app/models/song.model'
-import { Injectable } from '@angular/core';
+import { Injectable, enableProdMode } from '@angular/core';
 import { Playlist } from '@src/app/models/playlist.model';
 import { SearchObject } from '@src/app/models/search.model';
 
@@ -17,12 +17,23 @@ type resolveParam = { id?: number, url?: string, page?: number, endpoint?: ApiEn
 })
 export class ApiService {
 
+  isApiOk: boolean | undefined;
+
   constructor(
     private http: HttpClient,
-  ) { }
+  ) { 
+    this.testConnectivity()
+  }
+
+  private testConnectivity() {
+    this.http.get<HttpResponse<any>>(environment.apiUrl).subscribe({
+      next: _ => this.isApiOk = true,
+      error: _ => this.isApiOk = false
+    })
+  }
 
   public get<T>({ id, url, page = 1, endpoint, name, title }: resolveParam) {
-    if (url) return this.http.get<T>(environment.appUrl + url).pipe(toArray())
+    if (url) return this.http.get<T>(environment.apiBaseUrl + url).pipe(toArray())
     else if (id) return this.http.get<T>(environment.apiUrl + endpoint + '/' + id).pipe(toArray())
     else return this.http.get<T[]>(environment.apiUrl + endpoint + `?page=${page}${name ? '&name=' + name : ''}${title ? '&title='+title : ''}`)
   }
