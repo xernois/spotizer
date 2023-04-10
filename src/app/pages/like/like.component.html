@@ -12,11 +12,11 @@
     </div>
 
     <h2>Albums :</h2>
-    <ng-container *skeleton="true; repeat: 5; height: 'calc(var(--height-card-album-s) + 2rem + 10px)'; width: 'var(--height-card-album-s)';"></ng-container>
     <div class="list-album">
+        <ng-container *skeleton="!albums; repeat: 5; height: 'calc(var(--width-card-album-s) + 2rem + 10px)'; width: 'var(--width-card-album-s)';"></ng-container>
         <app-album-card *ngFor="let album of albums" [album]="album"></app-album-card>
     </div>
-    <p *ngIf="!albums?.length">
+    <p *ngIf="albums && !albums?.length">
         You haven't liked any album yet. <a routerLink="/album" class="link--underline">Explore</a>
     </p>
 </div>
