@@ -29,11 +29,13 @@ export class LikeComponent {
   getSongs() {
     const songsRequest = this.likeService.getAllLikedSong()
     if(songsRequest) songsRequest.subscribe(results => this.songs = results)
+    else this.songs = []
   }
 
   getAlbums() {
     const songsRequest = this.likeService.getAllLikedAlbum()
     if(songsRequest) songsRequest.subscribe(results => this.albums = results)
+    else this.albums = []
   }
 
   showMore() {

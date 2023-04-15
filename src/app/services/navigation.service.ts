@@ -14,7 +14,6 @@ export class NavigationService {
     this.router.events.subscribe((event) => {
         if (event instanceof NavigationEnd) {
           this.history.push(event.urlAfterRedirects)
-          console.log(event.urlAfterRedirects)
         }
       })
   }

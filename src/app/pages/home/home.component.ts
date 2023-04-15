@@ -41,7 +41,8 @@ export class HomeComponent {
 
   getSongsLike() {
     const songsRequest = this.likeService.getAllLikedSong()
-    if(songsRequest) songsRequest.subscribe(results => this.songsLike = results)
+    if(songsRequest) songsRequest?.subscribe(results => this.songsLike = results)
+    else this.songsLike = []
   }
 
   getSongs() {
@@ -72,7 +73,6 @@ export class HomeComponent {
   getfeatureAlbum() {
     this.featureAlbum = this.albums[Math.floor(Math.random()*this.albums.length)]
   }
-
 
   getfeatureArtist() {
     this.featureArtist = this.artists[Math.floor(Math.random()*this.artists.length)]

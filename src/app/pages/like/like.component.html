@@ -1,7 +1,6 @@
 <div>
     <h1>Likes</h1>
     <h2>Songs :</h2>
-
     <div class="list-songs">
         <ng-container *skeleton="!songs; className: 'mb-10' repeat: 5; height: '30px'; width: '900px';"></ng-container>
         <app-song *ngFor="let song of songs?.slice(0, isShowMore ? songs.length : maxSongsToShow); let index = index" [song]="song" [index]="index" [queue]="songs"></app-song>

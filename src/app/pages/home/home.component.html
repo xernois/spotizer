@@ -16,18 +16,18 @@
 <div>
   <h2>Discover artists</h2>
   <ul class="home__discover">
-    <app-artist-card *ngFor="let artist of artists.slice(0, 10)" [artist]="artist"></app-artist-card>    
+    <app-artist-card *ngFor="let artist of artists?.slice(0, 10)" [artist]="artist"></app-artist-card>    
   </ul>
 </div>
 <div class="home__stats">
   <h2>Stats</h2>
   <div class="stats">
     <div class="stats__left">
-      <p class="txt-nb">{{songsLike.length}}</p>
+      <p class="txt-nb">{{songsLike? songsLike.length : 0}}</p>
       <h3>Likes</h3>
     </div>
     <div class="stats__right">
-      <p class="txt-nb">{{playlist.length}}</p>
+      <p class="txt-nb">{{playlist? playlist.length : 0}}</p>
       <h3>Playlist</h3>
     </div>
   </div>

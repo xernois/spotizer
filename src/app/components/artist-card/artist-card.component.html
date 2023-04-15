@@ -1,4 +1,4 @@
-<a [routerLink]="artist.url">
+<a *ngIf="artist?.url" [routerLink]="'/artist/'+artist.url">
     <img src="https://api.dicebear.com/6.x/adventurer-neutral/svg?seed={{ artist.name }}" alt="artist image">
     <p>{{ artist.name}}</p>
 </a>
